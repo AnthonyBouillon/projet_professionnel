@@ -1,0 +1,13 @@
+<ifModule mod_rewrite.c>
+# Bloc l'accès au répertoire du site
+Options -Indexes
+# On suit les liens symboliques
+Options +FollowSymlinks
+# Activation du mod rewrite d'Apache
+RewriteEngine On
+# Réécriture de l'url
+
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+</ifModule>
