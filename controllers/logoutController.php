@@ -3,4 +3,4 @@
 $users = new users();
 $users->id = $_SESSION['id'];
 $users->username = $_SESSION['username'];
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();

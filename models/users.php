@@ -18,7 +18,7 @@ class users extends database {
     }
 
     // Méthode qui permet d'enregistrer dans la base de donnée un nouveau utilisateur
-    public function addUser() {
+    public function createUsers() {
         $request = $this->db->prepare('INSERT INTO `' . SELF::prefix . 'users`(`username`, `mail`, `password`,`avatar`, `keyMail`, `actif`) VALUES(:username, :mail, :password, :avatar, :keyMail, :actif)');
         $request->bindValue(':username', $this->username, PDO::PARAM_STR);
         $request->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -30,7 +30,7 @@ class users extends database {
     }
 
     // Méthode qui me permet de récupérer une information précise de l'utilisateur afin de les affichers
-    public function checkElements() {
+    public function readUsers() {
         $request = $this->db->prepare('SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date FROM `' . SELF::prefix . 'users` WHERE `username` = :username OR`mail`=:mail OR `id`=:id');
         $request->bindValue('username', $this->username, PDO::PARAM_STR);
         $request->bindValue('mail', $this->mail, PDO::PARAM_STR);
@@ -54,6 +54,7 @@ class users extends database {
         $request->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $request->execute();
     }
+
     // Méthode qui permet de modifier l'e mot de passe 'adresse e-mail de l'utilisateur
     public function updateMail() {
         $request = $this->db->prepare('UPDATE `' . SELF::prefix . 'users` SET `mail` =:mail WHERE `id` =:id');
@@ -62,19 +63,19 @@ class users extends database {
         return $request->execute();
     }
 
-    // Méthode qui permet de supprimer un compte
-    public function deleteProfile() {
-        $request = $this->db->prepare('DELETE FROM `' . SELF::prefix . 'users` WHERE id=:id');
-        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $request->execute();
-    }
-
     // Méthode qui permet de modifier une image de profil
     public function updateAvatar() {
         $request = $this->db->prepare('UPDATE `' . SELF::prefix . 'users` SET `avatar` =:avatar WHERE `id` =:id');
         $request->bindValue(':avatar', $this->id . '.' . $this->extension);
         $request->bindValue(':id', $this->id);
         return $request->execute();
+    }
+
+    // Méthode qui permet de supprimer un compte
+    public function deleteUsers() {
+        $request = $this->db->prepare('DELETE FROM `' . SELF::prefix . 'users` WHERE id=:id');
+        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $request->execute();
     }
 
     // Fermeture de la connexion à la base de donnée qui provient de son parent

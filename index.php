@@ -39,7 +39,7 @@ include_once 'controllers/homeController.php';
                     <!-- Affiche un menu différent suivant si l'utilisateur est connecté ou non -->
                     <?php if (!empty($_SESSION['id'])) { ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><img src="members/avatars/<?= $checkElement->username . '/' . $checkElement->avatar; ?>" class="img-rounded avatarNav" /></li>
+                            <li><img src="members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="img-rounded avatarNav" /></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown"  href=""><?= $_SESSION['username']; ?><span class="caret"></span></a>
                                 <ul class="dropdown-menu">

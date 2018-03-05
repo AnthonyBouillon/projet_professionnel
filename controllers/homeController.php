@@ -12,7 +12,7 @@ $users->id = $_SESSION['id'];
 $users->username = $_SESSION['username'];
 }
 
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 $chat = new chat();
 $showMessages = $chat->checkMessage();
 $regexMessage = '#^[\w\W]{1,500}$#';

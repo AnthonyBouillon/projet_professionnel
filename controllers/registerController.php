@@ -23,16 +23,16 @@ if (isset($_POST['submit'])) {
         $users->password = htmlspecialchars($_POST['password']);
         $users->passwordHash = password_hash($users->password, PASSWORD_BCRYPT);
         // On assigne notre tableau qui contient toute les informations de la table users dans une variable
-        $checkElement = $users->checkElements();
+        $readUsers = $users->readUsers();
         /*
          * On vérifie que le pseudo et l'adresse e-mail ne sont pas enregistrés dans la base de donnée
          * On vérifie que les champs qui doivent être identiques le sont
          * On vérifie que le format désiré des données saisies soient respectés
          */
-        if (!empty($checkElement->username)) {
+        if (!empty($readUsers->username)) {
             $formError['unavailableUsername'] = 'Le pseudo est déjà utilisé';
         }
-        if (!empty($checkElement->mail)) {
+        if (!empty($readUsers->mail)) {
             $formError['unavailableMail'] = 'L\'adresse e-mail est déjà utilisé';
         }
         if ($users->mail != $_POST['confirmMail']) {
@@ -77,14 +77,14 @@ if (isset($_POST['submit'])) {
      */
     if (count($formError) == 0) {
         $users->keyMail = str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789');
-        if ($users->addUser()) {
-            $checkElements = $users->checkElements();
+        if ($users->createUsers()) {
+            $readUsers = $users->readUsers();
             $to = $users->mail;
             $subject = 'Votre inscription sur le site APT';
-            $message =  'Bienvenue ' . $checkElements->username . ' sur All Plateform Together,' . "\r\n\r\n";
+            $message =  'Bienvenue ' . $readUsers->username . ' sur All Plateform Together,' . "\r\n\r\n";
             $message .= 'Pour activer votre compte, veuillez cliquer sur le lien ci dessous' . "\r\n";
             $message .= 'ou copier/coller dans votre navigateur internet.' . "\r\n\r\n";
-            $message .= 'http://projetprofessionnel/views/validationView.php?id=' . $checkElements->id . '&key=' . $users->keyMail . "\r\n\r\n";
+            $message .= 'http://projetprofessionnel/views/validationView.php?id=' . $readUsers->id . '&key=' . $users->keyMail . "\r\n\r\n";
             $message .= '--------------------------------------------------' . "\r\n\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
             $headers = 'De : ' . $users->mail;

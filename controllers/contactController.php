@@ -4,7 +4,7 @@ $users = new users();
 if(isset($_SESSION['id'])){
 $users->id = $_SESSION['id'];
 }
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 /*
  * On assigne nos regex dans nos variables qui servira pour nos champs
  * On assigne un tableau vide dans une variable qui servira à créer nos messages d'erreurs et de réussite

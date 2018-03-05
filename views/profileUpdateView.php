@@ -13,7 +13,7 @@ if (!empty($_SESSION['id'])) {
         <div class="blocAddImg">
             <h2 class="text-center">La modification de votre profil ce passe ici</h2>
             <!-- Affichage de l'avatar -->
-            <img src="../members/avatars/<?= $checkElement->username . '/' . $checkElement->avatar; ?>" class="avatar img-responsive img-rounded center-block" />
+            <img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="avatar img-responsive img-rounded center-block" />
             <!-- Affichage des messages d'erreurs  et des succès-->
             <p class="text-center red bold h4"><?= !empty($formError['bigFormat']) ? $formError['bigFormat'] : ''; ?></p>
             <p class="text-center red bold h4"><?= !empty($formError['badFormat']) ? $formError['badFormat'] : ''; ?></p>
@@ -21,7 +21,7 @@ if (!empty($_SESSION['id'])) {
             <p class="text-center red bold h4"><?= !empty($formError['emptyAvatar']) ? $formError['emptyAvatar'] : ''; ?></p>
             <p class="text-center green bold h4"><?= !empty($formSuccess['avatarUpdate']) ? $formSuccess['avatarUpdate'] : ''; ?></p>
             <!-- Affichage du pseudo de l'utilisateur -->
-            <h2 class="text-center bold userTitle"><?= wordwrap($checkElement->username, 15, ' ', 1); ?></h2>
+            <h2 class="text-center bold userTitle"><?= wordwrap($readUsers->username, 15, ' ', 1); ?></h2>
             <!-- Formulaire de modification d'avatar -->
             <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-group">

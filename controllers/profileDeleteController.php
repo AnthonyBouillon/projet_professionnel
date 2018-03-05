@@ -7,7 +7,7 @@
  */
 $users = new users();
 $users->id = $_SESSION['id'];
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 if (!isset($users->id)) {
     header('Location:404.php');
 }
@@ -18,7 +18,7 @@ if (!isset($users->id)) {
  * Puis on le redigire sur la page d'inscription
  */
 if (isset($_POST['submit'])) {
-    $users->deleteProfile();
+    $users->deleteUsers();
     $deleteProfile = 'Votre compte à bien était supprimé !';
     session_destroy();
     header('refresh:5;url=registerView.php');

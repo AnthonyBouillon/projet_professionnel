@@ -16,8 +16,8 @@ $formSuccess = array();
 if (isset($_POST['submit'])) {
     if (!empty($_POST['mail'])) {
         $users->mail = $_POST['mail'];
-        $checkElements = $users->checkElements();
-        if (!isset($checkElements->mail)) {
+        $readUserss = $users->readUsers();
+        if (!isset($readUserss->mail)) {
             $formError['notExistMail'] = 'L\'email saisie n\'existe pas';
         }
     } else {
@@ -29,13 +29,13 @@ if (isset($_POST['submit'])) {
      * Puis on envoie un e-mail avec l'id de l'adresse e-mail et la meme clé que celui qui à était créé pour l'inscription
      */
     if (count($formError) == 0) {
-        if ($users->mail == $checkElements->mail) {
+        if ($users->mail == $readUserss->mail) {
             $to = $users->mail;
             $subject = 'APT récupération du compte';
             $message = 'Bienvenue sur All Plateform Together,' . "\r\n\r\n";
             $message .= 'Pour modifier le mot de passe de votre compte, veuillez cliquer sur le lien ci dessous' . "\r\n";
             $message .= 'ou copier/coller dans votre navigateur internet.' . "\r\n\r\n";
-            $message .= 'http://projetprofessionnel/views/recoveryPasswordView.php?id=' . $checkElements->id . '&key=' . $checkElements->keyMail . "\r\n\r\n";
+            $message .= 'http://projetprofessionnel/views/recoveryPasswordView.php?id=' . $readUserss->id . '&key=' . $readUserss->keyMail . "\r\n\r\n";
             $message .= '--------------------------------------------------' . "\r\n\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
             $headers = 'De : ' . $users->mail;

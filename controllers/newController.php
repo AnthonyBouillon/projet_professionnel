@@ -7,13 +7,13 @@ $users = new users();
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
 }
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 
 $comments = new comments();
 
 
 $readArticles = $news->getArticleById();
-$readComments = $comments->getComments();
+$readComments = $comments->readComments();
 // Assigne un tableau vide dans une variable (désignera les erreurs et les succès)
 $error = array();
 $success = array();
@@ -49,9 +49,9 @@ if (isset($_POST['submit'])) {
     if (count($error) == 0) {
         $comments->getID = $_GET['id'];
         $comments->sessionID = $_SESSION['id'];
-        if ($comments->InsertComment()) {
+        if ($comments->createComment()) {
             $success['insertComment'] = 'Votre commentaire a était ajouté';
-            $readComments = $comments->getComments();
+            $readComments = $comments->readComments();
         } else {
             $error['notInsertComment'] = 'Votre commentaire n\'a pas était enregistré, veuillez réessayez plus tard ou contactez-nous';
         }
@@ -73,7 +73,7 @@ if (isset($_POST['edit'])) {
     if (count($error) == 0) {
         $comments->updateComments();
         $success['updateComment'] = 'Votre commentaire a était modifié';
-        $readComments = $comments->getComments();
+        $readComments = $comments->readComments();
     }
 }
 
@@ -85,6 +85,7 @@ if (isset($_POST['edit'])) {
 if (!empty($_SESSION['id']) && isset($_POST['deleteBtn'])) {
     $comments->idComment = $_POST['idComment'];
     if ($comments->deleteComments()) {
+        $readComments = $comments->readComments();
         $success['deleteComment'] = 'Votre commentaire a était supprimé';
     }
 }

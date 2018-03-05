@@ -17,7 +17,7 @@ $formSuccess = array();
  */
 if (!empty($_GET['id']) && !empty($_GET['key'])) {
     $users->id = $_GET['id'];
-    $checkElement = $users->checkElements();
+    $readUsers = $users->readUsers();
     if ($checkElement->keyMail != $_GET['key']) {
         header('Location:404.php');
     }

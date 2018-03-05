@@ -5,7 +5,7 @@ $users = new users();
 if(isset($_SESSION['id'])){
 $users->id = $_SESSION['id'];
 }
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 $regexTitle = '#^[\w\W]{1,60}$#';
 $regexPlateform = '#^[\w\W]{1,30}$#';
 $regexResume = '#^[\w\W]{1,500}$#';

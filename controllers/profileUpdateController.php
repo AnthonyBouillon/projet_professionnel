@@ -14,7 +14,7 @@ $users->id = $_SESSION['id'];
 $users->username = $_SESSION['username'];
 $regexMail = '#^[a-zAZ0-9._-]+@[a-zAZ0-9._-]{2,}\.[a-z]{2,4}$#';
 $regexPassword = '#[\w\W]{11,255}#';
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 $maxSize = 9000000;
 $validsExtensions = array('jpg', 'jpeg', 'png', 'gif');
 $formError = array();
@@ -67,7 +67,7 @@ if (isset($_POST['submitAvatar'])) {
 if (isset($_POST['submitMail'])) {
     if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
         $users->mail = strip_tags($_POST['mail']);
-        if ($users->mail == $checkElement->mail) {
+        if ($users->mail == $readUsers->mail) {
             $formError['mailSimilar'] = 'Vous essayez de modifier votre adresse e-mail qui est déja enregistrée XD';
         }
         if ($users->mail != $_POST['confirmMail']) {
@@ -81,11 +81,11 @@ if (isset($_POST['submitMail'])) {
     }
     if (count($formError) == 0) {
         if ($users->updateMail()) {
-            $to = $checkElement->mail;
+            $to = $readUsers->mail;
             $subject = 'APT : Confirmation de la modification de votre adresse e-mail';
             $headers = 'Bonjour ' . $users->username . ',';
             $message = 'La modification de votre adresse e-mail à bien était prise en compte' . "\r\n";
-            $message .= 'La nouvelle adresse e-mail enregistrée est : ' . $checkElement->mail . '' . "\r\n\r\n";
+            $message .= 'La nouvelle adresse e-mail enregistrée est : ' . $readUsers->mail . '' . "\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
         } else {
             $formError['mailNotExist'] = 'l\'e-mail saisie existe déja';
@@ -113,7 +113,7 @@ if (isset($_POST['submitPassword'])) {
         if (!preg_match($regexPassword, $_POST['confirmPassword'])) {
             $formError['wrongFormatPassword'] = 'Minimum 11 caractères maximum 255 caractères';
         }
-        if (password_verify($users->password, $checkElement->password)) {
+        if (password_verify($users->password, $readUsers->password)) {
             $users->passwordHash = password_hash($users->newPassword, PASSWORD_BCRYPT);
         } else {
             $formError['badPassword'] = 'Mauvais mot de passe';
@@ -123,9 +123,9 @@ if (isset($_POST['submitPassword'])) {
     }
     if (count($formError) == 0) {
         if ($users->updatePassword()) {
-            $to = $checkElement->mail;
+            $to = $readUsers->mail;
             $subject = 'APT : Confirmation de la modification de votre mot de passe';
-            $headers = 'Bonjour ' . $checkElement->username . ',';
+            $headers = 'Bonjour ' . $readUsers->username . ',';
             $message = 'Votre nouveau mot de passe est : ' . $_POST['newPassword'] . "\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
         }

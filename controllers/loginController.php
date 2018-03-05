@@ -18,13 +18,13 @@ if (isset($_POST['submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $users->username = strip_tags($_POST['username']);
         $users->password = htmlspecialchars($_POST['password']);
-        $checkElement = $users->checkElements();
+        $readUsers = $users->readUsers();
         /*
          * On vérifie que le pseudo et le mot de passe sont correct
          * On vérifie si son compte est actif ou non 
          */
-        if (!empty($checkElement->username) && password_verify($users->password, $checkElement->password)) {
-            if ($checkElement->actif != 1) {
+        if (!empty($readUsers->username) && password_verify($users->password, $readUsers->password)) {
+            if ($readUsers->actif != 1) {
                 $formError['notActif'] = 'Votre compte n\'est pas activé, veuillez regarder vos e-mails et cliquer sur le lien de confirmation avant de vous connecter';
             }
         } else {
@@ -39,8 +39,8 @@ if (isset($_POST['submit'])) {
      * Puis on le redirige vers la page d'accueil
      */
     if (count($formError) == 0) {
-        $_SESSION['id'] = $checkElement->id;
-        $_SESSION['username'] = $checkElement->username;
+        $_SESSION['id'] = $readUsers->id;
+        $_SESSION['username'] = $readUsers->username;
         $formSuccess['loginSuccess'] = 'Vous êtes connecté';
         header('refresh:0;url=../index.php');
     }

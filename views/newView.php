@@ -62,7 +62,7 @@ $readArticles = $news->getArticleById();
                     <?php if (!empty($_SESSION['id'])) { ?>
                         <button class="col-lg-1 responseBtn" idComment="<?= $comments->id; ?>" title="Répondre au commentaire"><i class="fas fa-comment"></i></button>
                     <?php } ?>
-                    <?php if (!empty($_SESSION['id']) && $_SESSION['id'] == $comments->idUser) { ?>  
+                    <?php if (!empty($_SESSION['id']) && $_SESSION['id'] == $comments->id_cuyn_users) { ?>  
                         <!-- Affichage des messages d'erreurs-->
                         <p class="text-center red h4"><?= !empty($error['emptyComment']) ? $error['emptyComment'] : ''; ?></p>
                         <p class="text-center red h4"><?= !empty($error['!regexUpdate']) ? $error['!regexUpdate'] : ''; ?></p>

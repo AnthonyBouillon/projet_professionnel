@@ -5,7 +5,7 @@ $users = new users();
 if(isset($_SESSION['id'])){
 $users->id = $_SESSION['id'];
 }
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 $count = $news->countArticles();
 $news->limitArticles = 3;
 $numberOfPages = ceil($count->numbersArticles / $news->limitArticles);
@@ -26,6 +26,7 @@ if (isset($_POST['submit']) && !empty($_POST['search'])) {
 /* delete news */
 if(isset($_POST['delete'])){
     $news->id = $_POST['id'];
+    var_dump($news->id);
     $news->deleteNews();
 }
 

@@ -8,9 +8,9 @@
  */
 $users = new users();
 $users->id = $_SESSION['id'];
-$checkElement = $users->checkElements();
+$readUsers = $users->readUsers();
 if (!empty($_SESSION['id'])) {
-    $users->checkElements();
+    $users->readUsers();
 }
 if (!isset($_SESSION['id'])) {
     header('Location:404.php');
