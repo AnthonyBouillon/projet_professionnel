@@ -76,7 +76,7 @@ include_once 'controllers/homeController.php';
                     <p class="text-center h4 red"><?= !empty($formError['emptyMessage']) ? $formError['emptyMessage'] : ''; ?></p>
                     <!-- Tchat -->
                     <div class="receiveMessage" id="receiveMessage">
-                        <?php foreach ($showMessages as $messages) { ?>
+                        <?php foreach ($readMessages as $messages) { ?>
                             <p>
                                 <span class="bold"><?= !empty($messages->username) ? $messages->username . ' à dit ' : 'Visiteur' . ' à dit '; ?> : </span>
                                 <?= wordwrap($messages->message, 20, ' ', 1); ?>

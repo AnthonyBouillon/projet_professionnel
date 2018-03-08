@@ -1,36 +1,49 @@
 <?php
 
-// Classe chat qui hérite de la classe database qui contient la connexion à la base de donnée
+/**
+ * Classe chat qui permet de créer et d'afficher un message
+ */
 class chat extends database {
 
-    // Ajout des attributs
+    // Ajout des attributs pour stocker des données
+    public $id_user = 0;
     public $message = '';
-    public $sessionID = '';
 
-    // Ajout de la connexion à la base de donnée, qui provient de son parent
+    /**
+     *  Connexion à la base de données
+     */
     public function __construct() {
         parent::__construct();
     }
 
-    // Méthode qui permet d'inserer les messages et le pseudo des utilisateurs du tchat (insert 'Visiteur' à la place du pseudo si non connecté)
-    public function insertMessage() {
-        $request = $this->db->prepare('INSERT INTO `' . SELF::prefix . 'chat`(`message`, `id_cuyn_users`) VALUES(:message, :id_cuyn_users)');
-        if (!empty($_SESSION['id'])) {
-            $request->bindValue(':id_cuyn_users', $this->sessionID, PDO::PARAM_INT);
+    /**
+     *  Méthode qui permet d'inserer le message lié à l'utilisateur si il est connecté
+     *  Sinon la méthode insère le message seul
+     */
+    public function createMessage() {
+        $query = 'INSERT INTO `' . SELF::prefix . 'chat`(`message`, `id_cuyn_users`) VALUES(:message, :id_cuyn_users)';
+        $request = $this->db->prepare($query);
+        if (!empty($this->id_user)) {
+            $request->bindValue(':id_cuyn_users', $this->id_user, PDO::PARAM_INT);
         } else {
-            $request->bindValue(':id_cuyn_users', 0, PDO::PARAM_INT);
+            $request->bindValue(':id_cuyn_users', NULL, PDO::PARAM_INT);
         }
         $request->bindValue(':message', $this->message, PDO::PARAM_STR);
         return $request->execute();
     }
 
-    // Méthode qui permet de sélectionner le contenu des messages lié à leurs pseudos des utilisateurs du tchat
-    public function checkMessage() {
-        $request = $this->db->query('SELECT `' . SELF::prefix . 'chat`.`id_cuyn_users`, `cuyn_chat`.`message`,  `cuyn_users`.`username`, DATE_FORMAT(`cuyn_chat`.`createDate`, \' %Hh%i \') AS `date` FROM `cuyn_chat` LEFT JOIN `cuyn_users`  ON  `cuyn_chat`.`id_cuyn_users` = `cuyn_users`. `id`  ORDER BY `cuyn_chat`.`id` DESC LIMIT 50');
+    /**
+     *  Méthode qui permet de récupèrer tous les messages de la base de donnée
+     */
+    public function readMessage() {
+        $query = 'SELECT `' . SELF::prefix . 'chat`.`id_cuyn_users`, `' . SELF::prefix . 'chat`.`message`, `' . SELF::prefix . 'users`.`username` FROM `' . SELF::prefix . 'chat` LEFT JOIN `' . SELF::prefix . 'users`  ON  `' . SELF::prefix . 'chat`.`id_cuyn_users` = `' . SELF::prefix . 'users`. `id`  ORDER BY `' . SELF::prefix . 'chat`.`id` DESC LIMIT 50';
+        $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Fermeture de la connexion à la base de donnée, qui provient de son parent
+    /**
+     *  Déconnexion de la base de données
+     */
     public function __destruct() {
         parent::__destruct();
     }

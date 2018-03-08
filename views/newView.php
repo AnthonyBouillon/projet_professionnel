@@ -14,7 +14,6 @@ include '../controllers/newController.php';
 $classBody = NULL;
 $title = 'Actualité';
 include '../include/header.php';
-$readArticles = $news->getArticleById();
 ?>
 <div class="container containerNew">
     <!-- On parcours notre tableau afin d'afficher l'article qui correspond à son id -->
@@ -73,7 +72,7 @@ $readArticles = $news->getArticleById();
                         <!-- Formulaire de modification du commentaire -->
                         <form method="POST" action="" class="editForm">
                             <input type="hidden" value="<?= $comments->id ?>"  name="idComment"/>
-                            <button type="submit" name="deleteBtn" class="col-lg-1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre commentaire')"  title="Supprimer mon commentaire"><i class="fas fa-trash-alt" ></i></button>
+                            <button type="submit" name="deleteBtn" class="col-lg-1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre commentaire ?')"  title="Supprimer mon commentaire"><i class="fas fa-trash-alt" ></i></button>
                         </form>
                     <?php } ?>
                     <form method="POST" action="" class="editForm">

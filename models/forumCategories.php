@@ -1,79 +1,82 @@
 <?php
 
+
+/**
+ * Classe forumCategories qui permet de créer et afficher des catégories
+ */
 class forumCategories extends database {
 
-    public $id = 0;
+    // Ajouts des attributs qui servira à stocker les valeurs pour la création, l'affichage, la modification et la suppression d'une catégories
+    public $id_users = 0;
+    public $id_categories = 0;
     public $name = '';
     public $description = '';
 
-    // Ajout de la connexion à la base de donnée, qui provient de son parent
+    /**
+     * __construct de la classe database contenant la connexion de la base de données
+     */
     public function __construct() {
         parent::__construct();
     }
 
-    // Méthode qui me permet de sélectionner les catégories
-    public function getCategories() {
-        $request = $this->db->query('SELECT `id`,`name`, `description` FROM `cuyn_forumCategories`');
-        return $request->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    // Méthode qui me permet de sélectionner les catégories
-    public function getSubCategories() {
-        $request = $this->db->prepare('SELECT `id`,`name`, `description` FROM `cuyn_forumSubCategories` WHERE id_forumCategories=:id');
-        $request->bindValue('id', $_GET['id'], PDO::PARAM_INT);
-        $request->execute();
-        return $request->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    // Méthode qui me permet d'inserer une sous-catégorie
-    public function InsertCategories() {
-        $request = $this->db->prepare('INSERT INTO `cuyn_forumCategories`(`name`, `description`) VALUES (:name, :description)');
-        $request->bindValue('name', $_POST['name'], PDO::PARAM_STR);
-        $request->bindValue('description', $_POST['description'], PDO::PARAM_STR);
+    /**
+     *  Méthode qui me permet d'inserer une catégorie avec comme valeur le nom, la description et l'id de l'utilisateur
+     *  C'est une requete préparé pour plus de sécurité
+     *  Nous ajoutons comme parammètre sa nature ( chaine de caractère et un integer )
+     */
+    public function createCategories() {
+        $query = 'INSERT INTO `' . SELF::prefix . 'forumCategories`(`name`, `description`, id_cuyn_users) VALUES (:name, :description, :id_cuyn_users)';
+        $request = $this->db->prepare($query);
+        $request->bindValue('name', $this->name, PDO::PARAM_STR);
+        $request->bindValue('description', $this->description, PDO::PARAM_STR);
+        $request->bindValue('id_cuyn_users', $this->id_users, PDO::PARAM_INT);
         return $request->execute();
     }
 
-// Méthode qui permet de modifier l'e mot de passe 'adresse e-mail de l'utilisateur
+    /**
+     *  Méthode qui me permet de sélectionner les catégories
+     */
+    public function readCategories() {
+        $query = 'SELECT `id`,`name`, `description` FROM `' . SELF::prefix . 'forumCategories`';
+        $request = $this->db->query($query);
+        return $request->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     *  Méthode qui permet de modifier une catégories
+     */
     public function updateCategories() {
-        $request = $this->db->prepare('UPDATE `' . SELF::prefix . 'forumCategories` SET `name` =:name, description=:description WHERE `id` =:id');
+        $query = 'UPDATE `' . SELF::prefix . 'forumCategories` SET `name` =:name, description=:description WHERE `id`=:id';
+        $request = $this->db->prepare($query);
         $request->bindValue(':name', $this->name, PDO::PARAM_STR);
         $request->bindValue(':description', $this->description, PDO::PARAM_STR);
-        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $request->bindValue(':id', $this->id_categories, PDO::PARAM_INT);
         return $request->execute();
     }
 
-    // Méthode qui permet de supprimer un compte
+    /**
+     *  Méthode qui permet de supprimer une catégorie et la sous-catégorie lié à la catégorie
+     */
     public function deleteCategories() {
-
-
         try {
-            $result = false;
-            $this->db->beginTransaction();
-            
-            $request = $this->db->prepare('DELETE FROM `' . SELF::prefix . 'forumSubCategories` WHERE id_forumCategories=:id');
-            $request->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $result = $request->execute();
-            
-            $request = $this->db->prepare('DELETE FROM `' . SELF::prefix . 'forumCategories` WHERE id=:id');
-            $request->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $result = $request->execute();
-            
-            $this->db->commit();
-            return $result;
+            $query = 'DELETE FROM `' . SELF::prefix . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_forumCategories', $this->id_categories, PDO::PARAM_INT);
+            $request->execute();
+            $query = 'DELETE FROM `' . SELF::prefix . 'forumCategories` WHERE id=:id';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id', $this->id_categories, PDO::PARAM_INT);
+            $request->execute();
+            return $request;
         } catch (Exception $e) { //en cas d'erreur
-            //on annule la transation
-            $this->db->rollback();
-
             //on affiche un message d'erreur ainsi que les erreurs
-            var_dump( 'Tout ne s\'est pas bien passé, voir les erreurs ci-dessous<br />');
-            var_dump( 'Erreur : ' . $e->getMessage() . '<br />');
-            var_dump( 'N° : ' . $e->getCode());
-            //on arrête l'exécution s'il y a du code après
-            exit();
+            die('Erreur : ' . $e->getMessage());
         }
     }
 
-    // Fermeture de la connexion à la base de donnée, qui provient de son parent
+    /**
+     * __destruct de la classe database contenant la déconnexion de la base de données
+     */
     public function __destruct() {
         parent::__destruct();
     }

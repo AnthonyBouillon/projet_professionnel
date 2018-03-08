@@ -2,17 +2,19 @@
 
 // On instancie nos objets
 $news = new news();
-$news->id = $_GET['id'];
+$news->id_new = $_GET['id'];
 $users = new users();
+$comments = new comments();
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
+    $comments->id_user = $_SESSION['id'];
 }
 $readUsers = $users->readUsers();
 
-$comments = new comments();
 
+$comments->id_new = $_GET['id'];
 
-$readArticles = $news->getArticleById();
+$readArticles = $news->readNewsById();
 $readComments = $comments->readComments();
 // Assigne un tableau vide dans une variable (désignera les erreurs et les succès)
 $error = array();
@@ -39,7 +41,6 @@ if (isset($_POST['submit'])) {
     }
     if (!empty($_POST['comment'])) {
         $comments->comments = htmlspecialchars($_POST['comment']);
-        var_dump($_POST['comment']);
     } else {
         $error['empty'] = 'Vous devez remplir le champ pour commenter';
     }
@@ -47,9 +48,9 @@ if (isset($_POST['submit'])) {
         $error['commentBadRegex'] = 'Eviter ';
     }
     if (count($error) == 0) {
-        $comments->getID = $_GET['id'];
-        $comments->sessionID = $_SESSION['id'];
-        if ($comments->createComment()) {
+        $comments->id_new = $_GET['id'];
+        $comments->id_user = $_SESSION['id'];
+        if ($comments->createComments()) {
             $success['insertComment'] = 'Votre commentaire a était ajouté';
             $readComments = $comments->readComments();
         } else {
@@ -61,13 +62,13 @@ if (isset($_POST['submit'])) {
  *
  */
 if (isset($_POST['edit'])) {
-    $comments->idComment = $_POST['idComment'];
+    $comments->id_comment = $_POST['idComment'];
     if (!empty($_POST['commentUpdate'])) {
-        $comments->commentUpdate = htmlspecialchars($_POST['commentUpdate']);
+        $comments->comment = htmlspecialchars($_POST['commentUpdate']);
     } else {
         $error['emptyComment'] = 'Veuillez remplir le champ pour modifier votre commentaire';
     }
-    if (!preg_match($regexComment, $comments->commentUpdate)) {
+    if (!preg_match($regexComment, $comments->comment)) {
         $error['!regexUpdate'] = 'Votre commentaire n\'est pas conforme au format demandé';
     }
     if (count($error) == 0) {
@@ -83,9 +84,10 @@ if (isset($_POST['edit'])) {
  * Et on supprime
  */
 if (!empty($_SESSION['id']) && isset($_POST['deleteBtn'])) {
-    $comments->idComment = $_POST['idComment'];
+    $comments->id_comment = $_POST['idComment'];
     if ($comments->deleteComments()) {
         $readComments = $comments->readComments();
         $success['deleteComment'] = 'Votre commentaire a était supprimé';
     }
 }
+$readArticles = $news->readNewsById();

@@ -1,15 +1,22 @@
 <?php
 
+/**
+ * Classe database servant à se connecter à la base de données
+ */
 class database {
 
-    // Attribut qui a pour valeur la connexion à la base de donnée
+    // Attribut qui est disponible dans cette classe et tous ceux qui en hérite
     protected $db;
 
-    // Créer une constance afin de caché son préfixe des tables de la base de donnée
+    /**
+     * Constance contenant le préfixe des tables afin de le cacher
+     */
     CONST prefix = 'cuyn_';
 
+    /**
+     *  Connexion à la base de données
+     */
     public function __construct() {
-        // Connexion à la base de donnée
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=apt;charset=utf8', 'root', '789789');
         } catch (Exception $e) {
@@ -17,7 +24,9 @@ class database {
         }
     }
 
-    // Fermeture de la base de donnée
+    /**
+     *  Déconnexion de la base de données
+     */
     public function __destruct() {
         $this->db = NULL;
     }

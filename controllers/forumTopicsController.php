@@ -1,4 +1,10 @@
 <?php
+$users = new users();
+if(isset($_SESSION['id'])){
+$users->id = $_SESSION['id'];
+$users->username = $_SESSION['username'];
+}
 
-$topics = new forumTopicsModel();
+$readUsers = $users->readUsers();
+$topics = new forumTopics();
 $getTopics = $topics->getTopics();

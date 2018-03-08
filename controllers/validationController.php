@@ -16,10 +16,10 @@ if (!empty($_GET['id']) && !empty($_GET['key'])) {
 } else {
     header('Location:404.php');
 }
-if ($_GET['key'] != $checkElement->keyMail) {
+if ($_GET['key'] != $readUsers->keyMail) {
     header('Location:404.php');
 }
-if ($checkElement->actif != 0) {
+if ($readUsers->actif != 0) {
     $error['confirmed'] = 'Votre compte a déjà était validé, vous pouvez vous connecter sur le site en cliquant sur connexion dans le menu en haut à droite';
 }
 /*

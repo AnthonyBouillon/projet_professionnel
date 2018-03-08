@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
 
     /*
-     * Concernent la page inscription et connexion
+     * Concernent les formulaires contenant un champs password
      * Script permettant de voir le mot de passe
      */
     // Assigne l'id des éléments dans une variable
@@ -39,7 +39,7 @@ $(document).ready(function () {
     });
 
     /* 
-     *  Page de déconnexion
+     *  Page ayant un décompte à afficher
      *  Décompte de 5 secondes
      */
     // Assigne à la variable la valeur de 5
@@ -56,8 +56,10 @@ $(document).ready(function () {
         // Toutes les 1 secondes, exécute la fonction
     }, 1000);
 
-
-    // Au clique sur le bouton la div apparait
+    /* 
+     * Page news formulaire commentaire 
+     * Au clique sur le bouton la div contenant le formulaire apparait
+     */
     $('.editBtn').click(function () {
         var idComment = $(this).attr('idComment');
         if ($('#divUpdate' + idComment).css('display', 'none')) {
@@ -67,7 +69,6 @@ $(document).ready(function () {
             $('.divResponse').css('display', 'none');
         }
     });
-
     $('.responseBtn').click(function () {
         var idComment = $(this).attr('idComment');
         if ($('#divResponse' + idComment).css('display', 'none')) {
@@ -77,23 +78,29 @@ $(document).ready(function () {
             $('.divUpdate').css('display', 'none');
         }
     });
-    
-    // Script pour changer le bouton actif de proprietaire
+
+    /*
+     * Page modification de profil
+     * Permet de changer le bouton actif de proprietaire au clique
+     */
     $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-info").addClass("btn-default");
         $(this).removeClass("btn-default").addClass("btn-info");
     });
 
-// Forum ajouter sous-catégorie
-// Au clique sur le bouton la div apparait
+    /*
+     * Page forum 
+     * Fait apparaitre ou disparaitre une div contenant un formulaire
+     */
     $('#addForum').click(function () {
         if ($('.divForum').css('display', 'none')) {
             $('.divForum').css('display', 'block');
         }
     });
-
-
-
+    $('.displayForm').click(function () {
+        var id = $(this).attr('id');
+        $('#divForum' + id).toggle();
+    });
 
 });
 

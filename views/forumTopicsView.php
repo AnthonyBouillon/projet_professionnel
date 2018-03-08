@@ -1,6 +1,8 @@
 <?php
+session_start();
 include '../models/database.php';
-include '../models/forumTopicsModel.php';
+include '../models/users.php';
+include '../models/forumTopics.php';
 include '../controllers/forumTopicsController.php';
 $classBody = NULL;
 $title = 'Forum des sujets';
@@ -22,9 +24,9 @@ include '../include/header.php';
         <tbody> 
             <?php foreach ($getTopics as $topics) { ?>
                 <tr> 
-                    <td><a href="forumTopicsView.php" title="direction sujets de la sous-catégorie"><?= $topics->name ?></a></td> 
-                    <td>74127</td> 
-                    <td>Dernier message : 05/03/2018</td> 
+                    <td><a href="forumPostView.php" title="direction réponses du sujet"><?= $topics->name ?></a></td> 
+                    <td></td> 
+                    <td></td> 
                 </tr> 
             <?php } ?> 
         </tbody> 

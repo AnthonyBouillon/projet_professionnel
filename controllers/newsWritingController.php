@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
             $formError['bigFormat'] = 'Votre photo de profil ne doit pas dépasser 80 mo';
         }
         if (in_array($extension, $validsExtensions)) {
-            $path = '../news/images/' . $users->id . '.' . $users->extension;
+            $path = '../news/images/' . $users->id . '.' . $extension;
             $news->picture = $users->id . '.' . $extension;
             $movement = move_uploaded_file($_FILES['picture']['tmp_name'], $path);
         } else {
@@ -44,8 +44,8 @@ if (isset($_POST['submit'])) {
         $formError['empty'] = 'Veuillez remplir tous les champs';
     }
     if (count($formError) == 0) {
-        $news->id = $_SESSION['id'];
-        $news->addNews();
+        $news->id_user = $_SESSION['id'];
+        $news->createNews();
     }
 }
 

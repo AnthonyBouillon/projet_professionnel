@@ -588,6 +588,12 @@ body {
     width: 50px;
 }
 
-#divForum{
+
+
+/* ajout */
+.divForum{
     display: none;
+}
+.uppercaseCategories{
+    text-transform: uppercase;
 }

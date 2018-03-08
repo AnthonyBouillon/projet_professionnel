@@ -12,12 +12,18 @@ class users extends database {
     public $keyMail = '';
     public $extension = '';
 
-    // Ajout de la connexion à la base de donnée qui provient de son parent
+    /**
+     * Ajout de la connexion à la base de donnée qui provient de son parent
+     * @return type
+     */
     public function __construct() {
         parent::__construct();
     }
 
-    // Méthode qui permet d'enregistrer dans la base de donnée un nouveau utilisateur
+    /** 
+     * Méthode qui permet d'enregistrer dans la base de donnée un nouveau utilisateur
+     * @return type
+     */
     public function createUsers() {
         $request = $this->db->prepare('INSERT INTO `' . SELF::prefix . 'users`(`username`, `mail`, `password`,`avatar`, `keyMail`, `actif`) VALUES(:username, :mail, :password, :avatar, :keyMail, :actif)');
         $request->bindValue(':username', $this->username, PDO::PARAM_STR);
@@ -29,7 +35,10 @@ class users extends database {
         return $request->execute();
     }
 
-    // Méthode qui me permet de récupérer une information précise de l'utilisateur afin de les affichers
+    /**
+     * Méthode qui me permet de récupérer une information précise de l'utilisateur afin de les affichers
+     * @return type
+     */
     public function readUsers() {
         $request = $this->db->prepare('SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date FROM `' . SELF::prefix . 'users` WHERE `username` = :username OR`mail`=:mail OR `id`=:id');
         $request->bindValue('username', $this->username, PDO::PARAM_STR);
