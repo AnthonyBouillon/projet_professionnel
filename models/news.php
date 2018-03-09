@@ -13,6 +13,7 @@ class news extends database {
     public $resume = '';
     public $content = '';
     public $picture = '';
+    public $extension = '';
     // Attributs pour la pagination
     public $firstEntry = '';
     public $limitArticles = '';
@@ -77,8 +78,45 @@ class news extends database {
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function updateNews() {
-        
+    public function updateTitle() {
+        $query = 'UPDATE `' . SELF::prefix . 'news` SET `title`=:title  WHERE id = :id_news';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
+        $request->bindValue(':title', $this->title, PDO::PARAM_STR);
+        return $request->execute();
+    }
+
+    public function updatePlateform() {
+        $query = 'UPDATE `' . SELF::prefix . 'news` SET `plateform`=:plateform WHERE id = :id_news';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
+        $request->bindValue(':plateform', $this->plateform, PDO::PARAM_STR);
+        return $request->execute();
+    }
+
+    public function updateResume() {
+        $query = 'UPDATE `' . SELF::prefix . 'news` SET `resume`=:resume WHERE id = :id_news';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
+        $request->bindValue(':resume', $this->resume, PDO::PARAM_STR);
+
+        return $request->execute();
+    }
+
+    public function updateContent() {
+        $query = 'UPDATE `' . SELF::prefix . 'news` SET `content`=:content WHERE id = :id_news';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
+        $request->bindValue(':content', $this->content, PDO::PARAM_STR);
+        return $request->execute();
+    }
+
+    public function updatePicture() {
+        $query = 'UPDATE `' . SELF::prefix . 'news` SET `picture`=:picture WHERE id = :id_news';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
+        $request->bindValue(':picture',  $this->id_user . '.' . $this->extension, PDO::PARAM_STR);
+        return $request->execute();
     }
 
     /**

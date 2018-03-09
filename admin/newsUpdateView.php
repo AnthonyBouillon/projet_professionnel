@@ -11,6 +11,15 @@ $classBody = NULL;
 $title = 'Modification de l\'article';
 include '../include/header.php';
 ?>
-
+<div class="container containerNew">
+    <form method="POST" action="" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Titre" /><br/>
+        <input type="text" name="plateform" placeholder="Plateforme"  /><br/>
+        <input type="text" name="resume" placeholder="Résumer"  /><br/>
+        <input type="text" name="content" placeholder="Contenue"  /><br/>
+        <input type="file" name="picture"  /><br/>
+        <input type="submit" name="submit" />
+    </form>
+</div>
 <?php
 include '../include/footer.php';

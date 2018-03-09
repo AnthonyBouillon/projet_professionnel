@@ -40,7 +40,7 @@ include '../include/header.php';
                         <p class="datePost h4">Posté le :<?= $articles->date; ?></p>
                         <form method="POST" action="" class="editForm">
                             <input type="hidden" value="<?= $articles->id ?>" name="id" />
-                            <p class="h4"><a href="../admin/newsUpdateView.php" class="btn btn-primary" >Modifier l'article</a> | <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('La suppression de l\'article est définitive, êtes-vous sûr de vouloir le supprimer ?')"> Supprimer l'article</button></p>
+                            <p class="h4"><a href="../admin/newsUpdateView.php?id=<?= $articles->id ?>" class="btn btn-primary" >Modifier l'article</a> | <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('La suppression de l\'article est définitive, êtes-vous sûr de vouloir le supprimer ?')"> Supprimer l'article</button></p>
                         </form>
                     </div>
                 </div>
