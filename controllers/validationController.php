@@ -25,8 +25,14 @@ if ($readUsers->actif != 0) {
 /*
  * On vérifie qu'il n'y a aucune erreur 
  * Puis on active son compte
+ * Puis on créer un dossier qui porte son pseudo
+ * Puis on donne tout les droits sur le dossier
+ * Puis on déplace une image de profil par défaut dans le dossier de l'utilisateur
  */
 if (count($error) == 0) {
     $users->updateCountActif();
+    mkdir('../members/avatars/' . $readUsers->username, 0777, true);
+    chmod('../members/avatars/' . $readUsers->username, 0777);
+    copy('../members/avatars/fake.jpg', '../members/avatars/' . $readUsers->username . '/fake.jpg');
 }
 

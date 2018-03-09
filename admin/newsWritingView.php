@@ -24,6 +24,7 @@ include '../include/header.php';
         <p class="text-center  white bold h4"><?= !empty($formError['!regexTitle']) ? $formError['!regexTitle'] : ''; ?></p>
         <p class="text-center  white bold h4"><?= !empty($formError['!regexPlateform']) ? $formError['!regexPlateform'] : ''; ?></p>
         <p class="text-center  white bold h4"><?= !empty($formError['!regexResume']) ? $formError['!regexResume'] : ''; ?></p>
+        <p class="text-center  green bold h4"><?= !empty($formSuccess['createNews']) ? $formSuccess['createNews'] : ''; ?></p>
         <section class="col-md-12">
             <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
                 <!-- Pseudo -->

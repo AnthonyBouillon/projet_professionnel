@@ -1,6 +1,6 @@
 <?php
 /**
- * Classe comments qui permet de créer, afficher, modifier et supprimer un commentaire
+ * Classe comments qui permet de créer, afficher, modifier et supprimer des commentaires
  */
 class comments extends database {
 

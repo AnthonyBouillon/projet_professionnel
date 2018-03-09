@@ -46,6 +46,7 @@ if (isset($_POST['submit'])) {
     if (count($formError) == 0) {
         $news->id_user = $_SESSION['id'];
         $news->createNews();
+        $formSuccess['createNews'] = 'Votre article est enregistré et afficher sur la page des actualités';
     }
 }
 

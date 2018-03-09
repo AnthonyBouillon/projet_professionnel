@@ -18,7 +18,7 @@ class database {
      */
     public function __construct() {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=apt;charset=utf8', 'root', '789789');
+            $this->db = new PDO('mysql:host=localhost;dbname=apt;charset=utf8', 'utilisateur', '0000');
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }

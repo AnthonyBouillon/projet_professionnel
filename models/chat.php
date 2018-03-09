@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe chat qui permet de créer et d'afficher un message
+ * Classe chat qui permet de créer et d'afficher les messages
  */
 class chat extends database {
 

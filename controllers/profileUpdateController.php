@@ -58,6 +58,7 @@ if (isset($_POST['submitAvatar'])) {
      */
     if (count($formError) == 0) {
         $users->updateAvatar();
+        $readUsers = $users->readUsers();
         $formSuccess['avatarUpdate'] = 'Votre image de profil à était modifié';
     }
 }

@@ -19,6 +19,8 @@ if (!isset($users->id)) {
  */
 if (isset($_POST['submit'])) {
     $users->deleteUsers();
+    unlink('../members/avatars/' . $readUsers->username . '/' . $readUsers->avatar);
+    rmdir('../members/avatars/' . $readUsers->username);
     $deleteProfile = 'Votre compte à bien était supprimé !';
     session_destroy();
     header('refresh:5;url=registerView.php');
