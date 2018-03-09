@@ -20,7 +20,8 @@ if ($_GET['key'] != $readUsers->keyMail) {
     header('Location:404.php');
 }
 if ($readUsers->actif != 0) {
-    $error['confirmed'] = 'Votre compte a déjà était validé, vous pouvez vous connecter sur le site en cliquant sur connexion dans le menu en haut à droite';
+    $error['confirmed'] = 'Votre compte a déjà était validé';
+    header('refresh:5;url=../views/loginView.php');
 }
 /*
  * On vérifie qu'il n'y a aucune erreur 
@@ -31,8 +32,10 @@ if ($readUsers->actif != 0) {
  */
 if (count($error) == 0) {
     $users->updateCountActif();
-    mkdir('../members/avatars/' . $readUsers->username, 0777, true);
-    chmod('../members/avatars/' . $readUsers->username, 0777);
-    copy('../members/avatars/fake.jpg', '../members/avatars/' . $readUsers->username . '/fake.jpg');
+    if (!is_dir('../members/avatars/' . $readUsers->username)) {
+        mkdir('../members/avatars/' . $readUsers->username, 0777, true);
+        chmod('../members/avatars/' . $readUsers->username, 0777);
+        copy('../members/avatars/fake.jpg', '../members/avatars/' . $readUsers->username . '/fake.jpg');
+    }
 }
 

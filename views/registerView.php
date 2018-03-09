@@ -13,7 +13,10 @@ include '../include/header.php';
 ?>
 <div class="container-fluid">
     <div class="col-lg-offset-3 col-lg-6 formRegisterBackground">
-        <h2 class="formTitle col-sm-12 bold">Formulaire d'inscription</h2>
+        
+        <h2 class="formTitle col-xs-12 col-sm-12 col-md-12 col-lg-12 bold">Formulaire d'inscription</h2>
+        
+
         <!-- Affichage des messages d'erreurs -->
         <p class="yellow bold h4"><?= !empty($formError['unavailableUsername']) ? $formError['unavailableUsername'] : ''; ?></p>
         <p class="yellow bold h4"><?= !empty($formError['unavailableMail']) ? $formError['unavailableMail'] : ''; ?></p>
@@ -30,8 +33,8 @@ include '../include/header.php';
         <p class="green bold h4"><?= !empty($formSuccess['captcha']) ? $formSuccess['captcha'] : ''; ?></p>
         <p class="green bold h4"><?= !empty($formSuccess['registerSuccess']) ? $formSuccess['registerSuccess'] : ''; ?></p>
         <p class="green bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
-        <section class="col-md-12">
-            <form method="POST" action="" class="form-horizontal">
+        <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formRegisterBackground">
+            <form method="POST" action="" class="form-horizontal ">
                 <!-- Pseudo -->
                 <div class="form-group fieldBackground">
                     <label for="username" class="col-sm-4 control-label">Pseudo</label>

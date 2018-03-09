@@ -78,6 +78,9 @@ class news extends database {
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
+    /**
+     * Méthode qui permet de modifier le titre d'un article
+     */
     public function updateTitle() {
         $query = 'UPDATE `' . SELF::prefix . 'news` SET `title`=:title  WHERE id = :id_news';
         $request = $this->db->prepare($query);
@@ -86,6 +89,9 @@ class news extends database {
         return $request->execute();
     }
 
+    /**
+     * Méthode qui permet de modifier le nom de la plateforme d'un article
+     */
     public function updatePlateform() {
         $query = 'UPDATE `' . SELF::prefix . 'news` SET `plateform`=:plateform WHERE id = :id_news';
         $request = $this->db->prepare($query);
@@ -94,6 +100,9 @@ class news extends database {
         return $request->execute();
     }
 
+    /**
+     * Méthode qui permet de modifier le résumer d'un article
+     */
     public function updateResume() {
         $query = 'UPDATE `' . SELF::prefix . 'news` SET `resume`=:resume WHERE id = :id_news';
         $request = $this->db->prepare($query);
@@ -103,6 +112,9 @@ class news extends database {
         return $request->execute();
     }
 
+    /**
+     * Méthode qui permet de modifier le contenu d'un article
+     */
     public function updateContent() {
         $query = 'UPDATE `' . SELF::prefix . 'news` SET `content`=:content WHERE id = :id_news';
         $request = $this->db->prepare($query);
@@ -111,11 +123,14 @@ class news extends database {
         return $request->execute();
     }
 
+    /**
+     * Méthode qui permet de modifier l'image d'un article
+     */
     public function updatePicture() {
         $query = 'UPDATE `' . SELF::prefix . 'news` SET `picture`=:picture WHERE id = :id_news';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
-        $request->bindValue(':picture',  $this->id_user . '.' . $this->extension, PDO::PARAM_STR);
+        $request->bindValue(':picture', $this->id_user . '.' . $this->extension, PDO::PARAM_STR);
         return $request->execute();
     }
 
