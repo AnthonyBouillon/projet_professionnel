@@ -110,10 +110,45 @@ class users extends database {
      * Méthode qui permet de supprimer un compte utilisateur
      */
     public function deleteUsers() {
-        $query = 'DELETE FROM `' . SELF::prefix . 'users` WHERE id=:id';
+        $query = 'DELETE FROM `' . SELF::prefix . 'forumCategories` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'forumSubCategories` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'forumPosts` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'news` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'comments` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'chat` WHERE `id_cuyn_users` = :id_cuyn_users' ;
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        
+        $query = 'DELETE FROM `' . SELF::prefix . 'users` WHERE `id`=:id';
         $request = $this->db->prepare($query);
         $request->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $request->execute();
+        return $request->execute();
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
 session_start();
-include '../models/database.php';
-include '../models/users.php';
-include '../controllers/profileDeleteController.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+include_once '../controllers/profileDeleteController.php';
 $classBody = NULL;
 $title = 'Supprimer mon compte';
-include '../include/header.php';
+include_once '../include/header.php';
 ?>
 
 <!-- Si il est connecté, affiche le contenu de la page -->
@@ -39,4 +39,4 @@ include '../include/header.php';
 
 
 <?php
-include '../include/footer.php';
+include_once '../include/footer.php';

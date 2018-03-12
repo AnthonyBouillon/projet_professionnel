@@ -75,10 +75,8 @@ if (isset($_POST['submitMail'])) {
             var_dump($test->mail);
             // Si l'id de l'utilisateur et l'adresse e-mail saisie et le meme que celui qui est enregistré
         } elseif ($users->mail == $readUsers->mail) {
-            $formError['mailSimilar'] = 'Vous essayez de modifier votre adresse e-mail qui est déjà enregistrée XD';
+            $formError['mailSimilar'] = 'Vous essayez de modifier votre propre adresse e-mail qui est déjà enregistrée XD';
         }
-
-
         if ($users->mail != $_POST['confirmMail']) {
             $formError['mailDiff'] = 'Les deux adresses e-mail doit-être identiques';
         }
@@ -133,11 +131,11 @@ if (isset($_POST['submitPassword'])) {
             $to = $readUsers->mail;
             $subject = 'APT : Confirmation de la modification de votre mot de passe';
             $headers = 'Bonjour ' . $readUsers->username . ',';
-            $message = 'Votre nouveau mot de passe est : ' . $_POST['newPassword'] . "\r\n\r\n";
+            $message = 'Je vous confirme la modification de votre nouveau mot de passe qui à bien était mis à jour dans notre base de données' . "\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
         }
         if (mail($to, $subject, $message, $headers)) {
-            $formSuccess['sendPassword'] = 'Votre mot de passe a était changé, un e-mail vous à était envoyé avec votre nouveau mot de passe';
+            $formSuccess['sendPassword'] = 'Votre mot de passe a était changé, un e-mail de confirmation vous à était envoyé à votre adresse e-mail';
         } else {
             $formError['sendPasswordError'] = 'Un problème est survenu lors de la modification de votre mot de passe, veuillez réessayez ultérieurement';
         }

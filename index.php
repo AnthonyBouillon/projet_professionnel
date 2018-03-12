@@ -26,11 +26,11 @@ include_once 'controllers/homeController.php';
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">APT</a>
+                    <a class="navbar-brand" href="Accueil">APT</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">ACCUEIL</a></li>
+                        <li><a href="Accueil">ACCUEIL</a></li>
                         <li><a href="views/newsAllView.php">ACTUALITÉS</a></li>
                         <li><a href="views/forumCategoriesView.php">FORUM</a></li>
                         <li><a href="#band">WEB TV</a></li>

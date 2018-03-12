@@ -6,6 +6,8 @@ Options +FollowSymlinks
 # Activation du mod rewrite d'Apache
 RewriteEngine On
 # Réécriture de l'url
+RewriteRule Accueil index.php [L] 
+RewriteRule Accueil ../index.php [L] 
 
 ErrorDocument 403 /403.php
 ErrorDocument 404 /404.php
