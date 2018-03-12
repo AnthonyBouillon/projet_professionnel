@@ -16,7 +16,7 @@ class database {
     /**
      *  Connexion à la base de données
      */
-    public function __construct() {
+    protected function __construct() {
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=apt;charset=utf8', 'utilisateur', '0000');
         } catch (Exception $e) {
@@ -27,7 +27,7 @@ class database {
     /**
      *  Déconnexion de la base de données
      */
-    public function __destruct() {
+    protected function __destruct() {
         $this->db = NULL;
     }
 

@@ -48,6 +48,8 @@ if (!empty($_SESSION['id'])) {
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="mail">
                     <!-- Affichage des messages d'erreurs et des succès -->
+                    
+                    <p class="text-center red bold h4"><?= !empty($formError['mailExist']) ? $formError['mailExist'] : ''; ?></p>
                     <p class="text-center red bold h4"><?= !empty($formError['badMail']) ? $formError['badMail'] : ''; ?></p>
                     <p class="text-center red bold h4"><?= !empty($formError['mailSimilar']) ? $formError['mailSimilar'] : ''; ?></p>
                     <p class="text-center red bold h4"><?= !empty($formError['mailNotExist']) ? $formError['mailNotExist'] : ''; ?></p>
@@ -63,7 +65,7 @@ if (!empty($_SESSION['id'])) {
                     <!-- Formulaire de modification d'adresse e-mail -->
                     <form method="POST" action="" class="form-horizontal"> 
                         <div class="form-group barra">
-                            <label for="newMail" class="col-sm-4 control-label">Nouveau adresse e-mail : </label>
+                            <label for="newMail" class="col-sm-4 control-label">Nouvelle adresse e-mail : </label>
                             <div class="col-sm-8">
                                 <input type="email" name="mail" class="form-control focusColor" placeholder="Saisissez votre nouveau e-mail" id="newMail" value="<?= $users->mail; ?>" required />
                             </div>

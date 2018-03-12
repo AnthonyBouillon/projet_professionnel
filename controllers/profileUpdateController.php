@@ -1,7 +1,7 @@
 <?php
 
 /*
- * On instancie l'objet users
+ * On instancie l'objet users afin de pouvoir modifier les données de l'utilisateur
  * On assigne nos sessions dans les attributs de l'objet users
  * On assigne une regex dans nos variables qui servira pour nos champs
  * On assigne notre méthode qui provient de l'objet users
@@ -45,11 +45,11 @@ if (isset($_POST['submitAvatar'])) {
      * On utilise la fonction move_uploaded_file afin de déplacer un fichier
      */
     if (in_array($users->extension, $validsExtensions)) {
-        if(is_dir('..members/avatars/' . $users->username)){
+        if (is_dir('..members/avatars/' . $users->username)) {
             mkdir('../members/avatars/' . $users->username, 0777);
         }
-            $path = '../members/avatars/' . $users->username . '/' . $users->id . '.' . $users->extension;
-            $movement = move_uploaded_file($_FILES['avatar']['tmp_name'], $path);
+        $path = '../members/avatars/' . $users->username . '/' . $users->id . '.' . $users->extension;
+        $movement = move_uploaded_file($_FILES['avatar']['tmp_name'], $path);
     } else {
         $formError['badFormat'] = 'Votre image doit être au format : jpg, jpeg, png ou gif';
     }
@@ -67,10 +67,18 @@ if (isset($_POST['submitAvatar'])) {
  */
 if (isset($_POST['submitMail'])) {
     if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
-        $users->mail = strip_tags($_POST['mail']);
-        if ($users->mail == $readUsers->mail) {
-            $formError['mailSimilar'] = 'Vous essayez de modifier votre adresse e-mail qui est déja enregistrée XD';
+        $users->mail = htmlspecialchars($_POST['mail']);
+        $readMail = $users->readMail();
+        // Si l'adresse e-mail existe déja et que l'id de l'utilisateur et le mail enregistré et différent du mail saisie
+        if (!empty($readMail->mail) && $users->mail != $readUsers->mail) {
+            $formError['mailExist'] = 'L\'adresse e-mail existe déja';
+            var_dump($test->mail);
+            // Si l'id de l'utilisateur et l'adresse e-mail saisie et le meme que celui qui est enregistré
+        } elseif ($users->mail == $readUsers->mail) {
+            $formError['mailSimilar'] = 'Vous essayez de modifier votre adresse e-mail qui est déjà enregistrée XD';
         }
+
+
         if ($users->mail != $_POST['confirmMail']) {
             $formError['mailDiff'] = 'Les deux adresses e-mail doit-être identiques';
         }
@@ -82,14 +90,12 @@ if (isset($_POST['submitMail'])) {
     }
     if (count($formError) == 0) {
         if ($users->updateMail()) {
-            $to = $readUsers->mail;
+            $to = $_POST['mail'];
             $subject = 'APT : Confirmation de la modification de votre adresse e-mail';
             $headers = 'Bonjour ' . $users->username . ',';
             $message = 'La modification de votre adresse e-mail à bien était prise en compte' . "\r\n";
-            $message .= 'La nouvelle adresse e-mail enregistrée est : ' . $readUsers->mail . '' . "\r\n\r\n";
+            $message .= 'La nouvelle adresse e-mail enregistrée est : ' . $_POST['mail'] . '' . "\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
-        } else {
-            $formError['mailNotExist'] = 'l\'e-mail saisie existe déja';
         }
         if (mail($to, $subject, $message, $headers)) {
             $formSuccess['sendMail'] = 'Votre adresse e-mail à bien était enregistrée, un e-mail vous à était envoyé afin que vous ayez la confirmation';

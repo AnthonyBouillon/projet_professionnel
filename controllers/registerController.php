@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
             $message .= 'Cordialement le responsable du site';
             $headers = 'De : ' . $users->mail;
             if (mail($to, $subject, $message, $headers)) {
-                $formSuccess['sendMail'] = 'Votre compte est créé, veuillez confirmez votre compte en cliquant sur le lien envoyé à votre adresse e-mail';
+                $formSuccess['sendMail'] = 'Votre compte est créé, veuillez confirmez votre compte en cliquant sur le lien envoyé à votre adresse e-mail. Vous pouvez quitter cette page.';
             } else {
                 $formError['failMail'] = 'Un problème est survenu lors de la tentative d\'envoi de l\'e-mail, essayez de vous connecté ou réessayez';
             }

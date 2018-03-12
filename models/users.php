@@ -50,6 +50,17 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
+    
+    /**
+     * Méthode qui me permet de récupérer une information précise de l'utilisateur afin de les affichers
+     */
+    public function readMail() {
+        $query = 'SELECT * FROM `' . SELF::prefix . 'users` WHERE `mail`=:mail ';
+        $request = $this->db->prepare($query);
+        $request->bindValue('mail', $this->mail, PDO::PARAM_STR);
+        $request->execute();
+        return $request->fetch(PDO::FETCH_OBJ);
+    }
 
     /**
      * Méthode qui permet de valider un compte utilisateur
