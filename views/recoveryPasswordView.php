@@ -7,6 +7,7 @@
  * On inclut notre header
  */
 session_start();
+include_once '../configuration.php';
 include '../models/database.php';
 include '../models/users.php';
 include '../controllers/recoveryPasswordController.php';

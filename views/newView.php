@@ -6,6 +6,7 @@
  * On inclut notre header
  */
 session_start();
+include_once '../configuration.php';
 include '../models/database.php';
 include '../models/news.php';
 include_once '../models/users.php';

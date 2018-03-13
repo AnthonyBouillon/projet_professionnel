@@ -5,7 +5,7 @@
  */
 class users extends database {
 
-    // Ajout des attributs pour l'inscription
+// Ajout des attributs pour l'inscription
     public $id = 0;
     public $username = '';
     public $mail = '';
@@ -50,7 +50,7 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
-    
+
     /**
      * Méthode qui me permet de récupérer une information précise de l'utilisateur afin de les affichers
      */
@@ -110,45 +110,57 @@ class users extends database {
      * Méthode qui permet de supprimer un compte utilisateur
      */
     public function deleteUsers() {
-        $query = 'DELETE FROM `' . SELF::prefix . 'forumCategories` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'forumSubCategories` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'forumPosts` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'news` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'comments` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'chat` WHERE `id_cuyn_users` = :id_cuyn_users' ;
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        
-        $query = 'DELETE FROM `' . SELF::prefix . 'users` WHERE `id`=:id';
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
-        return $request->execute();
+        try {
+            $this->db->beginTransaction();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'forumCategories` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'forumSubCategories` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'forumPosts` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'news` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'comments` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'chat` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $query = 'DELETE FROM `' . SELF::prefix . 'users` WHERE `id`=:id';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $request->execute();
+
+            $this->db->commit();
+            $reponseDelete = true;
+        } catch (Exception $ex) {
+            $reponseDelete = false;
+            $this->db->rollBack;
+            echo "Failed: " . $ex->getMessage();
+        }
+        return $reponseDelete;
     }
 
     /**

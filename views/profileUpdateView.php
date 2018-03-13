@@ -1,6 +1,7 @@
 <?php
 session_start();
 if (!empty($_SESSION['id'])) {
+    include_once '../configuration.php';
     include_once '../models/database.php';
     include_once '../models/users.php';
     include_once '../controllers/profileUpdateController.php';

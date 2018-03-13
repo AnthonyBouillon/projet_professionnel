@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../models/news.php';
@@ -35,7 +36,7 @@ include '../include/header.php';
                         <!-- Résumer de l'article -->
                         <p class="card-text"><?= $articles->resume; ?></p>
                         <!-- Lien afin de voir l'article complet -->
-                        <a href="newView.php?id=<?= $articles->id ?>" class="btn btn-info">Voir l'article complet</a>
+                        <a href="views/newView.php?id=<?= $articles->id ?>" class="btn btn-info">Voir l'article complet</a>
                         <!-- Date de l'article -->
                         <p class="datePost h4">Posté le :<?= $articles->date; ?></p>
                         <form method="POST" action="" class="editForm">
@@ -62,7 +63,7 @@ include '../include/header.php';
                 </ul>
     <?php } else { ?>
                 <ul class="pagination">
-                    <li><a href="newsAllView.php?id=<?= $i ?> " class="paginationBtn"> <?= $i; ?></a></li>
+                    <li><a href="/Toutes-les-actualtés/?id=<?= $i ?> " class="paginationBtn"> <?= $i; ?></a></li>
                 </ul>
                 <?php
             }

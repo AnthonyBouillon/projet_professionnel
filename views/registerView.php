@@ -1,6 +1,7 @@
 <?php
 // Démarre la session
 session_start();
+include_once '../configuration.php';
 require('../assets/reCaptcha/autoload.php');
 include_once '../models/database.php';
 include_once '../models/users.php';

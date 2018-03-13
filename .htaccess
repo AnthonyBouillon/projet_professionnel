@@ -5,11 +5,31 @@ Options -Indexes
 Options +FollowSymlinks
 # Activation du mod rewrite d'Apache
 RewriteEngine On
+ErrorDocument 403 /views/403.php
+ErrorDocument 404 /views/404.php
+ErrorDocument 500 /views/500.php
 # Réécriture de l'url
 RewriteRule Accueil index.php [L] 
-RewriteRule Accueil ../index.php [L] 
+RewriteRule Inscription views/registerView.php [L] 
+RewriteRule Connexion views/loginView.php [L] 
+RewriteRule Déconnexion views/logoutView.php [L] 
+RewriteRule Mot-de-passe-oublié-? views/forgottenPasswordView.php [L] 
+RewriteRule webTV views/webtv.php [L] 
+RewriteRule Catégorie-du-forum views/forumCategoriesView.php [L] 
+RewriteRule Mon-profil views/profileView.php [L] 
+RewriteRule Modification-de-mon-profil views/profileUpdateView.php [L] 
+RewriteRule Supprimer-mon-profil views/profileDeleteView.php [L] 
+RewriteRule Contact views/contactView.php [L] 
 
-ErrorDocument 403 /403.php
-ErrorDocument 404 /404.php
-ErrorDocument 500 /500.php
+
+RewriteRule Sous-catégorie-du-forum views/forumSubCategoriesView.php [L] 
+RewriteRule Topics-du-forum views/forumTopicsView.php [L] 
+RewriteRule Réponses-du-forum views/forumPostsView.php [L] 
+RewriteRule Validation-du-compte views/validationView.php [L] 
+
+RewriteRule Toutes-les-actualtés views/newsAllView.php [L] 
+RewriteRule Toutes-les-actualtés/page([0-9]+) views/newsAllView.php?id=$1 [L] 
+RewriteRule Actualités views/newsView.php [L] 
+
+
 </ifModule>

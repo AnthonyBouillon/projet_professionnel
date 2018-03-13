@@ -8,9 +8,10 @@
 $users = new users();
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
-}else{
+} else {
     header('Location:404.php');
 }
+
 $readUsers = $users->readUsers();
 
 /*
@@ -20,24 +21,27 @@ $readUsers = $users->readUsers();
  * Puis on le redigire sur la page d'inscription
  */
 if (isset($_POST['submit'])) {
-    if($users->deleteUsers()){
-/*    unlink('../members/avatars/' . $readUsers->username . '/' . $readUsers->avatar);
-    if (is_dir('../members/avatars/' . $readUsers->username)) {
-        rmdir('../members/avatars/' . $readUsers->username . 'fake.jpg');
-        rmdir('../members/avatars/' . $readUsers->username);
-        var_dump('../members/avatars/' . $readUsers->username . 'fake.jpg');
-    } */
-    $deleteProfile = 'Votre compte à bien était supprimé !';
-    header('refresh:5;url=registerView.php');
-    session_destroy();
-    }else{
-        
-        var_dump($users->id);
-        var_dump('COMPTE NON SUPPR');
-    } 
-}else{
-    var_dump('dddd');
+    if ($users->deleteUsers()) {
+        $fileName = '../members/avatars/' . $readUsers->username . '/' . $readUsers->avatar;
+        $fileFakeImg = '../members/avatars/' . $readUsers->username . '/fake.jpg';
+        $docName = '../members/avatars/' . $readUsers->username;
+        if (file_exists($fileName)) {
+            unlink($fileName);
+        }
+        if (file_exists($fileFakeImg)) {
+            unlink($fileFakeImg);
+        }
+        if (file_exists($docName)) {
+            rmdir($docName);
+        }
+        $success = 'Votre compte à bien était supprimé !';
+        header('refresh:5;url=Inscription');
+        session_destroy();
+    } else {
+        $error = 'Malheureusement un problème est survenue et votre compte n\'a pas pu être supprimer, veuillez réessayez ulterieurement ou contactez nous.';
+    }
 }
+
 
 
 

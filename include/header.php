@@ -31,10 +31,10 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="../Accueil">ACCUEIL</a></li>
-                        <li><a href="../views/newsAllView.php">ACTUALITÉS</a></li>
-                        <li><a href="../views/forumCategoriesView.php">FORUM</a></li>
-                        <li><a href="#band">WEB TV</a></li>
-                        <li><a href="https://discord.gg/StQbQ9">DISCORD</a></li>
+                        <li><a href="../Toutes-les-actualtés">ACTUALITÉS</a></li>
+                        <li><a href="../Catégorie-du-forum">FORUM</a></li>
+                        <li><a href="../webTV">WEB TV</a></li>
+                        <li><a href="https://discord.gg/vmXCWd5">DISCORD</a></li>
                     </ul>
                     <!-- Affiche un menu différent suivant si l'utilisateur est connecté ou non -->
                     <?php if (!empty($_SESSION['id'])) { ?>
@@ -43,17 +43,17 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown"  href=""><?= $_SESSION['username']; ?><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="profileView.php">Mon profil</a></li>
-                                    <li><a href="profileUpdateView.php">Modifier mon profil</a></li>
-                                    <li><a href="profileDeleteView.php">Supprimer mon profil</a></li> 
+                                    <li><a href="../Mon-profil">Mon profil</a></li>
+                                    <li><a href="../Modification-de-mon-profil">Modifier mon profil</a></li>
+                                    <li><a href="../Supprimer-mon-profil">Supprimer mon profil</a></li> 
                                 </ul>
                             </li>
-                            <li><a href="../views/logoutView.php" class="a_nav"><span class="glyphicon glyphicon-log-out"></span> DÉCONNEXION</a></li>
+                            <li><a href="../Déconnexion" class="a_nav"><span class="glyphicon glyphicon-log-out"></span> DÉCONNEXION</a></li>
                         </ul>
                     <?php } else { ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="../views/registerView.php"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
-                            <li><a href="../views/loginView.php"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
+                            <li><a href="../Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
+                            <li><a href="../Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
                         </ul>
                     <?php } ?>
                 </div>

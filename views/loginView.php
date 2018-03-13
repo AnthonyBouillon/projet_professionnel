@@ -1,6 +1,7 @@
 <?php
 // Démarre la session
 session_start();
+include_once '../configuration.php';
 include '../models/database.php';
 include '../models/users.php';
 include '../controllers/loginController.php';
@@ -40,7 +41,7 @@ include '../include/header.php';
                         <input type="checkbox" class="form-control" id="checkbox" />
                     </div>
                     <div class="col-lg-12">
-                        <a href="forgottenPasswordView.php" title="Lien dirigeant vers la récupération de compte">Mot de passe oublié ?</a>
+                        <a href="../Mot-de-passe-oublié-?" title="Lien dirigeant vers la récupération de compte">Mot de passe oublié ?</a>
                     </div>
                 </div>
                 <!-- Valider -->

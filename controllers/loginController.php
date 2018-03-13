@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['id'] = $readUsers->id;
         $_SESSION['username'] = $readUsers->username;
         $formSuccess['loginSuccess'] = 'Vous êtes connecté';
-        header('refresh:0;url=../index.php');
+        header('refresh:0;url=../Accueil');
     }
 }
 

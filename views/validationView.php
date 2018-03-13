@@ -1,6 +1,7 @@
 <?php
 // Démarre la session
 session_start();
+include_once '../configuration.php';
 include '../models/database.php';
 include '../models/users.php';
 include '../controllers/validationController.php';

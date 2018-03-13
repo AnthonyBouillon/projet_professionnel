@@ -1,6 +1,8 @@
 <?php
 // Démarre la session
 session_start();
+
+include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../models/news.php';

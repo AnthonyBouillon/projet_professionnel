@@ -1,5 +1,14 @@
 <?php
 session_start();
+include_once '../configuration.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+if (isset($_SESSION['id'])) {
+    $users = new users();
+    $users->id = $_SESSION['id'];
+    $users->username = $_SESSION['username'];
+    $readUsers = $users->readUsers();
+}
 $title = 'Error 403';
 $classBody = NULL;
 include '../include/header.php';
@@ -16,4 +25,4 @@ include '../include/header.php';
     <p class="text-center errorParagraph col-xs-12 col-sm-12 col-md-12 col-lg-offset-3 col-lg-6">Il est inutile que vous essayez d'y revenir ça n'y changera rien, Gandalf vous y empechera<br/>Vous pouvez tout de même continuer votre navigation grâce au menu.<br/></p>
 </div>
 <?php
-include 'include/footer.php';
+include '../include/footer.php';

@@ -6,7 +6,7 @@
                 <h3>Information</h3>
                 <ul>
                     <li><a href="Qui_sommes-nous?">Qui sommes-nous ?</a></li>
-                    <li><a href="../views/contactView.php">Me contacter via formulaire</a></li>
+                    <li><a href="../Contact">Me contacter via formulaire</a></li>
                 </ul>
             </div>
             <!-- Vous êtes perdu ? -->

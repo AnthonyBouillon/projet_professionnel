@@ -46,7 +46,7 @@ if (isset($_POST['submitAvatar'])) {
      */
     if (in_array($users->extension, $validsExtensions)) {
         if (is_dir('..members/avatars/' . $users->username)) {
-            mkdir('../members/avatars/' . $users->username, 0777);
+            mkdir('../members/avatars/' . $users->username, 777);
         }
         $path = '../members/avatars/' . $users->username . '/' . $users->id . '.' . $users->extension;
         $movement = move_uploaded_file($_FILES['avatar']['tmp_name'], $path);

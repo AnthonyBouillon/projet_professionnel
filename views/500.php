@@ -1,5 +1,15 @@
 <?php
+include_once '../configuration.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+if (isset($_SESSION['id'])) {
+    $users = new users();
+    $users->id = $_SESSION['id'];
+    $users->username = $_SESSION['username'];
+    $readUsers = $users->readUsers();
+}
 $title = 'Error 500';
+$classBody = NULL;
 include '../include/header.php';
 ?>
 <div class="jumbotron errorBloc">  
@@ -14,4 +24,4 @@ include '../include/header.php';
         <span class="bold">Si cette page s'affiche fréquemment ou plutôt qu'il ne s'affiche pas comme il le devrait :</span> veuillez m'en faire part via ce <a href="Contact">formulaire de contact</a>.</p>
 </div>
 <?php
-include 'include/footer.php';
+include '../include/footer.php';

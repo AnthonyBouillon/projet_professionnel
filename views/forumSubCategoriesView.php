@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../configuration.php';
 include '../models/database.php';
 include '../models/users.php';
 include '../models/forumSubCategories.php';

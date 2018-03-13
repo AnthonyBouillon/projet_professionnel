@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../controllers/profileDeleteController.php';
@@ -10,7 +11,7 @@ include_once '../include/header.php';
 
 <!-- Si il est connecté, affiche le contenu de la page -->
 <div class="container containerNew">
-    <?php if (empty($deleteProfile)) { ?>
+    <?php if (!isset($success)) { ?>
         <div class="page-header">
             <h2 class="text-center" >Vous avez décidé de nous quitter <?= !empty($_SESSION['username']) ? $_SESSION['username'] : ''; ?> ?</h2>
             <h3 class="text-center">Si vous désirez supprimer votre compte, vous êtes au bon endroit</h3>
@@ -31,7 +32,7 @@ include_once '../include/header.php';
         </div>
     <?php } else { ?>
         <div class="alert-success">
-            <p class="text-center h4"><?= $deleteProfile ?></p>
+            <p class="text-center h4"><?= $success ?></p>
             <p class="text-center h4"> Vous allez être redirigé dans <span id="chrono" class="red">5</span> <span class="red">secondes</span> sur la page d'inscription ou vous pouvez quitter cette page</p>
         </div>
     <?php } ?>
