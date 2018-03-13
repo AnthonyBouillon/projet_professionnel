@@ -63,7 +63,7 @@ include '../include/header.php';
                 </ul>
     <?php } else { ?>
                 <ul class="pagination">
-                    <li><a href="/Toutes-les-actualtés/?id=<?= $i ?> " class="paginationBtn"> <?= $i; ?></a></li>
+                    <li><a href="views/newsAllView.php?id=<?= $i ?> " class="paginationBtn"> <?= $i; ?></a></li>
                 </ul>
                 <?php
             }

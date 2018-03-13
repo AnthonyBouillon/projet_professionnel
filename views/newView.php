@@ -50,13 +50,15 @@ include '../include/header.php';
             </section>
         </div>
         <div class="jumbotron allComments">
+            <p class="purple">Nombre de commentaires : <span class="bold"><?= $countComments ?>  </p>
             <!-- Affichage du message qui confirme la réussite de son interaction -->
             <p class="text-center green h4"><?= !empty($success['deleteComment']) ? $success['deleteComment'] : ''; ?></p>
             <!-- On parcours notre tableau afin d'afficher les  commentaires qui correspond à son article -->
-            <?php foreach ($readComments as $comments) { ?>  
+            <?php foreach ($readComments as $comments) { ?> 
+                
                 <div class="well col-lg-12">
                     <!-- Affichage des commentaires -->
-                    <h2 class=""><?= !empty($comments->username) ? $comments->username : 'Anonyme'; ?> a dit : </h2><hr/>
+                    <h2 class=""><?= !empty($comments->username) ? $comments->username : 'Anonyme'; ?> a écrit : </h2><hr/>
                     <p class="h4"><?= wordwrap($comments->comment, 20, ' ', 1); ?></p>
                     <p class="datePost h4">Le :<?= $comments->date; ?></p>
                     <?php if (!empty($_SESSION['id'])) { ?>

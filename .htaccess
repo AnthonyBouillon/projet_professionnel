@@ -26,10 +26,10 @@ RewriteRule Sous-catégorie-du-forum views/forumSubCategoriesView.php [L]
 RewriteRule Topics-du-forum views/forumTopicsView.php [L] 
 RewriteRule Réponses-du-forum views/forumPostsView.php [L] 
 RewriteRule Validation-du-compte views/validationView.php [L] 
-
 RewriteRule Toutes-les-actualtés views/newsAllView.php [L] 
-RewriteRule Toutes-les-actualtés/page([0-9]+) views/newsAllView.php?id=$1 [L] 
+RewriteRule Toutes-les-actualtés/id=([0-9]+) views/newsAllView.php?id=$1 [L] 
 RewriteRule Actualités views/newsView.php [L] 
+RewriteRule Actualités/id=([0-9]+) views/newsView.php?id=$1 [L] 
 
 
 </ifModule>

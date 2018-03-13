@@ -331,7 +331,10 @@ body {
 .green {
     color: green;
 }
-
+.purple{
+    font-weight: bold;
+    color: purple;
+}
 
 /* Modif profile */
 

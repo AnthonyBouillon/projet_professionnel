@@ -16,6 +16,8 @@ $comments->id_new = $_GET['id'];
 
 $readArticles = $news->readNewsById();
 $readComments = $comments->readComments();
+$countComments = $comments->countComments();
+
 // Assigne un tableau vide dans une variable (désignera les erreurs et les succès)
 $error = array();
 $success = array();
@@ -53,6 +55,7 @@ if (isset($_POST['submit'])) {
         if ($comments->createComments()) {
             $success['insertComment'] = 'Votre commentaire a était ajouté';
             $readComments = $comments->readComments();
+            $countComments = $comments->countComments();
         } else {
             $error['notInsertComment'] = 'Votre commentaire n\'a pas était enregistré, veuillez réessayez plus tard ou contactez-nous';
         }
@@ -87,6 +90,7 @@ if (!empty($_SESSION['id']) && isset($_POST['deleteBtn'])) {
     $comments->id_comment = $_POST['idComment'];
     if ($comments->deleteComments()) {
         $readComments = $comments->readComments();
+        $countComments = $comments->countComments();
         $success['deleteComment'] = 'Votre commentaire a était supprimé';
     }
 }

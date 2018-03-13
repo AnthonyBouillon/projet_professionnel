@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Classe comments qui permet de créer, afficher, modifier et supprimer des commentaires
  */
@@ -39,6 +40,14 @@ class comments extends database {
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function countComments() {
+        $query = 'SELECT COUNT(*) AS nbComments FROM `' . SELF::prefix . 'comments` WHERE id_cuyn_news = :id_cuyn_news';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
+        $request->execute();
+        return $request->fetch(PDO::FETCH_OBJ)->nbComments;
     }
 
     /**
