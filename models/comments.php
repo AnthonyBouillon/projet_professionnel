@@ -35,7 +35,7 @@ class comments extends database {
      *  Date format française
      */
     public function readComments() {
-        $query = 'SELECT `' . SELF::prefix . 'comments`.`id`, `' . SELF::prefix . 'comments`.`comment`, `' . SELF::prefix . 'comments`.`id_cuyn_users`, `' . SELF::prefix . 'comments`.`id_cuyn_news`, DATE_FORMAT(`' . SELF::prefix . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . SELF::prefix . 'users`.`username` FROM `' . SELF::prefix . 'comments` LEFT JOIN `' . SELF::prefix . 'users` ON `' . SELF::prefix . 'comments`.`id_cuyn_users` = `' . SELF::prefix . 'users`.`id` WHERE `' . SELF::prefix . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id DESC';
+        $query = 'SELECT `' . SELF::prefix . 'comments`.`id`, '. '`' . SELF::prefix . 'comments`.`comment`, `' . SELF::prefix . 'comments`.`id_cuyn_users`, `' . SELF::prefix . 'comments`.`id_cuyn_news`, `' . SELF::prefix . 'users`.`avatar`, DATE_FORMAT(`' . SELF::prefix . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . SELF::prefix . 'users`.`username` FROM `' . SELF::prefix . 'comments` LEFT JOIN `' . SELF::prefix . 'users` ON `' . SELF::prefix . 'comments`.`id_cuyn_users` = `' . SELF::prefix . 'users`.`id` WHERE `' . SELF::prefix . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id DESC';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();
