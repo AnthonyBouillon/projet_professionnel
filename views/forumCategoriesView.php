@@ -28,7 +28,6 @@ include '../include/header.php';
         <?php foreach ($getCategories as $category) { ?>
             <tr>
                 <td>
-
                     <a href="forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
                     <?php if (isset($_SESSION['id']) && $_SESSION['id'] == 2) { ?>
                         <form method="POST" action="">
@@ -37,7 +36,6 @@ include '../include/header.php';
                             <input type="hidden" name="idCategory" value="<?= $category->id ?>" />
                         </form>
                     <?php } ?>
-
                     <div class="divForum well col-lg-6" id="divForum<?= $category->id; ?>">
                         <form method="POST" action="">
                             <input type="text" name="name" class="form-control focusColor" placeholder="Titre de la catégorie" />

@@ -2,7 +2,7 @@
 // Démarre la session
 session_start();
 include_once '../configuration.php';
-require('../assets/reCaptcha/autoload.php');
+include_once '../assets/reCaptcha/autoload.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../controllers/registerController.php';
@@ -13,11 +13,8 @@ $title = 'Inscription';
 include '../include/header.php';
 ?>
 <div class="container-fluid">
-    <div class="col-lg-offset-3 col-lg-6 formRegisterBackground">
-        
+    <div class="col-lg-offset-3 col-lg-6 formRegisterBackground"> 
         <h2 class="formTitle col-xs-12 col-sm-12 col-md-12 col-lg-12 bold">Formulaire d'inscription</h2>
-        
-
         <!-- Affichage des messages d'erreurs -->
         <p class="yellow bold h4"><?= !empty($formError['unavailableUsername']) ? $formError['unavailableUsername'] : ''; ?></p>
         <p class="yellow bold h4"><?= !empty($formError['unavailableMail']) ? $formError['unavailableMail'] : ''; ?></p>
@@ -82,7 +79,7 @@ include '../include/header.php';
                 <!-- Captcha -->
                 <div class="form-group fieldBackground">
                     <div class="g-recaptcha  col-lg-offset-4 col-lg-6" data-sitekey="6LeHrEcUAAAAAL8BwgGykCkFGc8-kCB7Lve4d-nv">
-
+                        
                     </div>
                 </div>
                 <!-- Valider l'inscription -->

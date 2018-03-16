@@ -1,4 +1,5 @@
 <?php
+
 /*
  * On instancie l'objet users
  * On assigne une regex dans une variable qui servira pour nos champs
@@ -18,17 +19,17 @@ $formSuccess = array();
  */
 if (isset($_POST['submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['mail']) && !empty($_POST['confirmMail']) && !empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
-        $users->username = strip_tags($_POST['username']);
-        $users->mail = strip_tags($_POST['mail']);
+        $users->username = htmlspecialchars($_POST['username']);
+        $users->mail = htmlspecialchars($_POST['mail']);
         $users->password = htmlspecialchars($_POST['password']);
         $users->passwordHash = password_hash($users->password, PASSWORD_BCRYPT);
-        // On assigne notre tableau qui contient toute les informations de la table users dans une variable
-        $readUsers = $users->readUsers();
         /*
          * On vérifie que le pseudo et l'adresse e-mail ne sont pas enregistrés dans la base de donnée
          * On vérifie que les champs qui doivent être identiques le sont
          * On vérifie que le format désiré des données saisies soient respectés
          */
+        // On assigne notre tableau qui contient toute les informations de la table users dans une variable
+        $readUsers = $users->readUsers();
         if (!empty($readUsers->username)) {
             $formError['unavailableUsername'] = 'Le pseudo est déjà utilisé';
         }
@@ -81,7 +82,7 @@ if (isset($_POST['submit'])) {
             $readUsers = $users->readUsers();
             $to = $users->mail;
             $subject = 'Votre inscription sur le site APT';
-            $message =  'Bienvenue ' . $readUsers->username . ' sur All Plateform Together,' . "\r\n\r\n";
+            $message = 'Bienvenue ' . $readUsers->username . ' sur All Plateform Together,' . "\r\n\r\n";
             $message .= 'Pour activer votre compte, veuillez cliquer sur le lien ci dessous' . "\r\n";
             $message .= 'ou copier/coller dans votre navigateur internet.' . "\r\n\r\n";
             $message .= 'http://projetprofessionnel/views/validationView.php?id=' . $readUsers->id . '&key=' . $users->keyMail . "\r\n\r\n";

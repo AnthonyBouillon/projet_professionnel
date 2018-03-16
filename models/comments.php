@@ -43,7 +43,7 @@ class comments extends database {
     }
 
     public function countComments() {
-        $query = 'SELECT COUNT(*) AS nbComments FROM `' . SELF::prefix . 'comments` WHERE id_cuyn_news = :id_cuyn_news';
+        $query = 'SELECT COUNT(*) AS nbComments FROM `' . SELF::prefix . 'comments` WHERE id_cuyn_news =:id_cuyn_news';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();

@@ -72,7 +72,6 @@ if (isset($_POST['submitMail'])) {
         // Si l'adresse e-mail existe déja et que l'id de l'utilisateur et le mail enregistré et différent du mail saisie
         if (!empty($readMail->mail) && $users->mail != $readUsers->mail) {
             $formError['mailExist'] = 'L\'adresse e-mail existe déja';
-            var_dump($test->mail);
             // Si l'id de l'utilisateur et l'adresse e-mail saisie et le meme que celui qui est enregistré
         } elseif ($users->mail == $readUsers->mail) {
             $formError['mailSimilar'] = 'Vous essayez de modifier votre propre adresse e-mail qui est déjà enregistrée XD';
