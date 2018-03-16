@@ -25,7 +25,7 @@ class forumCategories extends database {
      *  Nous ajoutons comme parammètre sa nature ( chaine de caractère et un integer )
      */
     public function createCategories() {
-        $query = 'INSERT INTO `' . SELF::prefix . 'forumCategories`(`name`, `description`, id_cuyn_users) VALUES (:name, :description, :id_cuyn_users)';
+        $query = 'INSERT INTO `' . PREFIXE . 'forumCategories`(`name`, `description`, id_cuyn_users) VALUES (:name, :description, :id_cuyn_users)';
         $request = $this->db->prepare($query);
         $request->bindValue('name', $this->name, PDO::PARAM_STR);
         $request->bindValue('description', $this->description, PDO::PARAM_STR);
@@ -37,7 +37,7 @@ class forumCategories extends database {
      *  Méthode qui me permet de sélectionner les catégories
      */
     public function readCategories() {
-        $query = 'SELECT `id`,`name`, `description` FROM `' . SELF::prefix . 'forumCategories`';
+        $query = 'SELECT `id`,`name`, `description` FROM `' . PREFIXE . 'forumCategories`';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
@@ -46,7 +46,7 @@ class forumCategories extends database {
      *  Méthode qui permet de modifier une catégories
      */
     public function updateCategories() {
-        $query = 'UPDATE `' . SELF::prefix . 'forumCategories` SET `name` =:name, description=:description WHERE `id`=:id';
+        $query = 'UPDATE `' . PREFIXE . 'forumCategories` SET `name` =:name, description=:description WHERE `id`=:id';
         $request = $this->db->prepare($query);
         $request->bindValue(':name', $this->name, PDO::PARAM_STR);
         $request->bindValue(':description', $this->description, PDO::PARAM_STR);
@@ -59,11 +59,12 @@ class forumCategories extends database {
      */
     public function deleteCategories() {
         try {
-            $query = 'DELETE FROM `' . SELF::prefix . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
+            $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_forumCategories', $this->id_categories, PDO::PARAM_INT);
             $request->execute();
-            $query = 'DELETE FROM `' . SELF::prefix . 'forumCategories` WHERE id=:id';
+            
+            $query = 'DELETE FROM `' . PREFIXE . 'forumCategories` WHERE id=:id';
             $request = $this->db->prepare($query);
             $request->bindValue(':id', $this->id_categories, PDO::PARAM_INT);
             $request->execute();

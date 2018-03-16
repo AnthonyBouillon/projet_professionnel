@@ -21,14 +21,14 @@ class chat extends database {
      *  Sinon la méthode insère le message seul
      */
     public function createMessage() {
-        $query = 'INSERT INTO `' . SELF::prefix . 'chat`(`message`, `id_cuyn_users`) VALUES(:message, :id_cuyn_users)';
+        $query = 'INSERT INTO `' . PREFIXE . 'chat`(`message`, `id_cuyn_users`) VALUES(:message, :id_cuyn_users)';
         $request = $this->db->prepare($query);
+        $request->bindValue(':message', $this->message, PDO::PARAM_STR);
         if (!empty($this->id_user)) {
             $request->bindValue(':id_cuyn_users', $this->id_user, PDO::PARAM_INT);
         } else {
             $request->bindValue(':id_cuyn_users', NULL, PDO::PARAM_INT);
-        }
-        $request->bindValue(':message', $this->message, PDO::PARAM_STR);
+        }      
         return $request->execute();
     }
 
@@ -36,7 +36,7 @@ class chat extends database {
      *  Méthode qui permet de récupèrer tous les messages de la base de donnée
      */
     public function readMessage() {
-        $query = 'SELECT `' . SELF::prefix . 'chat`.`id_cuyn_users`, `' . SELF::prefix . 'chat`.`message`, `' . SELF::prefix . 'users`.`username` FROM `' . SELF::prefix . 'chat` LEFT JOIN `' . SELF::prefix . 'users`  ON  `' . SELF::prefix . 'chat`.`id_cuyn_users` = `' . SELF::prefix . 'users`. `id`  ORDER BY `' . SELF::prefix . 'chat`.`id` DESC LIMIT 50';
+        $query = 'SELECT `' . PREFIXE . 'chat`.`id_cuyn_users`, `' . PREFIXE . 'chat`.`message`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'chat` LEFT JOIN `' . PREFIXE . 'users`  ON  `' . PREFIXE . 'chat`.`id_cuyn_users` = `' . PREFIXE . 'users`. `id`  ORDER BY `' . PREFIXE . 'chat`.`id` DESC LIMIT 50';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
