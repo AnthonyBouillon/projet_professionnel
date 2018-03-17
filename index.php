@@ -90,8 +90,8 @@ include_once 'controllers/homeController.php';
                         <div class="receiveMessage" id="receiveMessage">
                             <?php foreach ($readMessages as $messages) { ?>
                                 <div class="well">
-                                    <p class="bold"><?= !empty($messages->username) ? $messages->username . ' à écrit ' : 'Visiteur' . ' à écrit '; ?> : </p><hr/>
-                                    <p><?= wordwrap($messages->message, 20, ' ', 1); ?></p><hr/>
+                                    <p class="bold"><?= !empty($messages->username) ? $messages->username . ' à écrit ' : 'Visiteur' . ' à écrit '; ?> : </p>
+                                    <p><?= wordwrap($messages->message, 20, ' ', 1); ?></p>
                                     <p>Message datant du : <span class="bold"><?= $messages->date ?></span></p>
                                 </div>
                             <?php } ?>

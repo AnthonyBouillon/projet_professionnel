@@ -49,7 +49,12 @@ footer ul {
 }
 
 footer a {
+    color: orange;
+    font-weight: bold;
+}
+footer a:hover {
     color: white;
+    text-decoration: none;
 }
 
 
@@ -377,10 +382,14 @@ body {
 }
 
 .navbar li a,
-.navbar .navbar-brand {
-    color: #d5d5d5 !important;
+.navbar{
+    color: orange !important;
+    font-weight: bold;
 }
-
+.navbar-brand {
+      color: white !important;
+    font-weight: bold;
+}
 .navbar-nav li a:hover {
     color: #fff !important;
 }
