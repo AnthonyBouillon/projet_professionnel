@@ -18,8 +18,8 @@ include_once 'controllers/homeController.php';
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <title>Accueil</title>
     </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
+    <body class="homeBackground">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -38,11 +38,16 @@ include_once 'controllers/homeController.php';
                         <li><a href="https://discord.gg/vmXCWd5">DISCORD</a></li>
                     </ul>
                     <!-- Affiche un menu différent suivant si l'utilisateur est connecté ou non -->
-                    <?php if (!empty($_SESSION['id'])) { ?>
+                    <?php if (!isset($readUsers->id)) { ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
+                            <li><a href="Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
+                        </ul>
+                    <?php } else { ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li><img src="members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="img-rounded avatarNav" /></li>
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown"  href=""><?= $_SESSION['username']; ?><span class="caret"></span></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown"  href=""><?= $readUsers->username; ?><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="Mon-profil">Mon profil</a></li>
                                     <li><a href="Modification-de-mon-profil">Modifier mon profil</a></li>
@@ -51,44 +56,52 @@ include_once 'controllers/homeController.php';
                             </li>
                             <li><a href="Déconnexion" class="a_nav"><span class="glyphicon glyphicon-log-out"></span> DÉCONNEXION</a></li>
                         </ul>
-                    <?php } else { ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
-                            <li><a href="Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
-                        </ul>
                     <?php } ?>
                 </div>
             </div>
         </nav>
+
         <div class="container-fluid">
             <div class="row">
                 <!-- Présentation -->
-                <div class="col-md-6 col-lg-offset-1 col-lg-5 well well-info blocPresentation">
-                    <div class="col-lg-offset-2 col-lg-8">
-                        <h2 class="text-center titlePresentation">Présentation du site</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
+                <div class="col-md-6 col-lg-offset-1 col-lg-4">
+                    <section class="test">
+                        <h2 class="text-center titlePresentation white" id="flip" data-toggle="popover" data-trigger="hover" data-content="Pour afficher ou faire disparaitre le texte, clique sur le titre :)" data-placement="top">Présentation du site</h2>
+                        <div class="col-lg-12 well well-info panel" id="panel">
+                            <p class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>     
+                    </section>
+                    <br/><br/><br/><br/><br/><br/><br/>
+                    <section class="test">
+                        <h2 class="text-center titleTest white" id="flip1" data-toggle="popover" data-trigger="hover" data-content="Pour afficher ou faire disparaitre le texte, clique sur le titre :)" data-placement="top">Que puis-je faire sur le site ?</h2>
+                        <div class="col-lg-12 well well-info panel" id="panel1">
+                            <p class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>     
+                    </section>
                 </div>
+
                 <!-- Tchat -->
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-4">
-                    <h2 class="text-center titleChat">Salon de discussion</h2>
-                    <p class="text-center h4 black"><?= !empty($formError['errorRegex']) ? $formError['errorRegex'] : ''; ?></p>
-                    <p class="text-center h4 red"><?= !empty($formError['emptyMessage']) ? $formError['emptyMessage'] : ''; ?></p>
-                    <!-- Tchat -->
-                    <div class="receiveMessage" id="receiveMessage">
-                        <?php foreach ($readMessages as $messages) { ?>
-                            <p>
-                                <span class="bold"><?= !empty($messages->username) ? $messages->username . ' à dit ' : 'Visiteur' . ' à dit '; ?> : </span>
-                                <?= wordwrap($messages->message, 20, ' ', 1); ?>
-                            </p>
-                        <?php } ?>
-                    </div>
-                    <!--Valider -->
-                    <form method="POST" action="">
-                        <textarea class="form-control inputForm" name="message" id="message" placeholder="Écrivez votre message" required></textarea>
-                        <button type="submit" class="form-control" name="submit" id="sendMessage">Envoyer</button>
-                    </form>
+                    <section class="test">
+                        <h2 class="text-center titleChat white">Tchat tout publique</h2>
+                        <p class="text-center h4 black"><?= !empty($formError['errorRegex']) ? $formError['errorRegex'] : ''; ?></p>
+                        <p class="text-center h4 red"><?= !empty($formError['emptyMessage']) ? $formError['emptyMessage'] : ''; ?></p>
+                        <!-- Tchat -->
+                        <div class="receiveMessage" id="receiveMessage">
+                            <?php foreach ($readMessages as $messages) { ?>
+                                <div class="well">
+                                    <p class="bold"><?= !empty($messages->username) ? $messages->username . ' à écrit ' : 'Visiteur' . ' à écrit '; ?> : </p><hr/>
+                                    <p><?= wordwrap($messages->message, 20, ' ', 1); ?></p><hr/>
+                                    <p>Message datant du : <span class="bold"><?= $messages->date ?></span></p>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <!--Valider -->
+                        <form method="POST" action="">
+                            <textarea class="form-control focusColor" name="message" id="message" placeholder="Écrivez votre message" required></textarea>
+                            <button type="submit" class="form-control" name="submit" id="sendMessage">Envoyer</button>
+                        </form>
+                    </section>
                 </div>
             </div>
         </div>

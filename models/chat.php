@@ -36,7 +36,7 @@ class chat extends database {
      *  Méthode qui permet de récupèrer tous les messages de la base de donnée
      */
     public function readMessage() {
-        $query = 'SELECT `' . PREFIXE . 'chat`.`id_cuyn_users`, `' . PREFIXE . 'chat`.`message`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'chat` LEFT JOIN `' . PREFIXE . 'users`  ON  `' . PREFIXE . 'chat`.`id_cuyn_users` = `' . PREFIXE . 'users`. `id`  ORDER BY `' . PREFIXE . 'chat`.`id` DESC LIMIT 50';
+        $query = 'SELECT `' . PREFIXE . 'chat`.`message`, DATE_FORMAT(`' . PREFIXE . 'chat`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`,  `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'chat` LEFT JOIN `' . PREFIXE . 'users`  ON  `' . PREFIXE . 'chat`.`id_cuyn_users` = `' . PREFIXE . 'users`. `id`  ORDER BY `' . PREFIXE . 'chat`.`id` DESC LIMIT 50';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }

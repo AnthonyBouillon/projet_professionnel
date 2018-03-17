@@ -73,17 +73,30 @@ body {
     padding: 0;
 }
 /*--------------------------ACCUEIL-------------------------------*/
-
-.blocPresentation {
-    margin-top: 8%;
+.homeBackground {
+    background-image: url('../images/homeBackground.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
+
 .titlePresentation {
-    margin-bottom: 5%;
+    margin-top: 15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+.titleTest{
+    margin-top: 15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .titleChat {
     margin-top: 15%;
+    padding-top: 20px;
     margin-bottom: 5%;
 }
 
@@ -564,7 +577,7 @@ body {
 }
 @media screen and (max-width: 350px) {
     .containerValidateCount {
-       margin-top: 0%;
+        margin-top: 0%;
     }
 }
 
@@ -585,4 +598,17 @@ body {
 }
 .uppercaseCategories{
     text-transform: uppercase;
+}
+
+.test{
+    background-color: purple;
+    border-radius: 15px;
+    box-shadow: 0 0 15px purple;
+}
+
+#panel1{
+    display: none;
+}
+#panel{
+    display: none;
 }

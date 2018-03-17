@@ -104,3 +104,16 @@ $(document).ready(function () {
 
 });
 
+$("#flip").click(function(){
+    $("#panel").slideToggle('slow');
+    if ($('#panel1').css('display', 'block')) {
+            $('#panel1').css('display', 'none');
+        }
+}); 
+$("#flip1").click(function(){
+    $("#panel1").slideToggle('slow');
+      if ($('#panel').css('display', 'block')) {
+            $('#panel').css('display', 'none');
+        }
+}); 
+ $('[data-toggle="popover"]').popover(); 
