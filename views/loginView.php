@@ -15,11 +15,19 @@ include '../include/header.php';
     <div class="col-lg-12 formBackground">
         <h2 class="formTitle bold col-sm-12 col-lg-12">Formulaire de connexion</h2>
         <!-- Message d'erreurs -->
-        <p class="text-center yellow bold h4"><?= !empty($formError['loginBad']) ? $formError['loginBad'] : ''; ?></p>
-        <p class="text-center white bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['notActif']) ? $formError['notActif'] : ''; ?></p>
+        <?php if (!empty($formError)) { ?>
+            <div class="alert alert-danger">
+                <p class="text-center red bold h4"><?= !empty($formError['loginBad']) ? $formError['loginBad'] : ''; ?></p>
+                <p class="text-center red bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
+                <p class="text-center red bold h4"><?= !empty($formError['notActif']) ? $formError['notActif'] : ''; ?></p>
+            </div>
+        <?php } ?>
         <!-- Message de succès -->
-        <p class="text-center green bold h4"><?= !empty($formSuccess['loginSuccess']) ? $formSuccess['loginSuccess'] : ''; ?></p>
+        <?php if (!empty($formSuccess)) { ?>
+            <div class="alert alert-success">
+                <p class="text-center bold h4"><?= !empty($formSuccess['loginSuccess']) ? $formSuccess['loginSuccess'] : ''; ?></p>
+            </div>
+        <?php } ?>
         <section class="col-sm-12 col-md-12">
             <form method="POST" action="" class="form-horizontal">
                 <!-- Pseudo -->

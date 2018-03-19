@@ -104,23 +104,12 @@ $(document).ready(function () {
 
 });
 
-$("#flip").click(function(){
-    $("#panel").slideToggle('slow');
+$('#flip1').click(function(){
+    $('#panel1').slideToggle('slow');
 
 }); 
-$("#flip1").click(function(){
-    $("#panel1").slideToggle('slow');
+$('#flip2').click(function(){
+    $('#panel2').slideToggle('slow');
 
 }); 
  $('[data-toggle="popover"]').popover(); 
-
-$.post(
-
-    'send_mail.php', // Le fichier cible côté serveur.
-    {
-        sujet : $("#sujet").val(), // Nous supposons que ce formulaire existe dans le DOM.
-        contenu : $("#contenu").val()
-    },
-    nom_fonction_retour, // Nous renseignons uniquement le nom de la fonction de retour.
-    'text' // Format des données reçues.
-);
