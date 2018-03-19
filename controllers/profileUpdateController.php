@@ -59,7 +59,7 @@ if (isset($_POST['submitAvatar'])) {
     if (count($formError) == 0) {
         $users->updateAvatar();
         $readUsers = $users->readUsers();
-        $formSuccess['avatarUpdate'] = 'Votre image de profil à était modifié';
+        $formSuccess['avatarUpdate'] = 'Votre image de profil à était modifié avec succès';
     }
 }
 /*  MOFICATION DE L'ADRESSE E-MAIL

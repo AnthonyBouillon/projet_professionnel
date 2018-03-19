@@ -64,7 +64,7 @@ include_once 'controllers/homeController.php';
         <div class="container-fluid">
             <div class="row">
                 <!-- Présentation -->
-                <div class="col-md-6 col-lg-offset-1 col-lg-4">
+                <div class="col-md-6 col-lg-offset-1 col-lg-4 blocPresent">
                     <section class="test">
                         <h2 class="text-center titlePresentation white" id="flip" data-toggle="popover" data-trigger="hover" data-content="Pour afficher ou faire disparaitre le texte, clique sur le titre :)" data-placement="top">Présentation du site</h2>
                         <div class="col-lg-12 well well-info panel" id="panel">
@@ -81,11 +81,17 @@ include_once 'controllers/homeController.php';
                 </div>
 
                 <!-- Tchat -->
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-4 blocChat">
                     <section class="test">
+                        <?php if (!empty($formError)) { ?>
+                            <div class="alert alert-danger">
+                                <p class="text-center red bold h4"><?= !empty($formError['errorRegex']) ? $formError['errorRegex'] : ''; ?></p>
+                                <p class="text-center red bold h4"><?= !empty($formError['emptyMessage']) ? $formError['emptyMessage'] : ''; ?></p>
+                            </div>
+                        <?php } ?>
                         <h2 class="text-center titleChat white">Tchat tout publique</h2>
-                        <p class="text-center h4 black"><?= !empty($formError['errorRegex']) ? $formError['errorRegex'] : ''; ?></p>
-                        <p class="text-center h4 red"><?= !empty($formError['emptyMessage']) ? $formError['emptyMessage'] : ''; ?></p>
+                        <p class="text-center h4 black"></p>
+                        <p class="text-center h4 red"></p>
                         <!-- Tchat -->
                         <div class="receiveMessage" id="receiveMessage">
                             <?php foreach ($readMessages as $messages) { ?>

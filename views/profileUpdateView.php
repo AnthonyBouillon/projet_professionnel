@@ -12,29 +12,39 @@ if (!empty($_SESSION['id'])) {
 
     <div class="container containerProfileUpdate">
         <div class="blocAddImg">
-            <h2 class="text-center">La modification de votre profil ce passe ici</h2>
+            <h2 class="text-center">Bienvenue sur votre profil <strong><?= $readUsers->username; ?></strong></h2>
             <!-- Affichage de l'avatar -->
-            <img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="avatar img-responsive img-rounded center-block" />
+            <img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="avatar img-responsive img-rounded center-block" /><br/>
             <!-- Affichage des messages d'erreurs  et des succès-->
-            <p class="text-center red bold h4"><?= !empty($formError['bigFormat']) ? $formError['bigFormat'] : ''; ?></p>
-            <p class="text-center red bold h4"><?= !empty($formError['badFormat']) ? $formError['badFormat'] : ''; ?></p>
-            <p class="text-center red bold h4"><?= !empty($formError['errorImport']) ? $formError['errorImport'] : ''; ?></p>
-            <p class="text-center red bold h4"><?= !empty($formError['emptyAvatar']) ? $formError['emptyAvatar'] : ''; ?></p>
-            <p class="text-center green bold h4"><?= !empty($formSuccess['avatarUpdate']) ? $formSuccess['avatarUpdate'] : ''; ?></p>
+
+
             <!-- Affichage du pseudo de l'utilisateur -->
-            <h2 class="text-center bold userTitle"><?= wordwrap($readUsers->username, 15, ' ', 1); ?></h2>
             <!-- Formulaire de modification d'avatar -->
             <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-group">
-                    <div class="col-lg-offset-5 col-lg-7">
-                        <label class="btn formBtn" for="avatar">Modifier une image</label>
+                    <div class="col-lg-offset-3 col-lg-6">
+                        <label class="btn formBtn btnWidth" for="avatar">Choisissez une image</label>
                         <input id="avatar" type="file" name="avatar" onchange="$('#upload-file-info').html(this.files[0].name)">
                         <span class='label label-info' id="upload-file-info"></span><br/>
-                        <button type="submit" name="submitAvatar" class="btn btn-primary">Valider mon image</button>
+                        <button type="submit" name="submitAvatar" class="btn btn-primary btnWidth">Valider mon image</button>
                     </div>
                 </div>
             </form>
+            <?php if (!empty($formSuccess)) { ?>
+                <div class="alert alert-success">
+                    <p class="text-center bold h4"><?= !empty($formSuccess['avatarUpdate']) ? $formSuccess['avatarUpdate'] : ''; ?></p>
+                </div>
+            <?php } ?>
+            <?php if (!empty($formError)) { ?>
+                <div class="alert alert-danger">
+                    <p class="text-center red bold h4"><?= !empty($formError['bigFormat']) ? $formError['bigFormat'] : ''; ?></p>
+                    <p class="text-center red bold h4"><?= !empty($formError['badFormat']) ? $formError['badFormat'] : ''; ?></p>
+                    <p class="text-center red bold h4"><?= !empty($formError['errorImport']) ? $formError['errorImport'] : ''; ?></p>
+                    <p class="text-center red bold h4"><?= !empty($formError['emptyAvatar']) ? $formError['emptyAvatar'] : ''; ?></p>
+                </div>
+            <?php } ?>
         </div>
+
         <!-- Bouton qui permet de switch entre le formulaire de modification d'adresse e-mail et de mot de passe -->
         <div class="btn-pref btn-group btn-group-justified">
             <div class="btn-group">
@@ -49,7 +59,7 @@ if (!empty($_SESSION['id'])) {
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="mail">
                     <!-- Affichage des messages d'erreurs et des succès -->
-                    
+
                     <p class="text-center red bold h4"><?= !empty($formError['mailExist']) ? $formError['mailExist'] : ''; ?></p>
                     <p class="text-center red bold h4"><?= !empty($formError['badMail']) ? $formError['badMail'] : ''; ?></p>
                     <p class="text-center red bold h4"><?= !empty($formError['mailSimilar']) ? $formError['mailSimilar'] : ''; ?></p>
@@ -74,12 +84,12 @@ if (!empty($_SESSION['id'])) {
                         <div class="form-group barra">
                             <label for="mailConfirm" class="col-sm-4 control-label">Confirmer l'adresse e-mail : </label>
                             <div class="col-sm-8">
-                                <input type="email" name="confirmMail" class="form-control focusColor" placeholder="Confirmer votre e-mail" id="mailConfirm" value="<?= !empty($_POST['confirmMail']) ?$_POST['confirmMail']  : ''; ?>" required />
+                                <input type="email" name="confirmMail" class="form-control focusColor" placeholder="Confirmer votre e-mail" id="mailConfirm" value="<?= !empty($_POST['confirmMail']) ? $_POST['confirmMail'] : ''; ?>" required />
                             </div>
                         </div>
                         <div class="form-group barra">
                             <div class="col-md-12">
-                                <button type="submit" name="submitMail" class="btn btn-block center-block formBtn">Je modifie mon adresse e-mail</button>
+                                <button type="submit" name="submitMail" class="btn btn-block center-block formBtn">Valide</button>
                             </div>
                         </div>
                     </form>
@@ -126,7 +136,7 @@ if (!empty($_SESSION['id'])) {
                         <!-- Valider l'inscription -->
                         <div class="form-group barra">
                             <div class="col-md-12">
-                                <button type="submit" name="submitPassword" class="btn btn-block center-block formBtn">Je modifie mon mot de passe</button>
+                                <button type="submit" name="submitPassword" class="btn btn-block center-block formBtn">Valider</button>
                             </div>
                         </div>
                     </form>

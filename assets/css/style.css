@@ -88,7 +88,6 @@ body {
 
 
 .titlePresentation {
-    margin-top: 15%;
     padding-top: 20px;
     padding-bottom: 20px;
 
@@ -100,9 +99,14 @@ body {
 }
 
 .titleChat {
-    margin-top: 15%;
     padding-top: 20px;
     margin-bottom: 5%;
+}
+.blocChat{
+    margin-top: 4%;
+}
+.blocPresent{
+    margin-top: 4%;
 }
 
 /* Mise en forme du bloc où apparaissent les messages  */
@@ -205,22 +209,6 @@ body {
 }
 
 
-/* Fond du formulaire de contact */
-
-.formContactBackground {
-    background-color: #012545;
-    margin-bottom: 1%;
-}
-
-@media screen and (max-width: 300px) {
-    .formContactBackground {
-        background-color: #012545;
-        margin-top: 20%;
-        margin-bottom: 22px;
-        padding: 0px;
-    }
-}
-
 
 /* Fond du formulaire d'inscription */
 
@@ -297,10 +285,8 @@ body {
     background: #fff;
     padding: 15px;
     letter-spacing: 2px;
-    position: initial!important;
+
 }
-
-
 /* Fond du label et du champs */
 
 .fieldBackground {
@@ -437,12 +423,34 @@ body {
 }
 
 
-/* Page contact */
-
+/* -----------------------------------------------CONTACT----------------------------------------------*/
+/* Classe body */
+.contactBackground {
+    background-image: url('../images/contactBackground.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+/* Classe container */
 .containerContact {
-    margin-top: 3%;
+    margin-top: 2%;
     padding-left: 0px;
     padding-right: 0px;
+}
+/* Classe div qui contient tout le formulaire */
+.formContactBackground {
+    background-color: #012545;
+    margin-bottom: 1%;
+}
+
+@media screen and (max-width: 300px) {
+    .formContactBackground {
+        background-color: #012545;
+        margin-top: 20%;
+        margin-bottom: 22px;
+        padding: 0px;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -452,7 +460,7 @@ body {
         margin-right: 5px;
     }
 }
-
+/*  */
 .containerNewsAll {
     margin-top: 3%;
 }
@@ -544,12 +552,12 @@ body {
 }
 
 .containerProfileUpdate {
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 @media screen and (max-width: 1000px) {
     .containerProfileUpdate {
-        margin-top: 18%;
+        margin-top: 15%;
     }
 }
 
@@ -565,7 +573,6 @@ body {
 }
 
 .avatar {
-    max-width: 300px;
     max-height: 300px;
     margin-top: 5%;
 }
@@ -577,7 +584,9 @@ body {
         margin-top: 5%;
     }
 }
-
+.btnWidth{
+    width: 100%;
+}
 #btnModif {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -623,3 +632,4 @@ body {
 #panel{
     display: none;
 }
+

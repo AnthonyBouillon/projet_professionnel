@@ -5,23 +5,33 @@ include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../controllers/contactController.php';
 // N'assigne rien la classe body
-$classBody = NULL;
+$classBody = 'contactBackground';
 // Assigne un titre à la balise title
 $title = 'Formulaire de contact';
 include '../include/header.php';
 ?>
-
 <div class="container-fluid containerContact">
     <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6 formContactBackground">
+        <div class="row">
             <h2 class="formTitle col-sm-12 bold">Contactez nous</h2>
+        </div>
         <!-- Affichage des messages d'erreurs ou de succès-->
-        <p class="text-center white bold h4"><?= !empty($formErrror['empty']) ? $formErrror['empty'] : '';  ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['invalidUsername']) ? $formError['invalidUsername'] : '';  ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['invalidMail']) ? $formError['invalidMail'] : ''; ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['invalidMessage']) ? $formError['invalidMessage'] : ''; ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['sendMailError']) ? $formError['sendMailError'] : ''; ?></p>
-        <p class="text-center green bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
-        <section class="col-md-12">
+        <?php if (!empty($formSuccess)) { ?>
+            <div class="alert alert-success">
+                <p class="text-center bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
+            </div>
+        <?php } ?>
+        <?php if (!empty($formError)) { ?>
+            <div class="alert alert-danger">
+                <p class="text-center bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['invalidMessage']) ? $formError['invalidMessage'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['invalidUsername']) ? $formError['invalidUsername'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['invalidObject']) ? $formError['invalidObject'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['invalidMail']) ? $formError['invalidMail'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['sendMailError']) ? $formError['sendMailError'] : ''; ?></p>
+            </div>
+        <?php } ?>
+        <section class="col-lg-12">
             <form method="POST" action="" class="form-horizontal">
                 <!-- Pseudo -->
                 <div class="form-group fieldBackground">
@@ -32,7 +42,7 @@ include '../include/header.php';
                 </div>
                 <!-- Adresse e-mail -->
                 <div class="form-group fieldBackground">
-                    <label class="control-label col-sm-4" for="mail">Adresse e-mail : </label>
+                    <label class="control-label col-sm-4" for="mail">Votre adresse e-mail : </label>
                     <div class="col-lg-8">
                         <input type="email" class="form-control focusColor" name="mail" id="mail" placeholder="Écrivez votre adresse e-mail" required />
                     </div>
@@ -41,8 +51,8 @@ include '../include/header.php';
                 <div class="form-group fieldBackground">
                     <label class="control-label col-lg-4" for="object">Sujet : </label>
                     <div class="col-lg-8">
-                        <select name="object" class="form-control" id="object" required>
-                            <option>Sélectionner votre choix</option>
+                        <select name="object" class="form-control focusColor" id="object" required>
+                            <option selected disabled>Sélectionner votre choix</option>
                             <option value="j'ai une question">J'ai une question</option>
                             <option value="J'ai une remarque">J'ai une remarque</option>
                             <option value="J'ai un problème">J'ai un problème</option>
@@ -55,7 +65,7 @@ include '../include/header.php';
                 <div class="form-group fieldBackground">
                     <label class="control-label col-lg-4" for="message">Message : </label>
                     <div class="col-lg-8">
-                        <textarea  class="form-control inputForm" name="message" id="message" placeholder="Écrivez votre message" rows="8" required></textarea> 
+                        <textarea  class="form-control focusColor" name="message" id="message" placeholder="Écrivez votre message" rows="8" required></textarea> 
                     </div>
                 </div>
                 <!-- Valider --> 
@@ -68,6 +78,5 @@ include '../include/header.php';
         </section>
     </div>
 </div>
-
 <?php
 include '../include/footer.php';
