@@ -72,8 +72,12 @@ class users extends database {
         return $request->fetch(PDO::FETCH_OBJ);
     }
     
+     /**
+     * Méthode qui me permet de récupérer toutes les informations des utilisateurs
+     * La méthode retourne un tableau en objet
+     */
     public function readAllUsers() {
-        $query = 'SELECT * FROM `' . PREFIXE . 'users`';
+        $query = 'SELECT `username` FROM `' . PREFIXE . 'users`';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
