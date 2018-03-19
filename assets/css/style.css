@@ -182,7 +182,9 @@ body {
 
 
 /* Fond de la page inscription */
-
+.containerLogin{
+    margin-top: 6%;
+}
 .registerBackground {
     background-image: url('../images/backRegister.jpg');
     background-repeat: no-repeat;
@@ -207,7 +209,6 @@ body {
 
 .formContactBackground {
     background-color: #012545;
-    margin-top: 5%;
     margin-bottom: 1%;
 }
 
@@ -439,6 +440,7 @@ body {
 /* Page contact */
 
 .containerContact {
+    margin-top: 3%;
     padding-left: 0px;
     padding-right: 0px;
 }

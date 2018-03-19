@@ -23,7 +23,7 @@ class forumSubCategories extends database {
      * l'id de la sous-catégorie est lié à l'utilisateur
      */
     public function createSubCategories() {
-        $query = 'INSERT INTO `' . SELF::prefix . 'forumSubCategories`(`name`, `description`, `id_cuyn_forumCategories`,id_cuyn_users ) VALUES (:name, :description, :id_cuyn_forumCategories, :id_cuyn_users)';
+        $query = 'INSERT INTO `' . PREFIXE . 'forumSubCategories`(`name`, `description`, `id_cuyn_forumCategories`,id_cuyn_users ) VALUES (:name, :description, :id_cuyn_forumCategories, :id_cuyn_users)';
         $request = $this->db->prepare($query);
         $request->bindValue('name', $this->name, PDO::PARAM_STR);
         $request->bindValue('description', $this->description, PDO::PARAM_STR);
@@ -36,7 +36,7 @@ class forumSubCategories extends database {
      * Méthode qui me permet de sélectionner les catégories
      */
     public function readSubCategories() {
-        $query= 'SELECT `id`,`name`, `description` FROM `' . SELF::prefix . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
+        $query= 'SELECT `id`,`name`, `description` FROM `' . PREFIXE . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
         $request = $this->db->prepare($query);
         $request->bindValue('id_cuyn_forumCategories', $this->id_categories, PDO::PARAM_INT);
         $request->execute();

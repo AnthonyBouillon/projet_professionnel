@@ -71,6 +71,12 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
+    
+    public function readAllUsers() {
+        $query = 'SELECT * FROM `' . PREFIXE . 'users`';
+        $request = $this->db->query($query);
+        return $request->fetchAll(PDO::FETCH_OBJ);
+    }
 
     /**
      * Méthode qui me permet de vérifié si l'adresse e-mail saisie existe dans la base de données pour la modification de l'adresse e-mail

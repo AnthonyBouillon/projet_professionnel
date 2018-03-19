@@ -10,7 +10,7 @@ $title = 'Forum';
 include '../include/header.php';
 ?>
 <div class="container containerForum">
-    <h2>Bienvenue sur le forum de All Plateform Together</h2>
+    <h2 class="text-center">Bienvenue sur le forum de All Plateform Together</h2><hr/>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -28,7 +28,7 @@ include '../include/header.php';
         <?php foreach ($getCategories as $category) { ?>
             <tr>
                 <td>
-                    <a href="forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
+                    <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
                     <?php if (isset($_SESSION['id']) && $_SESSION['id'] == 2) { ?>
                         <form method="POST" action="">
                             <button type="button" name="updateCategory" class="displayForm formBtn" title="Modifier une catégorie" id="<?= $category->id; ?>"><i class="far fa-edit"></i></button>

@@ -12,7 +12,7 @@ class forumTopics extends database {
     }
 
     // Méthode qui me permet de sélectionner les catégories
-    public function getTopics() {
+    public function readTopics() {
         $request = $this->db->prepare('SELECT `id`,`name` FROM `cuyn_forumTopics` WHERE id_cuyn_forumSubCategories=:id_cuyn_forumSubCategories');
         $request->bindValue(':id_cuyn_forumSubCategories', $_GET['id'], PDO::PARAM_INT);
         $request->execute();

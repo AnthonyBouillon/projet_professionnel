@@ -11,7 +11,7 @@ $classBody = 'loginBackground';
 $title = 'Connexion';
 include '../include/header.php';
 ?>
-<div class="container">
+<div class="container containerLogin">
     <div class="col-lg-12 formBackground">
         <h2 class="formTitle bold col-sm-12 col-lg-12">Formulaire de connexion</h2>
         <!-- Message d'erreurs -->

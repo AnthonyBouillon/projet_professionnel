@@ -7,4 +7,4 @@ $users->username = $_SESSION['username'];
 
 $readUsers = $users->readUsers();
 $topics = new forumTopics();
-$getTopics = $topics->getTopics();
+$getTopics = $topics->readTopics();
