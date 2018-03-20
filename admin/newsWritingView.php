@@ -13,7 +13,7 @@ $classBody = NULL;
 $title = 'Rédaction d\'article';
 include '../include/header.php';
 ?>
-
+<?php if(isset($_SESSION['id']) && $_SESSION['id'] == 2){ ?>
 <div class="container containerNew">
     <div class="col-lg-12 formBackground">
         <h2 class="formTitle col-sm-12 bold">Rédaction d'un nouvelle article</h2>
@@ -75,6 +75,7 @@ include '../include/header.php';
         </section>
     </div>
 </div>
-
-<?php
+<?php  }else{
+    header('Location: ../views/404.php');
+}
 include '../include/footer.php';

@@ -2,7 +2,7 @@
 
 $users = new users();
 $subCategories = new forumSubCategories();
-$subCategories->id_categories = $_GET['id'];
+$subCategories->id_category = $_GET['id'];
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
     $users->username = $_SESSION['username'];
@@ -17,7 +17,7 @@ $formError = array();
 // Insertion
 if (isset($_POST['submit'])) {
     if (!empty($_POST['name']) && !empty($_POST['description'])) {
-        $subCategories->id_categories = $_GET['id'];
+        $subCategories->id_category = $_GET['id'];
         $subCategories->id_user = $_SESSION['id'];
         $subCategories->name = $_POST['name'];
         $subCategories->description = $_POST['description'];
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
  *  
  */
 if (isset($_POST['submitUpdate'])) {
-    $subCategories->id_subCategories = $_POST['idSubCategory'];
+    $subCategories->id_subCategory = $_POST['idSubCategory'];
     $subCategories->name = htmlspecialchars($_POST['name']);
     $subCategories->description = htmlspecialchars($_POST['description']);
     if (!empty($subCategories->name) && !empty($subCategories->description)) {
@@ -55,7 +55,7 @@ if (isset($_POST['submitUpdate'])) {
 }
 
 if (isset($_POST['deleteSubCategory'])) {
-    $subCategories->id_subCategories = $_POST['idSubCategory'];
+    $subCategories->id_subCategory = $_POST['idSubCategory'];
     $subCategories->deleteSubCategories();
     $getSubCategories = $subCategories->readSubCategories();
 }

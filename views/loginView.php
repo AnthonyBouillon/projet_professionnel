@@ -55,7 +55,7 @@ include '../include/header.php';
                 <!-- Valider -->
                 <div class="form-group fieldBackground">
                     <div class="col-md-12">
-                        <button type="submit" name="submit" class="btn btn-block formBtn">Je me connecte</button>
+                        <button type="submit" name="submit" class="btn btn-block formBtn" id="submit">Je me connecte</button>
                     </div>
                 </div>
             </form>

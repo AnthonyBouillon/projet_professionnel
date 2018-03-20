@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
             $formError['mailDiff'] = 'Les adresses e-mails ne sont pas identiques';
         }
         if ($users->password != $_POST['confirmPassword']) {
-            $formError['passwordDiff'] = 'Les mots de passes ne sont pas identiques';
+            $formError['passwordDiff'] = 'Les mots de passe ne sont pas identiques';
         }
         if (!preg_match($regexUsername, $users->username)) {
             $formError['usernameTooBig'] = 'Pseudo : Les caractères spéciaux et les espaces ne sont pas autorisés : limité à 30 caractères';
@@ -52,10 +52,10 @@ if (isset($_POST['submit'])) {
             $formError['mailWrongFormat'] = 'Format autorisé : exemple@exemple.fr/com';
         }
         if (!preg_match($regexPassword, $users->password)) {
-            $formError['wrongPassword'] = 'Password : Minimum 11 caractères, maximum 255 caractères';
+            $formError['wrongPassword'] = 'Mot de passe : Minimum 11 caractères, maximum 255 caractères';
         }
         if (!preg_match($regexPassword, $_POST['confirmPassword'])) {
-            $formError['wrongPassword'] = 'Password : Minimum 11 caractères, maximum 255 caractères';
+            $formError['wrongPassword'] = 'Mot de passe : Minimum 11 caractères, maximum 255 caractères';
         }
         /*
          * On assigne la clé secrète à notre objet

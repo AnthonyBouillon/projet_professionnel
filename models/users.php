@@ -92,7 +92,7 @@ class users extends database {
     public function readMail() {
         $query = 'SELECT * FROM `' . PREFIXE . 'users` WHERE `mail` = :mail ';
         $request = $this->db->prepare($query);
-        $request->bindValue('mail', $this->mail, PDO::PARAM_STR);
+        $request->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }

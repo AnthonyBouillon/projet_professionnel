@@ -26,7 +26,6 @@ if (isset($_POST['submit']) && !empty($_POST['search'])) {
 /* delete news */
 if(isset($_POST['delete'])){
     $news->id_new = $_POST['id'];
-
     $news->deleteNews();
 }
 

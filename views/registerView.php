@@ -16,21 +16,29 @@ include '../include/header.php';
     <div class="col-lg-offset-3 col-lg-6 formRegisterBackground"> 
         <h2 class="formTitle col-xs-12 col-sm-12 col-md-12 col-lg-12 bold">Formulaire d'inscription</h2>
         <!-- Affichage des messages d'erreurs -->
-        <p class="yellow bold h4"><?= !empty($formError['unavailableUsername']) ? $formError['unavailableUsername'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['unavailableMail']) ? $formError['unavailableMail'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['usernameTooBig']) ? $formError['usernameTooBig'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['mailWrongFormat']) ? $formError['mailWrongFormat'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['password']) ? $formError['password'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['wrongPassword']) ? $formError['wrongPassword'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['mailDiff']) ? $formError['mailDiff'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['passwordDiff']) ? $formError['passwordDiff'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['mail']) ? $formError['mail'] : ''; ?></p>
-        <p class="white bold h4"><?= !empty($formError['formRegisterEmpty']) ? $formError['formRegisterEmpty'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['captcha']) ? $formError['captcha'] : ''; ?></p>
-        <p class="yellow bold h4"><?= !empty($formError['formFail']) ? $formError['formFail'] : ''; ?></p>
-        <p class="green bold h4"><?= !empty($formSuccess['captcha']) ? $formSuccess['captcha'] : ''; ?></p>
-        <p class="green bold h4"><?= !empty($formSuccess['registerSuccess']) ? $formSuccess['registerSuccess'] : ''; ?></p>
-        <p class="green bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
+        <?php if (!empty($formError)) { ?>
+            <div class="alert alert-danger">
+                <p class="text-center bold h4"><?= !empty($formError['unavailableUsername']) ? $formError['unavailableUsername'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['unavailableMail']) ? $formError['unavailableMail'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['usernameTooBig']) ? $formError['usernameTooBig'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['mailWrongFormat']) ? $formError['mailWrongFormat'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['password']) ? $formError['password'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['wrongPassword']) ? $formError['wrongPassword'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['mailDiff']) ? $formError['mailDiff'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['passwordDiff']) ? $formError['passwordDiff'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['mail']) ? $formError['mail'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['formRegisterEmpty']) ? $formError['formRegisterEmpty'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['captcha']) ? $formError['captcha'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['formFail']) ? $formError['formFail'] : ''; ?></p>
+            </div>
+        <?php } ?>
+        <?php if (!empty($formSuccess)) { ?>
+            <div class="alert alert-success">
+                <p class="text-center bold h4"><?= !empty($formSuccess['captcha']) ? $formSuccess['captcha'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formSuccess['registerSuccess']) ? $formSuccess['registerSuccess'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
+            </div>
+        <?php } ?>
         <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formRegisterBackground">
             <form method="POST" action="" class="form-horizontal ">
                 <!-- Pseudo -->
@@ -78,8 +86,9 @@ include '../include/header.php';
                 </div>
                 <!-- Captcha -->
                 <div class="form-group fieldBackground">
+                    <p class="text-center bold h4">Cocher le catpcha est obligatoire</p>
                     <div class="g-recaptcha  col-lg-offset-4 col-lg-6" data-sitekey="6LeHrEcUAAAAAL8BwgGykCkFGc8-kCB7Lve4d-nv">
-                        
+
                     </div>
                 </div>
                 <!-- Valider l'inscription -->

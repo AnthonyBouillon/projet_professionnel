@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * On instancie l'objet users
  * On assigne un tableau vide dans une variable qui servira à créer nos messages d'erreurs ou de validation

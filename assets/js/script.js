@@ -14,7 +14,7 @@ $(document).ready(function () {
         // Change la couleur du fond en blanc/gris
         $(this).css('background-color', '#ffffff');
     });
-
+    
     /*
      * Concernent les formulaires contenant un champs password
      * Script permettant de voir le mot de passe
@@ -62,22 +62,9 @@ $(document).ready(function () {
      */
     $('.editBtn').click(function () {
         var idComment = $(this).attr('idComment');
-        if ($('#divUpdate' + idComment).css('display', 'none')) {
-            $('#divUpdate' + idComment).css('display', 'block');
-        }
-        if ($('.divResponse').css('display', 'block')) {
-            $('.divResponse').css('display', 'none');
-        }
+        $('#divUpdate' + idComment).slideToggle();
     });
-    $('.responseBtn').click(function () {
-        var idComment = $(this).attr('idComment');
-        if ($('#divResponse' + idComment).css('display', 'none')) {
-            $('#divResponse' + idComment).css('display', 'block');
-        }
-        if ($('.divUpdate').css('display', 'block')) {
-            $('.divUpdate').css('display', 'none');
-        }
-    });
+
 
     /*
      * Page modification de profil
@@ -113,3 +100,10 @@ $('#flip2').click(function(){
 
 }); 
  $('[data-toggle="popover"]').popover(); 
+/* test ajax connexion username password submit */
+
+
+
+
+
+            

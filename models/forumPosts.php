@@ -1,10 +1,63 @@
 <?php
 
 /**
- * Description of forumPosts
- *
- * 
+ * Classe forumPosts qui permet de créer, afficher, modifier et supprimer des posts d'un topics
+ * Elle hérite de la classe database qui contient la connexion à la base de données
  */
-class forumPosts {
-    //put your code here
+class forumPosts extends database {
+
+    /**
+     * Ajout des attributs
+     * L'id de l'utilisateur
+     * L'id du topic
+     * le contenu du post
+     * l'id du post
+     */
+    public $id_post = 0;
+    public $id_topic = 0;
+    public $id_user = 0;
+    public $posts = '';
+
+    /**
+     *  Ajout de la méthode parent __construct qui provient de la classe database du model database qui contient la connexion à la base de données
+     */
+    public function __construct() {
+        parent::__construct();
+    }
+
+    /**
+     *  Méthode qui permet d'insérer un post lié à l'utilisateur qui est lié à au topic
+     */
+    public function createPosts() {
+        
+    }
+
+    /**
+     *  Méthode qui permet de récupèrer les posts liés aux topics et au l'utilisateurs
+     */
+    public function readPosts() {
+        
+    }
+
+    /**
+     *  Méthode qui permet de modifier un post appartenant à l'utilisateur qui est lié à au topic
+     */
+    public function updatePosts() {
+        
+    }
+
+    /**
+     *  Méthode qui permet de supprimer un post choisi grâce à son id et qui est lié à l'utilisateur
+     */
+    public function deletePosts() {
+        
+    }
+
+    /**
+     *  Ajout de la méthode parent __destruct qui provient de la classe database du model database qui contient la fermeture de la base de données
+     */
+    public function __destruct() {
+        parent::__destruct();
+    }
+
 }

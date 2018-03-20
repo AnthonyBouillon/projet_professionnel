@@ -9,7 +9,7 @@ $forumCategories = new forumCategories();
  */
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
-    $forumCategories->id_users = $_SESSION['id'];
+    $forumCategories->id_user = $_SESSION['id'];
     $users->username = $_SESSION['username'];
 }
 /*

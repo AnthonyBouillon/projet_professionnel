@@ -9,12 +9,9 @@ class database {
     protected $db;
 
     /**
-     * Constance contenant le préfixe des tables afin de le cacher
-     */
-    CONST prefix = 'cuyn_';
-
-    /**
      *  Connexion à la base de données
+     *  function en protected qui ne pourra etre appelé que dans la classe et les classes qui en hérite
+     *  Si la connexion de marche pas on attrape l'erreur et on l'affiche
      */
     protected function __construct() {
         try {
@@ -26,6 +23,7 @@ class database {
 
     /**
      *  Déconnexion de la base de données
+     *  function en protected qui ne pourra etre appelé que dans la classe et les classes qui en hérite
      */
     protected function __destruct() {
         $this->db = NULL;

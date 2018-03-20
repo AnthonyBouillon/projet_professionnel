@@ -2,8 +2,10 @@
 
 $news = new news();
 $users = new users();
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && $_SESSION['id'] == 2) {
     $users->id = $_SESSION['id'];
+}else{
+    header('Location: ../404.php');
 }
 $readUsers = $users->readUsers();
 $news->id_new = $_GET['id'];

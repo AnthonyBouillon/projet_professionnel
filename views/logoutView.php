@@ -10,9 +10,6 @@ $classBody = NULL;
 // Assigne un titre à la balise title
 $title = 'Déconnexion';
 include '../include/header.php';
-
-// Si il est connecté, affiche le contenu de la page
-if(isset($_SESSION['id'])){
 ?>
     <div class="container containerLogout">
         <div class="page-header">
@@ -26,11 +23,5 @@ if(isset($_SESSION['id'])){
         </div>
     </div>
 <?php
-// Sinon la page 404 apparait
-}else{
-    header('Location:404.php');
-}
-
-// Détruit la session
 session_destroy();
 include '../include/footer.php';
