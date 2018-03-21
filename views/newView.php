@@ -16,11 +16,11 @@ $classBody = 'newsBackground';
 $title = 'Actualité';
 include '../include/header.php';
 ?>
-<div class="container containerNew margin testnews">
+<div class="container containerNewsAll margin testnews">
     
     <?php foreach ($readArticles as $article) { ?>
         <div class="well jumbotron margin border col-lg-12">
-            <p><img src="../news/images/<?= $readUsers->username . '/' . $article->picture; ?>" class="img-responsive centerImg"/></p>
+            <p><img src="../news/images/<?= $article->picture; ?>" class="img-responsive centerImg"/></p>
             <div class="col-lg-offset-1 col-lg-10">
                 <h2 class="text-center"><?= $article->plateform; ?> | <?= $article->title; ?></h2>
                 <p class="h4"><?= $article->content; ?></p>

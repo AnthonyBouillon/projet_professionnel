@@ -10,6 +10,8 @@ $users = new users();
 
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
+}else{
+    header('Location: ../404');
 }
 /*
  * On assigne notre méthode qui nous permet de lire ou d'afficher des informations dans un nouvel objet
@@ -54,11 +56,8 @@ if (isset($_POST['submit'])) {
             $formError['bigFormat'] = 'Votre photo de profil ne doit pas dépasser 80 mo';
         }
         if (in_array($extension, $validsExtensions)) {
-            if (!is_dir('../news/images/' . $readUsers->username)) {
-                mkdir('../news/images/' . $readUsers->username, 0777, true);
-            }
             $nbRandom = mt_rand();
-            $path = '../news/images/' . $readUsers->username . '/' . $nbRandom . '.' . $extension;
+            $path = '../news/images/' . $nbRandom . '.' . $extension;
             $news->picture = $nbRandom . '.' . $extension;
             $movement = move_uploaded_file($_FILES['picture']['tmp_name'], $path);
         } else {

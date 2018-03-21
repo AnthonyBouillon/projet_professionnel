@@ -39,8 +39,8 @@
                     <!-- Affiche un menu différent suivant si l'utilisateur est connecté ou non -->
                     <?php if (!isset($readUsers->id)) { ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
-                            <li><a href="Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
+                            <li><a href="../Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
+                            <li><a href="../Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
                         </ul>
                     <?php } else { ?>
                         <ul class="nav navbar-nav navbar-right">

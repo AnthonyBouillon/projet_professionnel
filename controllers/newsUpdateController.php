@@ -2,10 +2,10 @@
 
 $news = new news();
 $users = new users();
-if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) {
+if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
 } else {
-    header('Location: ../404.php');
+    header('Location: ../404');
 }
 $readUsers = $users->readUsers();
 $news->id_new = $_GET['id'];

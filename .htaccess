@@ -20,6 +20,7 @@ RewriteRule Mon-profil views/profileView.php [L]
 RewriteRule Modification-de-mon-profil views/profileUpdateView.php [L] 
 RewriteRule Supprimer-mon-profil views/profileDeleteView.php [L] 
 RewriteRule Contact views/contactView.php [L] 
+RewriteRule Déconnexion views/logoutView.php [L] 
 
 
 RewriteRule Sous-catégorie-du-forum views/forumSubCategoriesView.php [L] 

@@ -101,7 +101,23 @@ $('#flip2').click(function(){
 }); 
  $('[data-toggle="popover"]').popover(); 
 /* test ajax connexion username password submit */
-
+$('#sendMessage').click(function(e){
+e.preventDefault();
+    $.post(
+           '../../controllers/homeController.php',{          
+               message : $('#message').val(),
+               ajaxReady : 'ready'
+           },
+                   function(data){
+                       $('#receiveMessage').empty();
+                       $.each(JSON.parse(data), function(index, value){
+                           $('#receiveMessage').append('<div class="well"><p class="bold">' + value.username + ' à écrit :</p><p>' + value.message + '</p><p>Message datant du : <span class="bold">' + value.date + '</span></p></div>')
+                       });
+                   }            
+            ),
+    'JSON',
+   $('#message').val('')
+});
 
 
 

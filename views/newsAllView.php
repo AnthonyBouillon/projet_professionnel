@@ -19,7 +19,7 @@ include '../include/header.php';
         <?php foreach ($checkArticle as $articles) { ?>
             <div class="row">
                 <div class="jumbotron col-lg-offset-3 col-lg-6 newAll">
-                    <p class="col-lg-12"><img src="../news/images/<?= $articles->username . '/' . $articles->picture; ?>" class="img-responsive centerImg"/></p>
+                    <p class="col-lg-12"><img src="../news/images/<?=  $articles->picture; ?>" class="img-responsive centerImg"/></p>
                     <div class="col-lg-12">
                         <h2 class="text-center"><?= $articles->plateform; ?> | <?= $articles->title; ?></h2>
                         <p><?= $articles->resume; ?></p>
@@ -27,7 +27,7 @@ include '../include/header.php';
                         <p class="datePost h4 bold">Posté le :<?= $articles->date; ?></p>
                         <form method="POST" action="" class="editForm">
                             <input type="hidden" value="<?= $articles->id ?>" name="id" />
-                            <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) { ?>
+                            <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2 && !empty($_SESSION['id'])) { ?>
                                 <p class="h4"><a href="../admin/newsUpdateView.php?id=<?= $articles->id ?>" class="btn btn-primary" >Modifier l'article</a> | 
                                     <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('La suppression de l\'article est définitive, êtes-vous sûr de vouloir le supprimer ?')"> Supprimer l'article</button></p>
                             <?php } ?>

@@ -12,7 +12,7 @@ if (!empty($_SESSION['id'])) {
 
     <div class="container containerProfileUpdate">
         <div class="blocAddImg">
-            <h2 class="text-center">Bienvenue sur votre profil <strong><?= $readUsers->username; ?></strong></h2>
+            <h2 class="text-center">Bienvenue sur la page de modification de votre profil <strong><?= $readUsers->username; ?></strong></h2>
             <!-- Affichage de l'avatar -->
             <img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="avatar img-responsive img-rounded center-block" /><br/>
             <!-- Affichage des messages d'erreurs  et des succès-->
