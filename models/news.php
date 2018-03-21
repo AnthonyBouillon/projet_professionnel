@@ -33,11 +33,6 @@ class news extends database {
     public $firstEntry = '';
     public $limitArticles = '';
 
-    /**
-     * Ajout de l'attribut pour la barre de recherche
-     * La valeur du champ 
-     */
-    public $search = "";
 
     /**
      *  Ajout de la méthode parent __construct qui provient de la classe database du model database qui contient la connexion à la base de données
@@ -79,9 +74,8 @@ class news extends database {
      *  Date au format français
      */
     public function readNews() {
-        $query = 'SELECT `id`, `title`, `plateform`, `picture`, `resume`, DATE_FORMAT(`createDate`, \' %d/%m/%Y \') AS date  FROM `' . PREFIXE . 'news` WHERE `title`LIKE :word OR `plateform` LIKE :word  ORDER BY `id` DESC LIMIT ' . $this->firstEntry . ', ' . $this->limitArticles . '';
+        $query = 'SELECT `' . PREFIXE . 'news`.`id`, `' . PREFIXE . 'news`.`title`, `' . PREFIXE . 'news`.`plateform`, `' . PREFIXE . 'news`.`picture`, `' . PREFIXE . 'news`.`resume`, DATE_FORMAT(`' . PREFIXE . 'news`.`createDate`, \' %d/%m/%Y \') AS date, `' . PREFIXE . 'users`.`username`  FROM `' . PREFIXE . 'news` LEFT JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'news`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id`  ORDER BY `id` DESC LIMIT ' . $this->firstEntry . ', ' . $this->limitArticles . '';
         $request = $this->db->prepare($query);
-        $request->bindValue(':word', '%' . $this->search . '%', PDO::PARAM_STR);
         $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }

@@ -12,15 +12,15 @@ include '../models/news.php';
 include_once '../models/users.php';
 include '../models/comments.php';
 include '../controllers/newController.php';
-$classBody = NULL;
+$classBody = 'newsBackground';
 $title = 'Actualité';
 include '../include/header.php';
 ?>
-<div class="container containerNew">
+<div class="container containerNew margin testnews">
     
     <?php foreach ($readArticles as $article) { ?>
-        <div class="well col-lg-12">
-            <p><img src="../news/images/<?= $article->picture; ?>" class="img-responsive centerImg"/></p>
+        <div class="well jumbotron margin border col-lg-12">
+            <p><img src="../news/images/<?= $readUsers->username . '/' . $article->picture; ?>" class="img-responsive centerImg"/></p>
             <div class="col-lg-offset-1 col-lg-10">
                 <h2 class="text-center"><?= $article->plateform; ?> | <?= $article->title; ?></h2>
                 <p class="h4"><?= $article->content; ?></p>
@@ -60,14 +60,14 @@ include '../include/header.php';
         </section>
     </div>
     
-    <div class="jumbotron allComments">
+    <div class="jumbotron border allComments">
         <p class="purple">Nombre de commentaires : <span class="bold"><?= $countComments ?>  </p>
         <div class="text-center alert-success">
             <p class="text-center  h4"><?= !empty($success['deleteComment']) ? $success['deleteComment'] : ''; ?></p>
         </div>
         <?php foreach ($readComments as $comments) { ?> 
 
-            <div class="well col-lg-12">
+            <div class="well col-lg-12 border">
                 <!-- Affichage des commentaires -->
                 <h2 class=""><img src="../members/avatars/<?= $comments->username . '/' . $comments->avatar; ?>" class="img-rounded avatarNav" /><?= !empty($comments->username) ? $comments->username : 'Anonyme'; ?> a écrit : </h2><hr/>
                 <p class="h4"><?= wordwrap($comments->comment, 20, ' ', 1); ?></p>
@@ -77,14 +77,7 @@ include '../include/header.php';
                 <?php } ?>
                 <?php if (!empty($_SESSION['id']) && $_SESSION['id'] == $comments->id_cuyn_users) { ?>  
 
-                    <div class="text-center alert-danger">
-                        <p class="text-center bold h4"><?= !empty($error['emptyComment']) ? $error['emptyComment'] : ''; ?></p>
-                        <p class="text-center bold h4"><?= !empty($error['!regexUpdate']) ? $error['!regexUpdate'] : ''; ?></p>
-                        <p class="text-center bold h4"><?= !empty($error['!updateComment']) ? $error['!updateComment'] : ''; ?></p>
-                    </div>
-                    <div class="text-center alert-success">
-                        <p class="text-center bold h4"><?= !empty($success['updateComment']) ? $success['updateComment'] : ''; ?></p>
-                    </div>
+                    
 
                     <button class="col-lg-1 editBtn" idComment="<?= $comments->id; ?>" title="Editer mon commentaire"><i class="far fa-edit"></i></button>    
                     <!-- Formulaire de modification du commentaire -->
@@ -92,7 +85,7 @@ include '../include/header.php';
                         <input type="hidden" value="<?= $comments->id ?>"  name="idComment"/>
                         <button type="submit" name="deleteBtn" class="col-lg-1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre commentaire ?')"  title="Supprimer mon commentaire"><i class="fas fa-trash-alt" ></i></button>
                     </form>
-                <?php } ?>
+                <?php } ?><br/><br/>
                 <form method="POST" action="" class="editForm">
                     <!-- Formulaire de modification du commentaires -->
                     <input type="hidden" value="<?= $comments->id ?>"  name="idComment"/>
@@ -104,6 +97,14 @@ include '../include/header.php';
                     <div id="divResponse<?= $comments->id; ?>" class="divResponse">    
                         <textarea name="responseComment" class="form-control" rows="4" placeholder="Ecrivez ici pour répondre à son commentaire..."></textarea>
                         <button type="submit" name="response" class="btn btn-block center-block formBtn">Je répond au commentaire</button>
+                    </div>
+                    <div class="text-center alert-danger">
+                        <p class="text-center bold h4"><?= !empty($error['emptyComment']) ? $error['emptyComment'] : ''; ?></p>
+                        <p class="text-center bold h4"><?= !empty($error['!regexUpdate']) ? $error['!regexUpdate'] : ''; ?></p>
+                        <p class="text-center bold h4"><?= !empty($error['!updateComment']) ? $error['!updateComment'] : ''; ?></p>
+                    </div>
+                    <div class="text-center alert-success">
+                        <p class="text-center bold h4"><?= !empty($success['updateComment']) ? $success['updateComment'] : ''; ?></p>
                     </div>
                 </form>
             </div>     

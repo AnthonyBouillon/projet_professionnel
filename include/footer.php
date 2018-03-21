@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <!--  Information -->
-            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-6">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-5">
                 <h3>Information</h3>
                 <ul>
                     <li><a href="Qui_sommes-nous?">Qui sommes-nous ?</a></li>
@@ -10,14 +10,24 @@
                 </ul>
             </div>
             <!-- Vous êtes perdu ? -->
-            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-6">
+            <div class="col-lg-5">
                 <h3>Vous êtes perdu ?</h3>
                 <ul>
                     <li><a href="glossary">Glossaire</a></li>
                     <li><a href="sitemap">Plan du site</a></li>
                 </ul>
             </div>
-
+            <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) { ?>
+                <div class="col-lg-2">
+                    <h3>Administration</h3>
+                    <ul>
+                        <li><a href="../admin/view.php">Partie administration</a></li>
+                        <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) { ?>
+                            <li><a href="../admin/newsWritingView.php">Ajouter un article</a></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </footer>

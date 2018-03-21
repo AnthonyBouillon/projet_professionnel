@@ -20,9 +20,10 @@ $readUsers = $users->readAllUsers();
         <div class="col-lg-6">
             <h2 class="text-center">Utilisateur : </h2>
             <ol>
+                
                 <?php foreach($readUsers as $allUsers){ ?>
                 <li><?= $allUsers->username ?></li>
-                <?php } ?>
+                <?php }  ?>
             </ol>
         </div>
 

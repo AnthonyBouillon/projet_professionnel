@@ -44,14 +44,15 @@ class users extends database {
      * La méthode retourne l'éxécution de la requete
      */
     public function createUsers() {
-        $query = 'INSERT INTO `' . PREFIXE . 'users`(`username`, `mail`, `password`,`avatar`, `keyMail`, `actif`) VALUES(:username, :mail, :password, :avatar, :keyMail, :actif)';
+        $query = 'INSERT INTO `' . PREFIXE . 'users`(`username`, `mail`, `password`,`avatar`, `keyMail`, `actif`, `id_cuyn_admin`) VALUES(:username, :mail, :password, :avatar, :keyMail, :actif, :id_cuyn_admin)';
         $request = $this->db->prepare($query);
         $request->bindValue(':username', $this->username, PDO::PARAM_STR);
         $request->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $request->bindValue(':password', $this->passwordHash, PDO::PARAM_STR);
+        $request->bindValue(':avatar', 'fake.jpg', PDO::PARAM_STR);
         $request->bindValue(':keyMail', $this->keyMail, PDO::PARAM_STR);
         $request->bindValue(':actif', 0, PDO::PARAM_BOOL);
-        $request->bindValue(':avatar', 'fake.jpg', PDO::PARAM_STR);
+        $request->bindValue(':id_cuyn_admin', 4, PDO::PARAM_INT);
         return $request->execute();
     }
 
@@ -63,7 +64,7 @@ class users extends database {
      * La méthode retourne une ligne d'information et le retourne en objet
      */
     public function readUsers() {
-        $query = 'SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date FROM `' . PREFIXE . 'users` WHERE `username` = :username OR `mail` = :mail OR `id` = :id';
+        $query = 'SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date, `id_cuyn_admin` FROM `' . PREFIXE . 'users` WHERE `username` = :username OR `mail` = :mail OR `id` = :id';
         $request = $this->db->prepare($query);
         $request->bindValue(':username', $this->username, PDO::PARAM_STR);
         $request->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -71,8 +72,8 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
-    
-     /**
+
+    /**
      * Méthode qui me permet de récupérer toutes les informations des utilisateurs
      * La méthode retourne un tableau en objet
      */

@@ -7,6 +7,7 @@
  */
 $news = new news();
 $users = new users();
+
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
 }
@@ -53,9 +54,12 @@ if (isset($_POST['submit'])) {
             $formError['bigFormat'] = 'Votre photo de profil ne doit pas dépasser 80 mo';
         }
         if (in_array($extension, $validsExtensions)) {
-            mkdir('../news/images/' . $readUsers->username, 0777, true);
-            $path = '../news/images/' . $readUsers->username . '/' . $users->id . '.' . $extension;
-            $news->picture = $users->id . '.' . $extension;
+            if (!is_dir('../news/images/' . $readUsers->username)) {
+                mkdir('../news/images/' . $readUsers->username, 0777, true);
+            }
+            $nbRandom = mt_rand();
+            $path = '../news/images/' . $readUsers->username . '/' . $nbRandom . '.' . $extension;
+            $news->picture = $nbRandom . '.' . $extension;
             $movement = move_uploaded_file($_FILES['picture']['tmp_name'], $path);
         } else {
             $formError['badFormat'] = 'Votre image doit être au format : jpg, jpeg, png ou gif';
@@ -69,9 +73,13 @@ if (isset($_POST['submit'])) {
      */
     if (count($formError) == 0) {
         $news->id_user = $_SESSION['id'];
-        $news->createNews();
-        $formSuccess['createNews'] = 'Votre article est enregistré et afficher sur la page des actualités';
+        if ($news->createNews()) {
+            $formSuccess['createNews'] = 'Votre article est enregistré et affiché sur la page des actualités';
+        } else {
+            $formError['notCreateNews'] = 'Votre article n\'a pas pu être créer, réessayez ou contacté le technicien du site via le formulaire de contact';
+        }
     }
 }
 
 
+    

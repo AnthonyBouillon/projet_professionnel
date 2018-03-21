@@ -29,7 +29,7 @@ include '../include/header.php';
             <tr>
                 <td>
                     <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
-                    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == 2) { ?>
+    <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) { ?>
                         <form method="POST" action="">
                             <button type="button" name="updateCategory" class="displayForm formBtn" title="Modifier une catégorie" id="<?= $category->id; ?>"><i class="far fa-edit"></i></button>
                             <button type="submit" name="submitDelete"  class="formBtn" id="deleteCategory" title="Supprimer une catégorie" onclick="return confirm('La suppression de la catégorie ainsi que tout ce qui est lié à celui-ci est définitive, êtes-vous sûr de vouloir le supprimer ?')"><i class="far fa-trash-alt"></i></button>
@@ -53,7 +53,7 @@ include '../include/header.php';
         </tbody>
     </table>
 
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == 2) { ?>
+    <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) { ?>
         <div class="well col-lg-6">
             <h2 class="text-center">Ajouter une catégorie</h2>
             <p class="alert-danger text-center"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>

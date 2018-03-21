@@ -324,7 +324,7 @@ body {
 
 /*                                   COULEURS                                  */
 .bold {
-    font-weight: bold;
+    font-weight: bold!important;
 }
 .white {
     color: white;
@@ -638,3 +638,33 @@ body {
     display: none;
 }
 
+/* rédaction d'article' */
+.newsWritingBackground {
+    background-image: url('../images/newWritingBackground.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+.newsBackground {
+    background-image: url('../images/contactBackground.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.newAll{
+    border: 5px solid #643C7D;
+}
+
+.margin{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.testnews{
+    background-color: white;
+}
+.border{
+    border: 5px solid black;
+}

@@ -2,9 +2,9 @@
 
 $news = new news();
 $users = new users();
-if (isset($_SESSION['id']) && $_SESSION['id'] == 2) {
+if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) {
     $users->id = $_SESSION['id'];
-}else{
+} else {
     header('Location: ../404.php');
 }
 $readUsers = $users->readUsers();
@@ -33,18 +33,12 @@ if (isset($_POST['submit'])) {
      * On utilise la fonction move_uploaded_file afin de déplacer un fichier
      */
     $news->id_user = $_SESSION['id'];
-    if (in_array($news->extension, $validsExtensions)) {
-        $path = '../news/images/' . $news->id_user . '.' . $news->extension;
-        var_dump($news->id_user . '.' . $news->extension);
-        $movement = move_uploaded_file($_FILES['picture']['tmp_name'], $path);
-    } else {
-        $formError['badFormat'] = 'Votre image doit être au format : jpg, jpeg, png ou gif';
-    }
     $news->title = $_POST['title'];
     $news->plateform = $_POST['plateform'];
     $news->resume = $_POST['resume'];
     $news->content = $_POST['content'];
     $news->picture = $_FILES['picture'];
+
     if (!empty($news->title)) {
         $news->updateTitle();
     }
@@ -57,8 +51,17 @@ if (isset($_POST['submit'])) {
     if (!empty($news->content)) {
         $news->updateContent();
     }
-
     if (!empty($news->picture)) {
-        $news->updatePicture();
+        if (in_array($news->extension, $validsExtensions)) {
+            $path = '../news/images/' . $readUsers->username . '/' . $users->id . '.' . $news->extension;
+            var_dump($news->id_user . '.' . $news->extension);
+            $movement = move_uploaded_file($_FILES['picture']['tmp_name'], $path);
+            if ($movement) {
+                $news->updatePicture();
+                var_dump('ddfdddqsdsdsd');
+            }
+        } else {
+            $formError['badFormat'] = 'Votre image doit être au format : jpg, jpeg, png ou gif';
+        }
     }
 }
