@@ -44,7 +44,7 @@
                         </ul>
                     <?php } else { ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><img src="members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="img-rounded avatarNav" /></li>
+                            <li><img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="img-rounded avatarNav" /></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown"  href=""><?= $readUsers->username; ?><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
