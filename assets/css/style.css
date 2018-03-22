@@ -1,53 +1,53 @@
-.xdebug-error > tbody > tr > th{
-    background-color: red;
-}
-
-/* Police d'écriture */
-
 body {
     font-family: 'Jura', sans-serif;
-    display: table;
+    display: table; /*pas compris----------------------------------------------------------------------------------------------------------------------*/
     width: 100%;
 }
-
+/* ------------------------------- MENU --------------------------------- */
+.navbar-default .navbar-brand, .navbar-default > .navbar-brand ,.navbar-default .navbar-nav > li > a{
+    color: orange;
+    font-weight: bold;
+}
+.navbar-default > .navbar-brand, .navbar-default > .navbar-brand:hover{
+    color: orange;
+    font-weight: bold;
+}
+.navbar-default .navbar-nav  li  a:hover {
+    background-color: white;
+    font-weight: bold;
+    color: orange;
+}
+.navbar {
+    background-color: #54276F;
+    border: 0;
+    font-size: 11px ;
+    letter-spacing: 4px;
+    opacity: 0.9;
+}
+.dropdown-menu li a:hover {
+    background-color: orange ;
+    color: white;
+}
+.avatarNav{
+    height: 50px;
+    width: 50px;
+}
 /*---------------------------------FOOTER----------------------------------------*/
-
-
-/* Mise en forme du bloc en général */
-
 footer {
     background-image: linear-gradient(to right, #5B2A78, #000000);
-    padding-bottom: 20px;
-    border-top: 1px solid #CCCCCC;
-    display: table-row;
-    height: 100px;
+    display: table-row;/* Pas compris---------------------------------------------------------------------------------------------------------------------- */
 }
-
-
-/* Mise en forme des titres  */
-
 footer h3 {
     border-bottom: 1px solid #BAC1C8;
     color: white;
     font-size: 18px;
-    font-weight: 600;
-    line-height: 27px;
-    padding: 40px 0 10px;
+    font-weight: bold;
+    padding: 20px 0px;
     text-transform: uppercase;
 }
-
-
-/* Mise en forme des liens */
-
 footer ul {
-    font-size: 13px;
-    list-style-type: none;
-    margin-left: 0;
     padding-left: 0;
-    margin-top: 15px;
-    color: #54697E;
 }
-
 footer a {
     color: orange;
     font-weight: bold;
@@ -56,68 +56,47 @@ footer a:hover {
     color: white;
     text-decoration: none;
 }
-
-
-/* Mise en forme de la newsletter */
-
-.inputFull {
-    width: 100%;
-}
-
-.fullBtn {
-    width: 100%;
-}
-
-
-/* Pour que le footer reste en bas de page */
-
-html,
-body {
+html,body {
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
-/*--------------------------ACCUEIL-------------------------------*/
+/*------------------------------ ACCUEIL -------------------------------*/
 .homeBackground {
     background-image: url('../images/homeBackground.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;
+    background-size: cover;/* Pas compris---------------------------------------------------------------------------------------------------------------------- */
 }
-
-
+.blocHome{
+    margin-top: 4%;
+}
 .titlePresentation {
     padding-top: 20px;
     padding-bottom: 20px;
-
 }
-.titleTest{
-    margin-top: 15%;
+.titlePresentation2{
+    margin-top: 11%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
 .titleChat {
     padding-top: 20px;
-    margin-bottom: 5%;
+    margin-bottom: 20px;
 }
-.blocChat{
-    margin-top: 4%;
+#panel1{
+    display: none;
 }
-.blocPresent{
-    margin-top: 4%;
+#panel2{
+    display: none;
 }
-
-/* Mise en forme du bloc où apparaissent les messages  */
-
 .receiveMessage {
-    background-color: #9EE1FB;
-    border: 2px solid #222222;
-    border-radius: 5px;
+    background-color: #331743;
     height: 350px;
     overflow: auto;
-    font-size: 18px;
+    font-size: 17px;
+}
+#ChatMessage{
+    border: 5px solid black;
 }
 #sendMessage {
     margin-bottom: 40px;
@@ -125,70 +104,42 @@ body {
     color: white;
     height: 45px;
 }
-
 /*-------------------------------ACTUALITÉS------------------------------*/
-
-.paginationBtn {
-    background-color: #286090!important;
-    color: white!important;
+.pagination > li > a{
+    background-color: black;
+    color: white;
 }
-
-.paginationBtn:hover {
-    background-color: #643C7D!important;
-    color: white!important;
+.pagination > li > a:hover {
+    background-color: #286090;
+    color: white;
 }
-
-/* -------------------------------------PAGE 404---------------------------------------------- */
-
+/* ------------------------------PAGE 404---------------------------------------------- */
 .errorBloc {
     background-color: transparent;
 }
-
 .container404 {
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .errorTitle {
     font-size: 50px;
     font-weight: bold;
 }
-
 .errorH3 {
     font-size: 30px;
     font-weight: bold;
     margin-top: 60px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
-
-.errorParagraph {
-    font-weight: bold;
-}
-
 @media screen and (max-width: 622px) {
     .errorTitle {
-        font-size: 25px!important;
+        font-size: 25px;
     }
     .errorH3 {
-        font-size: 20px!important;
-    }
-    .errorParagraph {
-        font-size: 17px!important;
+        font-size: 20px;
     }
 }
-
-/* Modifier mon profil */
-#avatar{
-    display: none;
-}
-
-
-/*                              PAGE D'INSCRIPTION / CONNEXION                                */
-
-
-/* Fond de la page inscription */
-.containerLogin{
-    margin-top: 6%;
-}
+/* ---------------------------- IMAGE DE FOND --------------------*/
 .registerBackground {
     background-image: url('../images/backRegister.jpg');
     background-repeat: no-repeat;
@@ -196,10 +147,6 @@ body {
     background-position: center;
     background-size: cover;
 }
-
-
-/* Fond de la page connexion */
-
 .loginBackground {
     background-image: url('../images/backLogin.jpg');
     background-repeat: no-repeat;
@@ -207,229 +154,6 @@ body {
     background-position: center;
     background-size: cover;
 }
-
-
-
-/* Fond du formulaire d'inscription */
-
-.formRegisterBackground {
-    background-color: #012545;
-    margin-top: 2%;
-    margin-bottom: 1%;
-}
-@media screen and (max-width: 400px) {
-    .formRegisterBackground {
-        padding: 0px;
-        margin: 0px;
-    }
-}
-
-
-
-/* Fond du formulaire de connexion */
-
-.formBackground {
-    background-color: #012545;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-
-
-@media screen and (max-width: 899px) {
-    .formLoginBackground {
-        background-color: #012545;
-        margin-top: 20%;
-        margin-bottom: 22px;
-    }
-}
-
-@media screen and (max-width: 300px) {
-    .formLoginBackground {
-        background-color: #012545;
-        margin-top: 20%;
-        margin-bottom: 22px;
-        padding: 0px;
-    }
-}
-
-.addPictureBackground {
-    background-color: #012545;
-    margin-top: 20px;
-    margin-bottom: 22px;
-}
-
-
-/* Premier titre de la page modifier profil */
-
-.titleh2 {
-    margin-top: 5%;
-}
-
-
-/* Premier titre de la page delete profil */
-
-.titleh2Delete {
-    margin-top: 10%;
-}
-
-
-/* Fond de la page Récupération du mot de passe */
-
-.formGetPassBackground {
-    background-color: #012545;
-    margin-top: 8%;
-}
-
-
-
-/* Titre du formulaire */
-
-.formTitle {
-    text-align: center;
-    background: #fff;
-    padding: 15px;
-    letter-spacing: 2px;
-
-}
-/* Fond du label et du champs */
-
-.fieldBackground {
-    background: #fff;
-    padding: 15px;
-}
-
-
-/* Bouton valider */
-
-.formBtn {
-    color: white;
-    background-color: black;
-}
-
-.formBtn:hover {
-    color: white;
-}
-
-
-/* Label */
-
-.control-label {
-    text-align: left!important;
-}
-
-
-/*                        SUPPRESSION DE PROFILE                               */
-
-
-/*                                   COULEURS                                  */
-.bold {
-    font-weight: bold!important;
-}
-.white {
-    color: white;
-}
-
-.yellow {
-    color: yellow;
-}
-
-.red {
-    color: red;
-}
-
-.green {
-    color: green;
-}
-.purple{
-    font-weight: bold;
-    color: purple;
-}
-
-/* Modif profile */
-
-
-
-
-
-
-/* Menu */
-
-.list-group-item:last-child {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.nav-tabs li a {
-    color: #777;
-}
-
-.navbar {
-    margin-bottom: 0;
-    background-color: #54276F;
-    border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
-    opacity: 0.9;
-}
-
-.navbar li a,
-.navbar{
-    color: orange !important;
-    font-weight: bold;
-}
-.navbar-brand {
-      color: white !important;
-    font-weight: bold;
-}
-.navbar-nav li a:hover {
-    color: #fff !important;
-}
-
-.navbar-nav li.active a {
-    color: #fff !important;
-    background-color: #29292c !important;
-}
-
-.navbar-default .navbar-toggle {
-    border-color: transparent;
-}
-
-.open .dropdown-toggle {
-    color: #fff;
-    background-color: #555 !important;
-}
-
-.dropdown-menu li a {
-    color: #000 !important;
-}
-
-.dropdown-menu li a:hover {
-    background-color: red !important;
-}
-
-.FirstdivProfileUpdate {
-    margin-top: 10%;
-}
-
-.profileView {
-    margin-top: 10%;
-}
-
-.avatarSizeProfile {
-    max-width: 100%;
-}
-
-
-/* Page de profil */
-
-.backgroundProfile {
-    background-color: #ECECEC;
-}
-
-
-/* -----------------------------------------------CONTACT----------------------------------------------*/
-/* Classe body */
 .contactBackground {
     background-image: url('../images/contactBackground.jpeg');
     background-repeat: no-repeat;
@@ -437,208 +161,13 @@ body {
     background-position: center;
     background-size: cover;
 }
-/* Classe container */
-.containerContact {
-    margin-top: 2%;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-/* Classe div qui contient tout le formulaire */
-.formContactBackground {
-    background-color: #012545;
-    margin-bottom: 1%;
-}
-
-@media screen and (max-width: 300px) {
-    .formContactBackground {
-        background-color: #012545;
-        margin-top: 20%;
-        margin-bottom: 22px;
-        padding: 0px;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .containerContact {
-        margin-top: 11%;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-}
-/*  */
-.containerNewsAll {
-    margin-top: 3%;
-}
-
-@media screen and (max-width: 900px) {
-    .containerNewsAll {
-        margin-top: 5%;
-    }
-}
-
-
-/* page new  */
-
-.datePost {
-    border-top: 1px solid black;
-    padding-top: 10px;
-}
-
-
-/* barre de recherche */
-
-#searchBtn {
-    height: 34px;
-}
-
-.searchBar {
-    margin-top: 2%;
-    margin-bottom: 5%;
-}
-
-/* Page de conexion */
-.containerNew {
-    margin-top: 5%;
-}
-
-/* Page article seul */
-
-.containerNew {
-    margin-top: 5%;
-}
-
-@media screen and (max-width: 900px) {
-    .containerNew {
-        margin-top: 20%;
-    }
-}
-
-.centerImg {
-    margin: auto;
-}
-
-
-/* Block de commentaires */
-
-.allComments {
-    max-height: 1000px;
-    overflow: scroll;
-}
-
-.formAddComment {
-    margin-bottom: 2%;
-}
-
-
-/* Page de deconnexion  */
-
-.containerLogout {
-    margin-top: 10%;
-}
-
-
-/* test formulaire editer commentaire disparu */
-
-.divUpdate {
-    display: none;
-}
-.divResponse {
-    display: none;
-}
-
-/* Page modification de profil */
-
 .profileUpdateBody {
-    background-image: url('https://wallpaper2017.files.wordpress.com/2016/12/battlefield-4-community-operations-1920x1080.jpg');
+    background-image: url('../images/battlefield.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
 }
-
-.containerProfileUpdate {
-    margin-top: 1%;
-}
-
-@media screen and (max-width: 1000px) {
-    .containerProfileUpdate {
-        margin-top: 15%;
-    }
-}
-
-.blocAddImg {
-    max-width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    border: 5px solid grey;
-    background-image: linear-gradient(to right, #F5F5DC, #DEB887);
-}
-
-.userTitle {
-    margin-bottom: 5%;
-}
-
-.avatar {
-    max-height: 300px;
-    margin-top: 5%;
-}
-
-@media screen and (max-width: 350px) {
-    .avatar {
-        max-height: 150px;
-        max-width: 250px;
-        margin-top: 5%;
-    }
-}
-.btnWidth{
-    width: 100%;
-}
-#btnModif {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-/* Validation du compte */
-.containerValidateCount{
-    margin-top: 10%;
-}
-@media screen and (max-width: 350px) {
-    .containerValidateCount {
-        margin-top: 0%;
-    }
-}
-
-#picture{
-    display: none;
-}
-
-.avatarNav{
-    height: 50px;
-    width: 50px;
-}
-
-
-
-/* ajout */
-.divForum{
-    display: none;
-}
-.uppercaseCategories{
-    text-transform: uppercase;
-}
-
-.test{
-    background-color: purple;
-    border-radius: 15px;
-    box-shadow: 0 0 15px purple;
-}
-
-#panel1{
-    display: none;
-}
-#panel2{
-    display: none;
-}
-
-/* rédaction d'article' */
 .newsWritingBackground {
     background-image: url('../images/newWritingBackground.jpg');
     background-repeat: no-repeat;
@@ -653,18 +182,215 @@ body {
     background-position: center;
     background-size: cover;
 }
-
-.newAll{
-    border: 5px solid #643C7D;
+/* ------------------------------------ CLASSE BASIQUE -----------------------------*/
+.bold {
+    font-weight: bold;
 }
-
+.border{
+    border: 5px solid black;
+}
 .margin{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.white {
+    color: white;
+}
+.yellow {
+    color: yellow;
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.purple{
+    font-weight: bold;
+    color: purple;
+}
+/******************************A VERIFIER*****************************************************************/
+/* ----------------------------- MISE EN FORME DES FORMULAIRES ----------------- */
+.formBackground {
+    background-color: #012545;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.formRegisterBackground {
+    background-color: #012545;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.formContactBackground {
+    background-color: #012545;
+    margin-bottom: 1%;
+}
+@media screen and (max-width: 400px) {
+    .formRegisterBackground {
+        padding: 0px;
+        margin: 0px;
+    }
+}
+@media screen and (max-width: 300px) {
+    .formContactBackground {
+        margin-bottom: 22px;
+        padding: 0px;
+    }
+}
+.fieldBackground {
+    background: #fff;
+    padding: 15px;
+}
+.formTitle {
+    text-align: center;
+    background: #fff;
+    padding: 15px;
+    letter-spacing: 2px;
+}
+/*  ------------------------ CLASSE CONTAINER --------------------  */
+.containerLogin{
+    margin-top: 6%;
+}
+.containerContact {
+    margin-top: 2%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.containerNewsAll {
+    margin-top: 3%;
+}
+.containerNew {
+    margin-top: 5%;
+}
+.containerLogout {
+    margin-top: 10%;
+}
+.containerProfileUpdate {
+    margin-top: 1%;
+}
+.containerValidateCount{
+    margin-top: 10%;
+}
+@media screen and (max-width: 350px) {
+    .containerValidateCount {
+        margin-top: 0%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .containerNew {
+        margin-top: 20%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .containerContact {
+        margin-top: 11%;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .containerNewsAll {
+        margin-top: 5%;
+    }
+}
+
+
+
+.addPictureBackground {
+    background-color: #012545;
+    margin-top: 20px;
+    margin-bottom: 22px;
+}
+#avatar{
+    display: none;
+}
+.formGetPassBackground {
+    background-color: #012545;
+    margin-top: 8%;
+}
+.formBtn {
+    color: white;
+    background-color: black;
+}
+.formBtn:hover {
+    color: white;
+}
+.control-label {
+    text-align: left;
+}
+.FirstdivProfileUpdate {
+    margin-top: 10%;
+}
+.profileView {
+    margin-top: 10%;
+}
+.datePost {
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.centerImg {
+    margin: auto;
+}
+.allComments {
+    max-height: 1000px;
+    overflow: scroll;
+}
+.divUpdate {
+    display: none;
+}
+.blocAddImg {
+    max-width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    border: 5px solid grey;
+    background-image: linear-gradient(to right, #F5F5DC, #DEB887);
+}
+.btnWidth{
+    width: 100%;
+}
+#btnModif {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.divForum{
+    display: none;
+}
+.uppercaseCategories{
+    text-transform: uppercase;
+}
+.newAll{
+    border: 5px solid #643C7D;
+}
 .testnews{
     background-color: white;
 }
-.border{
-    border: 5px solid black;
+.test{
+    background-color: purple;
+    border-radius: 15px;
+    box-shadow: 0 0 15px purple;
+}
+.userTitle {
+    margin-bottom: 5%;
+}
+.titleh2 {
+    margin-top: 5%;
+}
+.titleh2Delete {
+    margin-top: 10%;
+}
+.avatar {
+    max-height: 300px;
+    margin-top: 5%;
+}
+@media screen and (max-width: 350px) {
+    .avatar {
+        max-height: 150px;
+        max-width: 250px;
+        margin-top: 5%;
+    }
+}
+#picture{
+    display: none;
+}
+.avatarSizeProfile {
+    max-width: 100%;
 }
