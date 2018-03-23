@@ -14,7 +14,9 @@ include '../include/header.php';
 ?>
 <div class="container-fluid">
     <div class="col-lg-offset-3 col-lg-6 formRegisterBackground"> 
-        <h2 class="formTitle col-xs-12 col-sm-12 col-md-12 col-lg-12 bold">Formulaire d'inscription</h2>
+        <div class="row">
+            <h2 class="formTitle col-xs-12 col-sm-12 col-md-12 col-lg-12 bold">Formulaire d'inscription</h2>
+        </div>
         <!-- Affichage des messages d'erreurs -->
         <?php if (!empty($formError)) { ?>
             <div class="alert alert-danger">

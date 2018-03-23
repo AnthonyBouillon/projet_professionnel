@@ -22,7 +22,7 @@
                     <h3>Administration</h3>
                     <ul>
                         <li><a href="../admin/view.php">Partie administration</a></li>
-                        <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) { ?>
+                        <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 2) { ?>
                             <li><a href="../admin/newsWritingView.php">Ajouter un article</a></li>
                         <?php } ?>
                     </ul>

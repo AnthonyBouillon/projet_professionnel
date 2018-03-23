@@ -13,7 +13,7 @@ $classBody = 'newsWritingBackground';
 $title = 'Rédaction d\'article';
 include '../include/header.php';
 
-if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) {
+if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) {
     ?>
     <div class="container">
         <div class="col-lg-12 formBackground">

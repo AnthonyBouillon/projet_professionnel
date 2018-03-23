@@ -69,6 +69,8 @@ if (isset($_POST['submit'])) {
                 $formError['captcha'] = 'Captcha invalide';
             }
         }
+    }else{
+        $formError['formEmpty'] = 'Vous devez remplir tous les champs';
     }
     /*
      * On vérifie que le formulaire ne contient aucune erreur

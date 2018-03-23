@@ -72,9 +72,6 @@ include '../include/header.php';
                 <h2 class=""><img src="../members/avatars/<?= $comments->username . '/' . $comments->avatar; ?>" class="img-rounded avatarNav" /><?= !empty($comments->username) ? $comments->username : 'Anonyme'; ?> a écrit : </h2><hr/>
                 <p class="h4"><?= wordwrap($comments->comment, 20, ' ', 1); ?></p>
                 <p class="datePost h4">Le :<?= $comments->date; ?></p>
-                <?php if (!empty($_SESSION['id'])) { ?>
-                    <button class="col-lg-1 responseBtn" idComment="<?= $comments->id; ?>" title="Répondre au commentaire"><i class="fas fa-comment"></i></button>
-                <?php } ?>
                 <?php if (!empty($_SESSION['id']) && $_SESSION['id'] == $comments->id_cuyn_users) { ?>  
 
                     
