@@ -16,7 +16,7 @@ $classBody = 'newsBackground';
 $title = 'Actualité';
 include '../include/header.php';
 ?>
-<div class="container containerNewsAll margin testnews">
+<div class="container containerNewsAll margin containerNews">
     
     <?php foreach ($readArticles as $article) { ?>
         <div class="well jumbotron margin border col-lg-12">

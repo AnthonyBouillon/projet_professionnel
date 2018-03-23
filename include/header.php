@@ -18,6 +18,7 @@
         <title><?= $title ?></title>
     </head>
     <body class="<?= $classBody ?>">
+        <h1 class="text-center white">All Platform Together</h1>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">

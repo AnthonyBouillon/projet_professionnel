@@ -1,6 +1,6 @@
 body {
     font-family: 'Jura', sans-serif;
-    display: table; /*pas compris----------------------------------------------------------------------------------------------------------------------*/
+    display: table;
     width: 100%;
 }
 /* ------------------------------- MENU --------------------------------- */
@@ -35,7 +35,8 @@ body {
 /*---------------------------------FOOTER----------------------------------------*/
 footer {
     background-image: linear-gradient(to right, #5B2A78, #000000);
-    display: table-row;/* Pas compris---------------------------------------------------------------------------------------------------------------------- */
+    display: table-row;
+    height: 100px;
 }
 footer h3 {
     border-bottom: 1px solid #BAC1C8;
@@ -56,8 +57,9 @@ footer a:hover {
     color: white;
     text-decoration: none;
 }
-html,body {
+html, body {
     height: 100%;
+    margin: 0; padding: 0;
 }
 /*------------------------------ ACCUEIL -------------------------------*/
 .homeBackground {
@@ -65,10 +67,15 @@ html,body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;/* Pas compris---------------------------------------------------------------------------------------------------------------------- */
+    background-size: cover;
 }
 .blocHome{
     margin-top: 4%;
+}
+.blocPresent{
+    background-color: purple;
+    border-radius: 15px;
+    box-shadow: 0 0 15px purple;
 }
 .titlePresentation {
     padding-top: 20px;
@@ -112,6 +119,50 @@ html,body {
 .pagination > li > a:hover {
     background-color: #286090;
     color: white;
+}
+.datePost {
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+.allComments {
+    max-height: 1000px;
+    overflow: scroll;
+}
+.centerImg {
+    margin: auto;
+}
+.divUpdate {
+    display: none;
+}
+.newAll{
+    border: 5px solid #643C7D;
+}
+/* ----------------------------------- FORUM ----------------------------------- */
+.divForum{
+    display: none;
+}
+.uppercaseCategories{
+    text-transform: uppercase;
+}
+/* ----------------------------- PROFIL ------------------------------------------------ */
+.FirstdivProfileUpdate {
+    margin-top: 10%;
+}
+.profileView {
+    margin-top: 10%;
+}
+#btnModif {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.blocAddImg {
+    max-width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    border: 5px solid grey;
+    background-image: linear-gradient(to right, #F5F5DC, #DEB887);
+}
+.btnWidth{
+    width: 100%;
 }
 /* ------------------------------PAGE 404---------------------------------------------- */
 .errorBloc {
@@ -183,6 +234,16 @@ html,body {
     background-size: cover;
 }
 /* ------------------------------------ CLASSE BASIQUE -----------------------------*/
+.control-label {
+    text-align: left;
+}
+.formBtn {
+    color: white;
+    background-color: black;
+}
+.formBtn:hover {
+    color: white;
+}
 .bold {
     font-weight: bold;
 }
@@ -209,7 +270,6 @@ html,body {
     font-weight: bold;
     color: purple;
 }
-/******************************A VERIFIER*****************************************************************/
 /* ----------------------------- MISE EN FORME DES FORMULAIRES ----------------- */
 .formBackground {
     background-color: #012545;
@@ -259,9 +319,11 @@ html,body {
 .containerNewsAll {
     margin-top: 3%;
 }
-.containerNew {
-    margin-top: 5%;
+.containerNews{
+    margin-top: 3%;
+    background-color: white;
 }
+
 .containerLogout {
     margin-top: 10%;
 }
@@ -276,110 +338,19 @@ html,body {
         margin-top: 0%;
     }
 }
-@media screen and (max-width: 900px) {
-    .containerNew {
-        margin-top: 20%;
-    }
+/* -------------------------------- AVATAR ---------------------------------- */
+.avatar {
+    max-height: 300px;
+    margin-top: 5%;
 }
-@media screen and (max-width: 900px) {
-    .containerContact {
-        margin-top: 11%;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-}
-@media screen and (max-width: 900px) {
-    .containerNewsAll {
-        margin-top: 5%;
-    }
-}
-
-
-
-.addPictureBackground {
-    background-color: #012545;
-    margin-top: 20px;
-    margin-bottom: 22px;
+.avatarSizeProfile {
+    max-width: 100%;
 }
 #avatar{
     display: none;
 }
-.formGetPassBackground {
-    background-color: #012545;
-    margin-top: 8%;
-}
-.formBtn {
-    color: white;
-    background-color: black;
-}
-.formBtn:hover {
-    color: white;
-}
-.control-label {
-    text-align: left;
-}
-.FirstdivProfileUpdate {
-    margin-top: 10%;
-}
-.profileView {
-    margin-top: 10%;
-}
-.datePost {
-    border-top: 1px solid black;
-    padding-top: 10px;
-}
-.centerImg {
-    margin: auto;
-}
-.allComments {
-    max-height: 1000px;
-    overflow: scroll;
-}
-.divUpdate {
+#picture{
     display: none;
-}
-.blocAddImg {
-    max-width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    border: 5px solid grey;
-    background-image: linear-gradient(to right, #F5F5DC, #DEB887);
-}
-.btnWidth{
-    width: 100%;
-}
-#btnModif {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-.divForum{
-    display: none;
-}
-.uppercaseCategories{
-    text-transform: uppercase;
-}
-.newAll{
-    border: 5px solid #643C7D;
-}
-.testnews{
-    background-color: white;
-}
-.test{
-    background-color: purple;
-    border-radius: 15px;
-    box-shadow: 0 0 15px purple;
-}
-.userTitle {
-    margin-bottom: 5%;
-}
-.titleh2 {
-    margin-top: 5%;
-}
-.titleh2Delete {
-    margin-top: 10%;
-}
-.avatar {
-    max-height: 300px;
-    margin-top: 5%;
 }
 @media screen and (max-width: 350px) {
     .avatar {
@@ -388,9 +359,15 @@ html,body {
         margin-top: 5%;
     }
 }
-#picture{
-    display: none;
-}
-.avatarSizeProfile {
-    max-width: 100%;
-}
+
+
+
+
+
+
+
+
+
+
+
+

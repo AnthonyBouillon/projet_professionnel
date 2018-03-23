@@ -51,15 +51,6 @@ $(document).ready(function () {
             $('#chrono').text(number);
         }
     }, 1000);
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /* 
      * Page news formulaire commentaire 
      * Au clique sur le bouton la div contenant le formulaire apparait
@@ -91,13 +82,7 @@ $(document).ready(function () {
     $('.displayForm').click(function () {
         var id = $(this).attr('id');
         $('#divForum' + id).toggle();
-    });
-    
-    
-    
-    
-    
-    
+    }); 
     /*
      * Script pour la page d'accueil permettant d'afficher ou de faire disparaitre un block de text au clique
      * Quand je clique sur le titre
@@ -112,9 +97,6 @@ $(document).ready(function () {
     /* Faire apparaitre une info bulle */
     $('[data-toggle="popover"]').popover();
 });
-
-
-
 /* 
  * Script pour le tchat de la page d'accueil, permettant de récupérer et d'afficher les messages sans recharger la page
  * 
@@ -149,7 +131,6 @@ $('#sendMessage').click(function (e) {
             'JSON',
             $('#ChatMessage').val('')
 });
-
 setInterval(function () {
     $('#receiveMessage').load('views/chat.php').fadeIn("slow");
 }, 0);

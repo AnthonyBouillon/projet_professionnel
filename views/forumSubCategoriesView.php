@@ -15,7 +15,7 @@ include '../include/header.php';
         <thead> 
             <tr> 
                 <th>Sous-catégories</th> 
-                <th>Sujets</th> 
+                <th>Topics</th> 
                 <th>Dernières activités</th> 
             </tr> 
         </thead> 

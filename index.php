@@ -19,6 +19,7 @@ include_once 'controllers/homeController.php';
         <title>Accueil</title>
     </head>
     <body class="homeBackground">
+        <h1 class="text-center white">All Platform Together</h1>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -64,14 +65,14 @@ include_once 'controllers/homeController.php';
             <div class="row">
                 <!-- Présentation -->
                 <div class="col-md-6 col-lg-offset-1 col-lg-4 blocHome">
-                    <section class="test">
+                    <section class="blocPresent">
                         <h2 class="text-center titlePresentation white" id="flip1" data-toggle="popover" data-trigger="hover" data-content="Pour afficher ou faire disparaitre le texte, clique sur le titre :)" data-placement="top">Présentation du site</h2>
                         <div class="col-lg-12 well well-info panel" id="panel1">
                             <p class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>     
                     </section>
                     <br/><br/><br/><br/><br/><br/><br/>
-                    <section class="test">
+                    <section class="blocPresent">
                         <h2 class="text-center titlePresentation2 white" id="flip2" data-toggle="popover" data-trigger="hover" data-content="Pour afficher ou faire disparaitre le texte, clique sur le titre :)" data-placement="top">Que puis-je faire sur le site ?</h2>
                         <div class="col-lg-12 well well-info panel" id="panel2">
                             <p class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -81,7 +82,7 @@ include_once 'controllers/homeController.php';
 
                 <!-- Tchat -->
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-4 blocHome">
-                    <section class="test">
+                    <section class="blocPresent">
                         <?php if (!empty($formError)) { ?>
                             <div class="alert alert-danger">
                                 <p class="text-center red bold h4"><?= !empty($formError['errorRegex']) ? $formError['errorRegex'] : ''; ?></p>
@@ -93,7 +94,7 @@ include_once 'controllers/homeController.php';
                         <p class="text-center h4 red"></p>
                         <!-- Tchat -->
                         <div class="receiveMessage" id="receiveMessage">
-                            
+
                         </div>
                         <!--Valider -->
                         <form method="POST" action="">
