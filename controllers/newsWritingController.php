@@ -11,7 +11,7 @@ $users = new users();
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
 }else{
-    header('Location: ../404');
+    header('Location: 404');
 }
 /*
  * On assigne notre méthode qui nous permet de lire ou d'afficher des informations dans un nouvel objet
@@ -37,13 +37,13 @@ if (isset($_POST['submit'])) {
         $news->resume = htmlspecialchars($_POST['resume']);
         $news->content = htmlspecialchars($_POST['content']);
         if (!preg_match($regexTitle, $news->title)) {
-            $formError['!regexTitle'] = 'Vous êtes limité à 60 caractères';
+            $formError['!regexTitle'] = 'Titre : Vous êtes limité à 60 caractères';
         }
         if (!preg_match($regexPlateform, $news->plateform)) {
-            $formError['!regexPlateform'] = 'Vous êtes limité à 30 caractères';
+            $formError['!regexPlateform'] = 'Plateforme : Vous êtes limité à 30 caractères';
         }
         if (!preg_match($regexResume, $news->resume)) {
-            $formError['!regexResume'] = 'Vous êtes limité à 500 caractères';
+            $formError['!regexResume'] = 'Résumer : Vous êtes limité à 500 caractères';
         }
         /*
          * 

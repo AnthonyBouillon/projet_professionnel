@@ -3,12 +3,20 @@ body {
     display: table;
     width: 100%;
 }
+h1{
+    background-color: #5A3275;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
 /* ------------------------------- MENU --------------------------------- */
 .navbar-default .navbar-brand, .navbar-default > .navbar-brand ,.navbar-default .navbar-nav > li > a{
     color: orange;
     font-weight: bold;
 }
-.navbar-default > .navbar-brand, .navbar-default > .navbar-brand:hover{
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover{
     color: orange;
     font-weight: bold;
 }
@@ -104,6 +112,11 @@ html, body {
 }
 #ChatMessage{
     border: 5px solid black;
+}
+.blocMessage{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
 }
 #sendMessage {
     margin-bottom: 40px;

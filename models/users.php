@@ -35,7 +35,6 @@ class users extends database {
     public function __construct() {
         parent::__construct();
     }
-
     /**
      * Méthode qui permet d'enregistrer dans la base de données un nouveau utilisateur
      * Le compte utilisateur sera inactif par defaut
@@ -72,17 +71,19 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
-
-    /**
-     * Méthode qui me permet de récupérer toutes les informations des utilisateurs
-     * La méthode retourne un tableau en objet
-     */
-    public function readAllUsers() {
-        $query = 'SELECT `username` FROM `' . PREFIXE . 'users`';
-        $request = $this->db->query($query);
+    public function readProfile() {
+        $query = 'SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date, `id_cuyn_admin` FROM `' . PREFIXE . 'users` WHERE `id` = :id';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+        $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
+      public function readStatus() {
+        $query = 'SELECT `' . PREFIXE . 'users`.`id`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'users` ';
+        $request = $this->db->query($query);
+        return $request->fetchAll(PDO::FETCH_OBJ);
+    }
     /**
      * Méthode qui me permet de vérifié si l'adresse e-mail saisie existe dans la base de données pour la modification de l'adresse e-mail
      * Utilisation d'un marqeur nominatif et du bindValue 

@@ -9,6 +9,6 @@ $title = 'Web TV';
 $classBody = NULL;
 include '../include/header.php';
 ?>
-
+<h2 class="text-center">En cours de construction</h2>
 <?php
 include '../include/footer.php';

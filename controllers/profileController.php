@@ -9,6 +9,7 @@
 $users = new users();
 $users->id = $_SESSION['id'];
 $readUsers = $users->readUsers();
+$readStatus = $users->readStatus();
 if (!empty($_SESSION['id'])) {
     $users->readUsers();
 }

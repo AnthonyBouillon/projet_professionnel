@@ -90,11 +90,7 @@ include '../include/header.php';
                         <textarea name="commentUpdate"  class="form-control" rows="4" placeholder="Ecrivez ici pour modifier votre commentaire..."></textarea>
                         <button type="submit" name="edit" class="btn btn-block center-block formBtn">Je modifie mon commentaire</button>
                     </div>
-                    <!-- Formulaire de réponse aux commentaires -->
-                    <div id="divResponse<?= $comments->id; ?>" class="divResponse">    
-                        <textarea name="responseComment" class="form-control" rows="4" placeholder="Ecrivez ici pour répondre à son commentaire..."></textarea>
-                        <button type="submit" name="response" class="btn btn-block center-block formBtn">Je répond au commentaire</button>
-                    </div>
+                  
                     <div class="text-center alert-danger">
                         <p class="text-center bold h4"><?= !empty($error['emptyComment']) ? $error['emptyComment'] : ''; ?></p>
                         <p class="text-center bold h4"><?= !empty($error['!regexUpdate']) ? $error['!regexUpdate'] : ''; ?></p>

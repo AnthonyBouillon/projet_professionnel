@@ -2,7 +2,9 @@
 
 $users = new users();
 $subCategories = new forumSubCategories();
-$subCategories->id_category = $_GET['id'];
+if (isset($_GET['id'])) {
+    $subCategories->id_category = $_GET['id'];
+}
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
     $users->username = $_SESSION['username'];

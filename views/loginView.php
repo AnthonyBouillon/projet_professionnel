@@ -13,7 +13,9 @@ include '../include/header.php';
 ?>
 <div class="container containerLogin">
     <div class="col-lg-12 formBackground">
-        <h2 class="formTitle bold col-sm-12 col-lg-12">Formulaire de connexion</h2>
+        <div class="row">
+            <h2 class="formTitle bold col-sm-12 col-lg-12">Formulaire de connexion</h2>
+        </div>
         <!-- Message d'erreurs -->
         <?php if (!empty($formError)) { ?>
             <div class="alert alert-danger">

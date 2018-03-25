@@ -37,9 +37,10 @@ include_once 'controllers/homeController.php';
                         <li><a href="Catégorie-du-forum">FORUM</a></li>
                         <li><a href="webTV">WEB TV</a></li>
                         <li><a href="https://discord.gg/vmXCWd5">DISCORD</a></li>
+                        <li><a href="views/listOfMembersView.php">LISTE DES MEMBRES</a></li>
                     </ul>
                     <!-- Affiche un menu différent suivant si l'utilisateur est connecté ou non -->
-                    <?php if (!isset($readUsers->id)) { ?>
+                    <?php if (!isset($_SESSION['id'])) { ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
                             <li><a href="Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>
@@ -81,7 +82,7 @@ include_once 'controllers/homeController.php';
                 </div>
 
                 <!-- Tchat -->
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-4 blocHome">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5 blocHome">
                     <section class="blocPresent">
                         <?php if (!empty($formError)) { ?>
                             <div class="alert alert-danger">

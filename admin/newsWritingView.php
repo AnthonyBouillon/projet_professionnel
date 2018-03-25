@@ -45,14 +45,14 @@ if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) {
                     <div class="form-group fieldBackground">
                         <label for="title" class="col-sm-4 control-label">Titre</label>
                         <div class="col-sm-8">
-                            <input type="text" name="title" class="form-control focusColor" id="title" placeholder="Saisissez le titre"  required />
+                            <input type="text" name="title" class="form-control focusColor" id="title" placeholder="Saisissez le titre" value="<?php !empty($_POST['title']) ?  $_POST['title'] : ''; ?>" required />
                         </div>
                     </div>
                     <!-- E-mail -->
                     <div class="form-group fieldBackground">
                         <label for="plateform" class="col-sm-4 control-label">Plateforme</label>
                         <div class="col-sm-8">
-                            <input type="text" name="plateform" class="form-control focusColor" id="plateform" placeholder="Saisissez le nom de la plateforme" required />
+                            <input type="text" name="plateform" class="form-control focusColor" id="plateform" placeholder="Saisissez le nom de la plateforme" value="<?php !empty($_POST['plateform']) ?  $_POST['plateform'] : ''; ?>" required />
                         </div>
                     </div>
                     <!-- Confirmation de l'e-mail -->
@@ -66,7 +66,7 @@ if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) {
                     <div class="form-group fieldBackground">
                         <label for="content" class="col-sm-4 control-label">Contenue</label>
                         <div class="col-sm-8">
-                            <textarea name="content" class="form-control focusColor content articleTextarea" id="content" placeholder="Saisissez le contenue" rows="10" required></textarea>
+                            <textarea name="content" class="form-control focusColor content articleTextarea" id="content" placeholder="Saisissez le contenue" rows="10"  required></textarea>
                         </div>
                     </div>
                     <!-- Confirmation du mot de passe -->
@@ -89,6 +89,6 @@ if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) {
     </div>
     <?php
 } else {
-    header('Location: ../views/404.php');
+    header('Location: ../404');
 }
 include '../include/footer.php';

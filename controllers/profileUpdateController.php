@@ -112,10 +112,10 @@ if (isset($_POST['submitPassword'])) {
             $formError['passwordDiff'] = 'Vos deux mots de passe ne sont pas identiques';
         }
         if (!preg_match($regexPassword, $users->newPassword)) {
-            $formError['wrongFormatPassword'] = 'Minimum 11 caractères maximum 255 caractères';
+            $formError['wrongFormatPassword'] = 'Mot de passe : Minimum 11 caractères maximum 255 caractères';
         }
         if (!preg_match($regexPassword, $_POST['confirmPassword'])) {
-            $formError['wrongFormatPassword'] = 'Minimum 11 caractères maximum 255 caractères';
+            $formError['wrongFormatPassword'] = 'Mot de passe : Minimum 11 caractères maximum 255 caractères';
         }
         if (password_verify($users->password, $readUsers->password)) {
             $users->passwordHash = password_hash($users->newPassword, PASSWORD_BCRYPT);

@@ -36,9 +36,10 @@
                         <li><a href="../Catégorie-du-forum">FORUM</a></li>
                         <li><a href="../webTV">WEB TV</a></li>
                         <li><a href="https://discord.gg/vmXCWd5">DISCORD</a></li>
+                        <li><a href="../views/listOfMembersView.php">LISTE DES MEMBRES</a></li>
                     </ul>
                     <!-- Affiche un menu différent suivant si l'utilisateur est connecté ou non -->
-                    <?php if (!isset($readUsers->id)) { ?>
+                    <?php if (!isset($_SESSION['id'])) { ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="../Inscription"><span class="glyphicon glyphicon-user"></span> INSCRIPTION</a></li>
                             <li><a href="../Connexion"><span class="glyphicon glyphicon-log-in"></span> CONNEXION</a></li>

@@ -11,7 +11,9 @@ include '../include/header.php';
 
 <div class="container-fluid containerNew">
     <div class="col-lg-offset-3 col-lg-6 formBackground">
-        <h2 class="formTitle bold col-sm-12">Formulaire des mots de passe oubliés</h2>
+        <div class="row">
+            <h2 class="formTitle bold col-sm-12">Formulaire des mots de passe oubliés</h2>
+        </div>
         <section class="col-md-12">
             <p class="text-center yellow bold h4"><?= !empty($formError['notExistMail']) ? $formError['notExistMail'] : ''; ?></p>
             <p class="text-center green bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
