@@ -81,20 +81,10 @@ class users extends database {
     }
 
     public function readStatus() {
-        $query = 'SELECT `' . PREFIXE . 'users`.`id`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id`';
+        $query = 'SELECT `' . PREFIXE . 'users`.`id` AS id_user, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` AS id_admin FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id` WHERE `' . PREFIXE . 'users`.`id` != 6';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
-
-    public function updateStatus() {
-        $query = 'UPDATE `' . PREFIXE . 'users` SET `id_cuyn_admin` = :id_cuyn_admin WHERE `id` = :id';
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id_cuyn_admin', $this->id_admin, PDO::PARAM_INT);
-        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        return $request->fetch(PDO::FETCH_OBJ);
-    }
-
     /*
      * La requete me permet de vérifier si une adresse e-mail existent dans la base de données
      */
@@ -159,7 +149,7 @@ class users extends database {
         $query = 'UPDATE `' . PREFIXE . 'users` SET `id_cuyn_admin` = :id_cuyn_admin WHERE `id` = :id';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_admin', $this->id_admin, PDO::PARAM_INT);
-        $request->bindValue(':id', $this->id);
+        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $request->execute();
     }
     

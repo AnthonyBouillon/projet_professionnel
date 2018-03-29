@@ -3,7 +3,6 @@ session_start();
 include_once '../configuration.php';
 include '../models/database.php';
 include '../models/users.php';
-include '../models/admin.php';
 include '../controllers/profileMembersController.php';
 $classBody = NULL;
 $title = 'Profil d\'un membre';
@@ -14,15 +13,15 @@ include '../include/header.php';
                 <div class="well well-lg">
                     <div class="row">
                         <!-- Block avatar -->
-                        <?php foreach($readProfile as $test){ ?>
+                        <?php foreach($readProfile as $profile){ ?>
                         <div class="col-lg-4">
-                            <img src="../members/avatars/<?= $test->username . '/' . $test->avatar; ?>" class="img-rounded avatarSizeProfile" />
+                            <img src="../members/avatars/<?= $profile->username . '/' . $profile->avatar; ?>" class="img-rounded avatarSizeProfile" />
                         </div>
                         <div class="col-lg-8">
-                            <h2 class="text-center">Vous êtes sur le profil de  <?= $test->username ?></h2>
-                            <p><span class="bold h4">Pseudo : </span><?= wordwrap($test->username, 21, ' ', 1); ?></p>
-                            <p><span class="bold h4">E-mail : </span><?= $test->mail; ?></p>
-                            <p><span class="bold h4">Date d'inscription : </span><?= $test->date; ?></p>
+                            <h2 class="text-center">Vous êtes sur le profil de  <?= $profile->username ?></h2>
+                            <p><span class="bold h4">Pseudo : </span><?= wordwrap($profile->username, 21, ' ', 1); ?></p>
+                            <p><span class="bold h4">E-mail : </span><?= $profile->mail; ?></p>
+                            <p><span class="bold h4">Date d'inscription : </span><?= $profile->date; ?></p>
                         </div>
                         <?php  }  ?>
                     </div>
