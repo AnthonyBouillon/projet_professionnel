@@ -3,6 +3,7 @@ session_start();
 include_once '../configuration.php';
 include '../models/database.php';
 include '../models/users.php';
+include '../models/admin.php';
 include '../controllers/profileMembersController.php';
 $classBody = NULL;
 $title = 'Profil d\'un membre';

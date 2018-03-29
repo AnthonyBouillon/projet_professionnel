@@ -82,7 +82,7 @@ $(document).ready(function () {
     $('.displayForm').click(function () {
         var id = $(this).attr('id');
         $('#divForum' + id).toggle();
-    }); 
+    });
     /*
      * Script pour la page d'accueil permettant d'afficher ou de faire disparaitre un block de text au clique
      * Quand je clique sur le titre
@@ -97,40 +97,42 @@ $(document).ready(function () {
     /* Faire apparaitre une info bulle */
     $('[data-toggle="popover"]').popover();
 });
-/* 
- * Script pour le tchat de la page d'accueil, permettant de récupérer et d'afficher les messages sans recharger la page
- * 
- * Quand je clique sur le bouton
- * On annule la soumission de celui-ci
- * De type POST
- * On précise le chemin de notre controller
- * On récupère la valeur du textarea
- * 
- * On efface les messages
- * Si la valeur du pseudo n'est pas null on affiche le nom, et le message
- * Sinon juste le message
+
+/*
+ * Quand l'utilisateur clique sur le bouton valider le message,
+ * on annule l'action du submit ce qui empeche l'actualisation de la page
  */
-$('#sendMessage').click(function (e) {
+$("#sendMessage").click(function (e) {
     e.preventDefault();
+    /*
+     * On indique le chemin de notre controller
+     * on récupère les données du message écrit par l'utilisateur
+     */
     $.post(
             '../../controllers/homeController.php', {
-                message: $('#ChatMessage').val(),
-                ajaxReady: 'ready'
+                message: $("#ChatMessage").val()
             },
-            function (data) {
-                $('#receiveMessage').empty();
-                $.each(JSON.parse(data), function (index, value) {
-                    if (value.username != null) {
-                        $('#receiveMessage').append('<div class="well"><p class="bold">' + value.username + ' à écrit :</p><p>' + value.message + '</p><p>Message datant du : <span class="bold">' + value.date + '</span></p></div>')
-                    } else {
-                        $('#receiveMessage').append('<div class="well"><p class="bold">' + 'Visiteur' + ' à écrit :</p><p>' + value.message + '</p><p>Message datant du : <span class="bold">' + value.date + '</span></p></div>')
+            /*
+             * On parcourt les données de notre tableau
+             * Si le pseudo de l'utilisateur existe, on l'affiche avec le message
+             * sinon on affiche 'Visiteur' à la place
+             */
+                    function (data) {
+                        $.each(JSON.parse(data), function (index, value) {
+                            if (value.username !== null) {
+                                $("#receiveMessage").append("<div class=\"well\"><p class=\"bold\">" + value.username + " à écrit :</p><p>" + value.message + "</p><p>Message datant du : <span class=\"bold\">" + value.date + "</span></p></div>");
+                            } else {
+                                $("#receiveMessage").append('<div class="well"><p class="bold">' + 'Visiteur' + ' à écrit :</p><p>' + value.message + '</p><p>Message datant du : <span class="bold">' + value.date + '</span></p></div>');
+                            }
+                        });
                     }
-                });
-            }
-    ),
-            'JSON',
-            $('#ChatMessage').val('')
-});
+            ),
+                    // on vide notre textarea après chaque envoi
+                    $('#ChatMessage').val('');
+        });
+        /*
+         * Notre fonction va actualisés notre tchat dès que possible (0s)
+         */
 setInterval(function () {
     $('#receiveMessage').load('views/chat.php').fadeIn("slow");
 }, 0);

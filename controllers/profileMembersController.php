@@ -1,9 +1,10 @@
 <?php
 
 $users = new users();
-    if (isset($_SESSION['id'])) {
-        $users->id = $_SESSION['id'];
-    }
+
+if (isset($_SESSION['id'])) {
+    $users->id = $_SESSION['id'];
+}
 $readUsers = $users->readUsers();
 if (isset($_GET['id'])) {
     $readProfile = $users->readProfile();
@@ -29,4 +30,12 @@ if (isset($_POST['delete'])) {
         $error = 'Malheureusement un problème est survenue et votre compte n\'a pas pu être supprimer, veuillez réessayez ulterieurement ou contactez nous.';
     }
 }
-$readStatus = $users->readStatus();
+$readUser = $users->readStatus();
+$rights = new admin();
+$readStatus = $rights->readAllStatus();
+if (isset($_POST['submitUpdate'])) {
+    $users->id_admin = $_POST['updateRights'];
+    // id utilisateur
+    $users->id = $_POST[''];
+    $users->updateRights();
+}

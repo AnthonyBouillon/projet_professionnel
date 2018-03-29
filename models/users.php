@@ -81,7 +81,7 @@ class users extends database {
     }
 
     public function readStatus() {
-        $query = 'SELECT `' . PREFIXE . 'users`.`id`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights` FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id`';
+        $query = 'SELECT `' . PREFIXE . 'users`.`id`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id`';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
@@ -95,14 +95,11 @@ class users extends database {
         return $request->fetch(PDO::FETCH_OBJ);
     }
 
-    /**
-     * Méthode qui me permet de vérifié si l'adresse e-mail saisie existe dans la base de données pour la modification de l'adresse e-mail
-     * Utilisation d'un marqeur nominatif et du bindValue 
-     * Utilisation du paramètre : chaine de caractère (STR)
-     * On éxécute
+    /*
+     * La requete me permet de vérifier si une adresse e-mail existent dans la base de données
      */
     public function readMail() {
-        $query = 'SELECT * FROM `' . PREFIXE . 'users` WHERE `mail` = :mail ';
+        $query = 'SELECT `mail` FROM `' . PREFIXE . 'users` WHERE `mail` = :mail ';
         $request = $this->db->prepare($query);
         $request->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $request->execute();
@@ -157,6 +154,15 @@ class users extends database {
         $request->bindValue(':id', $this->id);
         return $request->execute();
     }
+    
+    public function updateRights() {
+        $query = 'UPDATE `' . PREFIXE . 'users` SET `id_cuyn_admin` = :id_cuyn_admin WHERE `id` = :id';
+        $request = $this->db->prepare($query);
+        $request->bindValue(':id_cuyn_admin', $this->id_admin, PDO::PARAM_INT);
+        $request->bindValue(':id', $this->id);
+        return $request->execute();
+    }
+    
 
     /**
      * Méthode qui permet de supprimer un compte utilisateur ainsi que toutes les données lié à celui ci
