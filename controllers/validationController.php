@@ -14,10 +14,10 @@ if (!empty($_GET['id']) && !empty($_GET['key'])) {
     $users->id = $_GET['id'];
     $readUsers = $users->readUsers();
 } else {
-    header('Location:404.php');
+    header('Location:404');
 }
 if ($_GET['key'] != $readUsers->keyMail) {
-    header('Location:404.php');
+    header('Location:404');
 }
 if ($readUsers->actif != 0) {
     $error['confirmed'] = 'Votre compte a déjà était validé';

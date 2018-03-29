@@ -11,41 +11,26 @@ include_once '../include/header.php';
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-3">
-            <h2 class="text-center bold">Administrateur</h2>
-            <ol>
-        <?php  foreach ($readStatus as $listMembers) {
-                    if ($listMembers->id_cuyn_admin == 1) {  ?>
-                <li><a href="profileMembersView.php?id=<?= $listMembers->id ?>"><?= $listMembers->username ?></a></li>
-        <?php  } }  ?>
-            </ol>
-        </div>
-        <div class="col-lg-3">
-            <h2 class="text-center bold">Rédacteur</h2>
-                   <ol>
-        <?php  foreach ($readStatus as $listMembers) {
-                    if ($listMembers->id_cuyn_admin == 2) {  ?>
-                        <li><a href="profileMembersView.php?id=<?= $listMembers->id ?>"><?= $listMembers->username ?></a></li>
-        <?php  } }  ?>
-            </ol>
-        </div>
-        <div class="col-lg-3">
-            <h2 class="text-center bold">Modérateur</h2>
-                   <ol>
-        <?php  foreach ($readStatus as $listMembers) {
-                    if ($listMembers->id_cuyn_admin == 3) {  ?>
-                        <li><a href="profileMembersView.php?id=<?= $listMembers->id ?>"><?= $listMembers->username ?></a></li>
-        <?php  } }  ?>
-            </ol>
-        </div>
-        <div class="col-lg-3">
-            <h2 class="text-center bold">Utilisateur</h2>
-                   <ol>
-        <?php  foreach ($readStatus as $listMembers) {
-                    if ($listMembers->id_cuyn_admin == 4) {  ?>
-                        <li><a href="profileMembersView.php?id=<?= $listMembers->id ?>"><?= $listMembers->username ?></a></li>
-        <?php  } }  ?>
-            </ol>
+        <div class="col-xs-6 col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Pseudo</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Profil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($readStatus as $listMembers) { ?>
+                        <tr>
+                            <td><?= $listMembers->username ?></td>
+                            <td><?= $listMembers->rights ?></td>
+                            <td><a href="profileMembersView.php?id=<?= $listMembers->id ?>"><i class="fas fa-user" title="Voir son profil"></i></a></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>

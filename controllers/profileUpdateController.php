@@ -54,7 +54,9 @@ if (isset($_POST['submitAvatar'])) {
         $formError['badFormat'] = 'Votre image doit être au format : jpg, jpeg, png ou gif';
     }
     /*
-     * On vérifie
+     * On vérifie qu'il n'y a aucune erreur
+     * On appelle la méthode qui nous permet de modifier le champ avatar de la base de données
+     * On l'affiche
      */
     if (count($formError) == 0) {
         $users->updateAvatar();
@@ -63,7 +65,8 @@ if (isset($_POST['submitAvatar'])) {
     }
 }
 /*  MOFICATION DE L'ADRESSE E-MAIL
- *
+ * Si le formulaire à était soumis et que nos champs ne sont pas vide,
+ * on assigne le $_POST dans notre attribut qui ce trouve dans la classe users
  */
 if (isset($_POST['submitMail'])) {
     if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
@@ -76,15 +79,28 @@ if (isset($_POST['submitMail'])) {
         } elseif ($users->mail == $readUsers->mail) {
             $formError['mailSimilar'] = 'Vous essayez de modifier votre propre adresse e-mail qui est déjà enregistrée XD';
         }
+        /*
+         * Si l'adresse e-mail saisie est différent du champ de confirmation,
+         * on affichage un message d'erreur
+         */
         if ($users->mail != $_POST['confirmMail']) {
             $formError['mailDiff'] = 'Les deux adresses e-mail doit-être identiques';
         }
+        /*
+         * Si le format désiré n'est pas respecté,
+         * on affichage un message d'erreur
+         */
         if (!preg_match($regexMail, $users->mail) && !preg_match($regexMail, $_POST['confirmMail'])) {
             $formError['wrongFormat'] = 'L\'adresse e-mail doit-être de ce format : exemple@email.com';
         }
     } else {
         $formError['empty'] = 'Veuillez remplir tous les champs';
     }
+    /*
+     * Si le formulaire ne comporte aucune erreur
+     * et que l'adresse e-mail à bien était modifier
+     * on envoie un e-mail à l'utilisateur confirmant que son adresse e-mail a bien était modifier
+     */
     if (count($formError) == 0) {
         if ($users->updateMail()) {
             $to = $_POST['mail'];
@@ -102,21 +118,28 @@ if (isset($_POST['submitMail'])) {
     }
 }
 /*  MOFICATION DU MOT DE PASSE
- *
+ * On vérifie que le formulaire a bien était soumis
+ * On vérifie que les champs ne sont pas vide
+ * On assigne nos attributs par la saisie de l'utilisateur
  */
 if (isset($_POST['submitPassword'])) {
     if (!empty($_POST['password']) && !empty($_POST['newPassword'])) {
         $users->password = htmlspecialchars($_POST['password']);
         $users->newPassword = htmlspecialchars($_POST['newPassword']);
+        // Si le mot de passe est différent de celui de la confirmation : message d'erreur
         if ($users->newPassword != $_POST['confirmPassword']) {
             $formError['passwordDiff'] = 'Vos deux mots de passe ne sont pas identiques';
         }
+        // On vérifie que le format désiré est bien respecté
         if (!preg_match($regexPassword, $users->newPassword)) {
             $formError['wrongFormatPassword'] = 'Mot de passe : Minimum 11 caractères maximum 255 caractères';
         }
         if (!preg_match($regexPassword, $_POST['confirmPassword'])) {
             $formError['wrongFormatPassword'] = 'Mot de passe : Minimum 11 caractères maximum 255 caractères';
         }
+        /* On vérifie que le mot de passe de l'utilisateur correspond bien avec le mot de passe chiffré de la base de données
+         * Si le mot de passe est correct on assigne notre attribut par le mot de passe qu'on a chiffré grâce à la fonction password_hash
+         */
         if (password_verify($users->password, $readUsers->password)) {
             $users->passwordHash = password_hash($users->newPassword, PASSWORD_BCRYPT);
         } else {
@@ -125,6 +148,11 @@ if (isset($_POST['submitPassword'])) {
     } else {
         $formError['empty'] = 'Veuillez remplir tous les champs';
     }
+    /*
+     * Si le formulaire ne comporte aucune erreur
+     * Et que le mot de passe a bien était modifié
+     * On envoie un e-mail à l'utilisateur confirmant la modification de son mot de passe
+     */
     if (count($formError) == 0) {
         if ($users->updatePassword()) {
             $to = $readUsers->mail;
@@ -136,7 +164,7 @@ if (isset($_POST['submitPassword'])) {
         if (mail($to, $subject, $message, $headers)) {
             $formSuccess['sendPassword'] = 'Votre mot de passe a était changé, un e-mail de confirmation vous à était envoyé à votre adresse e-mail';
         } else {
-            $formError['sendPasswordError'] = 'Un problème est survenu lors de la modification de votre mot de passe, veuillez réessayez ultérieurement';
+            $formError['sendPasswordError'] = 'Un problème est survenu lors de l\'envoi de l\'e-mail, veuillez réessayez ultérieurement';
         }
     }
 }

@@ -15,7 +15,7 @@ $formSuccess = array();
  * On vérifie que le formulaire à bien était soumis
  * On vérifie que nos superglobales $_POST ne sont pas vide et existent
  * On assigne la valeur des $_POST dans les attributs de l'objet users
- * On utilise les fonctions strip_tags ou htmlspecialchars afin de supprimer ou de convertir les balises HTML et PHP
+ * On utilise la fonctions  htmlspecialchars afin de convertir les balises HTML et PHP
  */
 if (isset($_POST['submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['mail']) && !empty($_POST['confirmMail']) && !empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
@@ -24,11 +24,10 @@ if (isset($_POST['submit'])) {
         $users->password = htmlspecialchars($_POST['password']);
         $users->passwordHash = password_hash($users->password, PASSWORD_BCRYPT);
         /*
-         * On vérifie que le pseudo et l'adresse e-mail ne sont pas enregistrés dans la base de donnée
+         * On vérifie que le pseudo et l'adresse e-mail ne sont pas enregistrés dans la base de données
          * On vérifie que les champs qui doivent être identiques le sont
          * On vérifie que le format désiré des données saisies soient respectés
          */
-        // On assigne notre tableau qui contient toute les informations de la table users dans une variable
         $readUsers = $users->readUsers();
         if (!empty($readUsers->username)) {
             $formError['unavailableUsername'] = 'Le pseudo est déjà utilisé';
@@ -75,7 +74,7 @@ if (isset($_POST['submit'])) {
     /*
      * On vérifie que le formulaire ne contient aucune erreur
      * On assigne une chaine de caractère mélangé aléatoirement dans l'attribut de l'objet users
-     * On vérifie que l'utilisateur à était enregistré dans la base de donnée
+     * On vérifie que l'utilisateur à était enregistré dans la base de données
      * Puis on envoie un e-mail de confirmation de compte à l'utilisateur inscrit
      */
     if (count($formError) == 0) {

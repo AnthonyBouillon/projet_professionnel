@@ -29,13 +29,19 @@ include '../include/header.php';
             <tr>
                 <td>
                     <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
-    <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3) { ?>
-                        <form method="POST" action="">
-                            <button type="button" name="updateCategory" class="displayForm formBtn" title="Modifier une catégorie" id="<?= $category->id; ?>"><i class="far fa-edit"></i></button>
-                            <button type="submit" name="submitDelete"  class="formBtn" id="deleteCategory" title="Supprimer une catégorie" onclick="return confirm('La suppression de la catégorie ainsi que tout ce qui est lié à celui-ci est définitive, êtes-vous sûr de vouloir le supprimer ?')"><i class="far fa-trash-alt"></i></button>
-                            <input type="hidden" name="idCategory" value="<?= $category->id ?>" />
-                        </form>
-                    <?php } ?>
+                    <?php
+                    if (!empty($readUsers)) {
+                        if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3) {
+                            ?>
+                            <form method="POST" action="">
+                                <button type="button" name="updateCategory" class="displayForm formBtn" title="Modifier une catégorie" id="<?= $category->id; ?>"><i class="far fa-edit"></i></button>
+                                <button type="submit" name="submitDelete"  class="formBtn" id="deleteCategory" title="Supprimer une catégorie" onclick="return confirm('La suppression de la catégorie ainsi que tout ce qui est lié à celui-ci est définitive, êtes-vous sûr de vouloir le supprimer ?')"><i class="far fa-trash-alt"></i></button>
+                                <input type="hidden" name="idCategory" value="<?= $category->id ?>" />
+                            </form>
+                            <?php
+                        }
+                    }
+                    ?>
                     <div class="divForum well col-lg-6" id="divForum<?= $category->id; ?>">
                         <form method="POST" action="">
                             <input type="text" name="name" class="form-control focusColor" placeholder="Titre de la catégorie" />
@@ -53,28 +59,34 @@ include '../include/header.php';
         </tbody>
     </table>
 
-    <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3 ) { ?>
-        <div class="well col-lg-6">
-            <h2 class="text-center">Ajouter une catégorie</h2>
-            <p class="alert-danger text-center"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>
-            <p class="alert-danger text-center"><?= !empty($formError['badRegexDescription']) ? $formError['badRegexDescription'] : '' ?></p>
-            <p class="alert-danger text-center"><?= !empty($formError['emptyForm']) ? $formError['emptyForm'] : '' ?></p>
-            <p class="alert-success text-center"><?= !empty($formSuccess['createCategory']) ? $formSuccess['createCategory'] : '' ?></p>
-            <form method="POST" action="">
-                <div class="col-lg-12">
-                    <label for="name">Titre</label>
-                    <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre de la catégorie" />
-                </div>
-                <div class="col-lg-12">
-                    <label for="description">Description</label>
-                    <textarea name="description" class="form-control focusColor" id="description" placeholder="Description de la catégorie"></textarea>
-                </div>
-                <div class="col-lg-12">
-                    <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Créer la catégorie"/>
-                </div>
-            </form>
-        </div>
-    <?php } ?>
+    <?php
+    if (!empty($readUsers)) {
+        if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3) {
+            ?>
+            <div class="well col-lg-6">
+                <h2 class="text-center">Ajouter une catégorie</h2>
+                <p class="alert-danger text-center"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>
+                <p class="alert-danger text-center"><?= !empty($formError['badRegexDescription']) ? $formError['badRegexDescription'] : '' ?></p>
+                <p class="alert-danger text-center"><?= !empty($formError['emptyForm']) ? $formError['emptyForm'] : '' ?></p>
+                <p class="alert-success text-center"><?= !empty($formSuccess['createCategory']) ? $formSuccess['createCategory'] : '' ?></p>
+                <form method="POST" action="">
+                    <div class="col-lg-12">
+                        <label for="name">Titre</label>
+                        <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre de la catégorie" />
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control focusColor" id="description" placeholder="Description de la catégorie"></textarea>
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Créer la catégorie"/>
+                    </div>
+                </form>
+            </div>
+            <?php
+        }
+    }
+    ?>
 </div>
 <style>
     .containerForum{

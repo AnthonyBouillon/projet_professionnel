@@ -9,7 +9,6 @@ $title = 'Supprimer mon compte';
 include_once '../include/header.php';
 ?>
 
-<!-- Si il est connecté, affiche le contenu de la page -->
 <div class="container containerNew">
     <?php if (!isset($success)) { ?>
         <div class="page-header">
@@ -37,7 +36,5 @@ include_once '../include/header.php';
         </div>
     <?php } ?>
 </div>
-
-
 <?php
 include_once '../include/footer.php';

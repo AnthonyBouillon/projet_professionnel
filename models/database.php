@@ -5,12 +5,12 @@
  */
 class database {
 
-    // Attribut qui est disponible dans cette classe et tous ceux qui en hérite
+    // Attribut qui est disponible que dans cette classe et tous ceux qui en hérite
     protected $db;
 
     /**
      *  Connexion à la base de données
-     *  function en protected qui ne pourra etre appelé que dans la classe et les classes qui en hérite
+     *  function en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
      *  Si la connexion de marche pas on attrape l'erreur et on l'affiche
      */
     protected function __construct() {
@@ -23,7 +23,7 @@ class database {
 
     /**
      *  Déconnexion de la base de données
-     *  function en protected qui ne pourra etre appelé que dans la classe et les classes qui en hérite
+     *  function en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
      */
     protected function __destruct() {
         $this->db = NULL;

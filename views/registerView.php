@@ -33,8 +33,8 @@ include '../include/header.php';
                 <p class="text-center bold h4"><?= !empty($formError['captcha']) ? $formError['captcha'] : ''; ?></p>
                 <p class="text-center bold h4"><?= !empty($formError['formFail']) ? $formError['formFail'] : ''; ?></p>
             </div>
-        <?php } ?>
-        <?php if (!empty($formSuccess)) { ?>
+        <?php } 
+        if (!empty($formSuccess)) { ?>
             <div class="alert alert-success">
                 <p class="text-center bold h4"><?= !empty($formSuccess['captcha']) ? $formSuccess['captcha'] : ''; ?></p>
                 <p class="text-center bold h4"><?= !empty($formSuccess['registerSuccess']) ? $formSuccess['registerSuccess'] : ''; ?></p>
@@ -78,9 +78,8 @@ include '../include/header.php';
                         <input type="password" name="confirmPassword" class="form-control focusColor showPassword" id="confirmPassword" placeholder="Saisissez à nouveau votre mot de passe" required />
                     </div>
                 </div>
-                <!-- Affiche les mots de passe -->
+                <!-- Affichage des mots de passe -->
                 <div class="form-group fieldBackground">
-                    <!-- Voir les mots de passe -->
                     <label for="checkbox" class="col-xs-10 col-sm-4 control-label">Afficher les mots de passe</label>
                     <div class="col-xs-2 col-sm-1">
                         <input type="checkbox" class="form-control" id="checkbox" />

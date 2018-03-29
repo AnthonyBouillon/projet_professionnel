@@ -11,12 +11,12 @@ if (isset($_SESSION['id'])) {
 } else {
     header('Location:404.php');
 }
-
 $readUsers = $users->readUsers();
-
 /*
  * On vérifie que l'utilisateur à bien soumis le formulaire
  * On appelle la méthode qui supprime son compte
+ * Si la méthode pour supprimer ses informations est executé
+ * Et que son dossier ainsi que ses fichiers existent, on les supprimes
  * On détruit la session
  * Puis on le redigire sur la page d'inscription
  */

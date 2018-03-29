@@ -31,7 +31,6 @@ include '../include/header.php';
             </div>
         <?php } ?>
         <section class="col-sm-12 col-md-12">
-
             <form method="POST" action="" class="form-horizontal">
                 <!-- Pseudo -->
                 <div class="form-group fieldBackground">

@@ -59,20 +59,28 @@ if (!empty($_SESSION['id'])) {
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="mail">
                     <!-- Affichage des messages d'erreurs et des succès -->
-
-                    <p class="text-center red bold h4"><?= !empty($formError['mailExist']) ? $formError['mailExist'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['badMail']) ? $formError['badMail'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['mailSimilar']) ? $formError['mailSimilar'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['mailNotExist']) ? $formError['mailNotExist'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['unavailableMail']) ? $formError['unavailableMail'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['badNewMail']) ? $formError['badNewMail'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['mailDiff']) ? $formError['mailDiff'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['updateError']) ? $formError['updateError'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['wrongFormat']) ? $formError['wrongFormat'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['sendMailError']) ? $formError['sendMailError'] : ''; ?></p>
-                    <p class="text-center green bold h4"><?= !empty($formSuccess['updateMail']) ? $formSuccess['updateMail'] : ''; ?></p>
-                    <p class="text-center green bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
+                    <?php if (!empty($formError)) { ?>
+                        <div class="alert alert-danger">
+                            <p class="text-center red bold h4"><?= !empty($formError['mailExist']) ? $formError['mailExist'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['badMail']) ? $formError['badMail'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['mailSimilar']) ? $formError['mailSimilar'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['mailNotExist']) ? $formError['mailNotExist'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['unavailableMail']) ? $formError['unavailableMail'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['badNewMail']) ? $formError['badNewMail'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['mailDiff']) ? $formError['mailDiff'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['updateError']) ? $formError['updateError'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['wrongFormat']) ? $formError['wrongFormat'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['sendMailError']) ? $formError['sendMailError'] : ''; ?></p>
+                        </div>
+                    <?php }
+                    if (!empty($formSuccess)) {
+                        ?>
+                        <div class="alert alert-success">
+                            <p class="text-center green bold h4"><?= !empty($formSuccess['updateMail']) ? $formSuccess['updateMail'] : ''; ?></p>
+                            <p class="text-center green bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
+                        </div>
+    <?php } ?>
                     <!-- Formulaire de modification d'adresse e-mail -->
                     <form method="POST" action="" class="form-horizontal"> 
                         <div class="form-group barra">
@@ -96,13 +104,21 @@ if (!empty($_SESSION['id'])) {
                 </div>
                 <div class="tab-pane fade in" id="password">
                     <!-- Affichage des messages d'erreurs et des succès -->
-                    <p class="text-center red bold h4"><?= !empty($formError['passwordDiff']) ? $formError['passwordDiff'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['wrongFormatPassword']) ? $formError['wrongFormatPassword'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['sendPasswordError']) ? $formError['sendPasswordError'] : ''; ?></p>
-                    <p class="text-center red bold h4"><?= !empty($formError['badPassword']) ? $formError['badPassword'] : ''; ?></p>
-                    <p class="text-center green bold h4"><?= !empty($formSuccess['updatePassword']) ? $formSuccess['updatePassword'] : ''; ?></p>
-                    <p class="text-center green bold h4"><?= !empty($formSuccess['sendPassword']) ? $formSuccess['sendPassword'] : ''; ?></p>
+                    <?php if (!empty($formError)) { ?>
+                        <div class="alert alert-danger">
+                            <p class="text-center red bold h4"><?= !empty($formError['passwordDiff']) ? $formError['passwordDiff'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['wrongFormatPassword']) ? $formError['wrongFormatPassword'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['sendPasswordError']) ? $formError['sendPasswordError'] : ''; ?></p>
+                            <p class="text-center red bold h4"><?= !empty($formError['badPassword']) ? $formError['badPassword'] : ''; ?></p>
+                        </div>
+                    <?php }
+                    if (!empty($formSuccess)) { ?>
+                        <div class="alert alert-success">
+                            <p class="text-center green bold h4"><?= !empty($formSuccess['updatePassword']) ? $formSuccess['updatePassword'] : ''; ?></p>
+                            <p class="text-center green bold h4"><?= !empty($formSuccess['sendPassword']) ? $formSuccess['sendPassword'] : ''; ?></p>
+                        </div>
+                    <?php } ?>
                     <form method="POST" action="" class="form-horizontal">
                         <!-- Ancien mot de passe -->
                         <div class="form-group barra">

@@ -45,7 +45,10 @@ class comments extends database {
      *  Ces informations sont récupérer suivant l'id de l'article
      */
     public function readComments() {
-        $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'comments` INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'comments`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` WHERE `' . PREFIXE . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id DESC';
+        $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` '
+                . 'FROM `' . PREFIXE . 'comments` '
+                . 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'comments`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` '
+                . 'WHERE `' . PREFIXE . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id DESC';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();

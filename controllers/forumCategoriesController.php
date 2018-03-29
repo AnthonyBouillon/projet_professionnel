@@ -11,6 +11,7 @@ if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
     $forumCategories->id_user = $_SESSION['id'];
     $users->username = $_SESSION['username'];
+ 
 }
 /*
  * 
@@ -77,7 +78,8 @@ if (isset($_POST['submitUpdate'])) {
  *  
  */
 if (isset($_POST['submitDelete'])) {
-    $forumCategories->id_categories = $_POST['idCategory'];
+    $forumCategories->id_category = $_POST['idCategory'];
+    $forumCategories->id_category;
     $forumCategories->deleteCategories();
     $getCategories = $forumCategories->readCategories();
     $formSuccess['deleteCategory'] = 'La catégorie à bien était supprimé';

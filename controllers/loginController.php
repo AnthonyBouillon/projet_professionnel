@@ -12,12 +12,12 @@ $formSuccess = array();
  * On vérifie que le formulaire à bien était soumis
  * On vérifie que nos superglobales $_POST ne sont pas vide et existent
  * On assigne la valeur des $_POST dans les attributs de l'objet users
- * On utilise les fonctions strip_tags ou htmlspecialchars afin de supprimer ou de convertir les balises HTML et PHP
+ * On utilise la fonction htmlspecialchars afin de convertir les balises HTML et PHP
  * On assigne notre tableau qui contient toute les informations de la table users dans une variable
  */
 if (isset($_POST['submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        $users->username = strip_tags($_POST['username']);
+        $users->username = htmlspecialchars($_POST['username']);
         $users->password = htmlspecialchars($_POST['password']);
         $readUsers = $users->readUsers();
         /*

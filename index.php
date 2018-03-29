@@ -76,7 +76,7 @@ include_once 'controllers/homeController.php';
                     <section class="blocPresent">
                         <h2 class="text-center titlePresentation2 white" id="flip2" data-toggle="popover" data-trigger="hover" data-content="Pour afficher ou faire disparaitre le texte, clique sur le titre :)" data-placement="top">Que puis-je faire sur le site ?</h2>
                         <div class="col-lg-12 well well-info panel" id="panel2">
-                            <p class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamiatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>     
                     </section>
                 </div>
