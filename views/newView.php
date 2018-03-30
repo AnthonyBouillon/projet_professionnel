@@ -14,7 +14,7 @@ include '../models/comments.php';
 include '../controllers/newController.php';
 $classBody = 'newsBackground';
 $title = 'Actualité';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container containerNewsAll margin containerNews">
     
@@ -105,4 +105,4 @@ include '../include/header.php';
     </div>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

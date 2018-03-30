@@ -136,3 +136,5 @@ $("#sendMessage").click(function (e) {
 setInterval(function () {
     $('#receiveMessage').load('views/chat.php').fadeIn("slow");
 }, 0);
+
+$("#receiveMessage").scrollBottom();

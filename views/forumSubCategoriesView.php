@@ -7,7 +7,7 @@ include '../models/forumSubCategories.php';
 include '../controllers/forumSubCategoriesController.php';
 $classBody = NULL;
 $title = 'Forum sous-catégories';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container containerForum">
     <p><a href="../Catégorie-du-forum">Revenir à la liste des catégories</a></p>
@@ -74,5 +74,5 @@ include '../include/header.php';
     }
 </style>
 <?php
-include '../include/footer.php';
+include 'footer.php';
 

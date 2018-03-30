@@ -6,7 +6,7 @@ include '../models/users.php';
 include '../controllers/profileController.php';
 $classBody = 'backgroundProfile';
 $title = 'Mon profil';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container profileView">
     <div class="row">
@@ -30,4 +30,4 @@ include '../include/header.php';
     </div>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

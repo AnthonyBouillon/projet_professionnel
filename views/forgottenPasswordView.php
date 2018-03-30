@@ -6,7 +6,7 @@ include '../models/users.php';
 include '../controllers/forgottenPasswordController.php';
 $classBody = NULL;
 $title = 'Mot de passe oublié ?';
-include '../include/header.php';
+include 'header.php';
 ?>
 
 <div class="container-fluid containerNew">
@@ -38,4 +38,4 @@ include '../include/header.php';
 </div>
 
 <?php
-include '../include/footer.php';
+include 'footer.php';

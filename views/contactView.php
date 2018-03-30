@@ -8,7 +8,7 @@ include_once '../controllers/contactController.php';
 $classBody = 'contactBackground';
 // Assigne un titre à la balise title
 $title = 'Formulaire de contact';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container-fluid containerContact">
     <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6 formContactBackground">
@@ -79,4 +79,4 @@ include '../include/header.php';
     </div>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

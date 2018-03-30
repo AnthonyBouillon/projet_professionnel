@@ -54,7 +54,7 @@ if (isset($_POST['submitCreate'])) {
  *  
  */
 if (isset($_POST['submitUpdate'])) {
-    $forumCategories->id_categories = $_POST['idCategory'];
+    $forumCategories->id_category = $_POST['idCategory'];
     $forumCategories->name = htmlspecialchars($_POST['name']);
     $forumCategories->description = htmlspecialchars($_POST['description']);
     if (!empty($forumCategories->name) && !empty($forumCategories->description)) {

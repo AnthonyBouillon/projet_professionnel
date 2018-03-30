@@ -10,7 +10,7 @@ if (isset($_SESSION['id'])) {
 }
 $title = 'Error 500';
 $classBody = NULL;
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="jumbotron errorBloc">  
     <div class="col-xs-offset-0 col-xs-6 col-sm-offset-2 col-sm-4 col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-3">
@@ -24,4 +24,4 @@ include '../include/header.php';
         <span class="bold">Si cette page s'affiche fréquemment ou plutôt qu'il ne s'affiche pas comme il le devrait :</span> veuillez m'en faire part via ce <a href="Contact">formulaire de contact</a>.</p>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

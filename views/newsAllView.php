@@ -7,13 +7,14 @@ include_once '../models/news.php';
 include_once '../controllers/newsAllController.php';
 $classBody = 'newsBackground';
 $title = 'Actualités';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container">
     <?php if (!empty($checkArticle)) { ?>
         <!-- Titre de la page -->
         <div class="row test margin">
             <h2 class="text-center white">Toutes les actualités</h2>
+            <a href="../admin/newsWritingView.php">Ajouter un article</a>
         </div>
         <!-- Affiche tous les articles -->
         <?php foreach ($checkArticle as $articles) { ?>
@@ -62,4 +63,4 @@ include '../include/header.php';
     <!-- /div container-fluid -->
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

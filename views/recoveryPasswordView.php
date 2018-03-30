@@ -13,7 +13,7 @@ include '../models/users.php';
 include '../controllers/recoveryPasswordController.php';
 $classBody = NULL;
 $title = 'Initialisation du mot de passe';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container-fluid containerNew">
     <div class="col-lg-offset-3 col-lg-6 formBackground">
@@ -57,4 +57,4 @@ include '../include/header.php';
     </div>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

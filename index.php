@@ -90,7 +90,7 @@ include_once 'controllers/homeController.php';
                                 <p class="text-center red bold h4"><?= !empty($formError['emptyMessage']) ? $formError['emptyMessage'] : ''; ?></p>
                             </div>
                         <?php } ?>
-                        <h2 class="text-center titleChat white">Tchat tout publique</h2>
+                        <h2 class="text-center titleChat white">Tchat tout public</h2>
                         <p class="text-center h4 black"></p>
                         <p class="text-center h4 red"></p>
                         <!-- Tchat -->

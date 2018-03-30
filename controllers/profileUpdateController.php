@@ -61,7 +61,7 @@ if (isset($_POST['submitAvatar'])) {
         $formSuccess['avatarUpdate'] = 'Votre image de profil à était modifié avec succès';
     }
 }
-/*  MOFICATION DE L'ADRESSE E-MAIL
+/*  MODIFICATION DE L'ADRESSE E-MAIL
  * Si le formulaire est soumis
  * et que les deux champs ne sont pas vide
  */
@@ -123,7 +123,7 @@ if (isset($_POST['submitMail'])) {
         }
     }
 }
-/*  MOFICATION DU MOT DE PASSE
+/*  MODIFICATION DU MOT DE PASSE
  * On vérifie que le formulaire a bien était soumis,
  * que les deux champs ne sont pas vide,
  */

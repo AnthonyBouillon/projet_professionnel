@@ -7,7 +7,7 @@ include '../models/forumTopics.php';
 include '../controllers/forumTopicsController.php';
 $classBody = NULL;
 $title = 'Forum des sujets';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container-fluid containerForum">
     <p><a href="forumSubCategoriesView.php">Revenir à la liste des sous-catégories</a></p>
@@ -23,11 +23,11 @@ include '../include/header.php';
 
         </thead> 
         <tbody> 
-            <?php foreach ($getTopics as $topics) { ?>
+             <?php foreach ($readTopics as $topics) { ?>
                 <tr> 
-                    <td><a href="forumPostView.php" title="direction réponses du sujet"><?= $topics->name ?></a></td> 
+                    <td><a href="forumPostsView.php?id=<?= $topics->id ?>"><?= $topics->name ?></a></td>  
                     <td></td> 
-                    <td></td> 
+                    <td></td>
                 </tr> 
             <?php } ?> 
         </tbody> 
@@ -49,5 +49,5 @@ include '../include/header.php';
     }
 </style>
 <?php
-include '../include/footer.php';
+include 'footer.php';
 

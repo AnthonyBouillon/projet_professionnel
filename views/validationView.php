@@ -9,7 +9,7 @@ include '../controllers/validationController.php';
 $classBody = NULL;
 // Attribut un titre à la balise title
 $title = 'Activation du compte';
-include '../include/header.php';
+include 'header.php';
 if (empty($error['confirmed'])) {
     header('refresh:5;url=loginView.php');
 }
@@ -30,4 +30,4 @@ if (empty($error['confirmed'])) {
     <?php } ?>
 </div>
 <?php
-include '../include/footer.php';
+include_once 'footer.php';

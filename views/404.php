@@ -11,7 +11,7 @@ if (isset($_SESSION['id'])) {
 }
 $title = 'Error 404';
 $classBody = NULL;
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container-fluid container404">
     <div class="jumbotron errorBloc">  
@@ -27,4 +27,4 @@ include '../include/header.php';
     </div>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

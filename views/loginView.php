@@ -9,7 +9,7 @@ include '../controllers/loginController.php';
 $classBody = 'loginBackground';
 // Attribut un titre à la balise title
 $title = 'Connexion';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container containerLogin">
     <div class="col-lg-12 formBackground">
@@ -65,4 +65,4 @@ include '../include/header.php';
     </div>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

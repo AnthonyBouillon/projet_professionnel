@@ -247,7 +247,7 @@ html, body {
     background-size: cover;
 }
 /* ------------------------------------ CLASSE BASIQUE -----------------------------*/
-.control-label {
+.form-horizontal .control-label {
     text-align: left;
 }
 .formBtn {

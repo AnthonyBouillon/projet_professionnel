@@ -11,7 +11,7 @@ if (isset($_SESSION['id'])) {
 }
 $title = 'Error 403';
 $classBody = NULL;
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="jumbotron errorBloc">  
     <div class="col-xs-offset-0 col-xs-6 col-sm-offset-2 col-sm-4 col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-3">
@@ -25,4 +25,4 @@ include '../include/header.php';
     <p class="text-center errorParagraph col-xs-12 col-sm-12 col-md-12 col-lg-offset-3 col-lg-6">Il est inutile que vous essayez d'y revenir ça n'y changera rien, Gandalf vous y empechera<br/>Vous pouvez tout de même continuer votre navigation grâce au menu.<br/></p>
 </div>
 <?php
-include '../include/footer.php';
+include 'footer.php';

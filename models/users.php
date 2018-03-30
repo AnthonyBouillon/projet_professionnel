@@ -81,7 +81,7 @@ class users extends database {
     }
 
     public function readStatus() {
-        $query = 'SELECT `' . PREFIXE . 'users`.`id` AS id_user, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` AS id_admin FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id` WHERE `' . PREFIXE . 'users`.`id` != 6';
+        $query = 'SELECT `' . PREFIXE . 'users`.`id` AS id_user, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` AS id_admin FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id` WHERE  `' . PREFIXE . 'admin`.`id` != 5 ORDER BY `' . PREFIXE . 'users`.`username` ASC';
         $request = $this->db->query($query);
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
@@ -140,8 +140,8 @@ class users extends database {
     public function updateAvatar() {
         $query = 'UPDATE `' . PREFIXE . 'users` SET `avatar` = :avatar WHERE `id` = :id';
         $request = $this->db->prepare($query);
-        $request->bindValue(':avatar', $this->id . '.' . $this->extension);
-        $request->bindValue(':id', $this->id);
+        $request->bindValue(':avatar', $this->id . '.' . $this->extension, PDO::PARAM_STR);
+        $request->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $request->execute();
     }
     
@@ -166,55 +166,56 @@ class users extends database {
     public function deleteUsers() {
         try {
             $this->db->beginTransaction();
-            // FORUM RÉPONSES
+            //  Requête qui permet de supprimer les posts du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // FORUM TOPICS
+             //  Requête qui permet de supprimer les topics du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // FORUM SOUS CATEGORIE
-            $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE `id_cuyn_forumCategories` = :id_cuyn_forumCategories';
+             //  Requête qui permet de supprimer les sous-catégories du forum lié à l'utilisateur
+            $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
-            $request->bindValue(':id_cuyn_forumCategories', $this->id, PDO::PARAM_INT);
+            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // FORUM CATEGORIE
+             //  Requête qui permet de supprimer les catégories du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumCategories` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // COMMENTAIRES
+            //  Requête qui permet de supprimer les commentaires du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'comments` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // ARTICLES
+           //  Requête qui permet de supprimer les articles de la page actualités lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'news` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // TCHAT
+             //  Requête qui permet de supprimer les messages du tchat lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'chat` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // UTILISATEUR
+             //  Requête qui permet de supprimer les  données personnel lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'users` WHERE `id`= :id';
             $request = $this->db->prepare($query);
             $request->bindValue(':id', $this->id, PDO::PARAM_INT);
             $request->execute();
-            // Valide la transaction
+             // Valide la transaction
             $this->db->commit();
             $reponseDelete = true;
         } catch (Exception $ex) {
             $reponseDelete = false;
-            // Annule la transaction
+            // Annule la transaction et reviens en arrière
             $this->db->rollBack;
             echo "Failed: " . $ex->getMessage();
         }
+        // Retourne vrais ou faux
         return $reponseDelete;
     }
 

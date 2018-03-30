@@ -6,10 +6,10 @@ include_once '../models/users.php';
 include_once '../controllers/profileDeleteController.php';
 $classBody = NULL;
 $title = 'Supprimer mon compte';
-include_once '../include/header.php';
+include_once 'header.php';
 ?>
-
 <div class="container containerNew">
+    <!-- Si le compte n'est pas supprimé, on affiche cette vue -->
     <?php if (!isset($success)) { ?>
         <div class="page-header">
             <h2 class="text-center" >Vous avez décidé de nous quitter <?= !empty($_SESSION['username']) ? $_SESSION['username'] : ''; ?> ?</h2>
@@ -29,6 +29,7 @@ include_once '../include/header.php';
                 </form> 
             </div>
         </div>
+    <!-- Si le compte est supprimé, on affiche cette vue -->
     <?php } else { ?>
         <div class="alert-success">
             <p class="text-center h4"><?= $success ?></p>
@@ -37,4 +38,4 @@ include_once '../include/header.php';
     <?php } ?>
 </div>
 <?php
-include_once '../include/footer.php';
+include_once 'footer.php';

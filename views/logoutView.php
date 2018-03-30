@@ -9,7 +9,7 @@ header('refresh:5;url=Connexion');
 $classBody = NULL;
 // Assigne un titre à la balise title
 $title = 'Déconnexion';
-include '../include/header.php';
+include 'header.php';
 ?>
     <div class="container containerLogout">
         <div class="page-header">
@@ -24,4 +24,4 @@ include '../include/header.php';
     </div>
 <?php
 session_destroy();
-include '../include/footer.php';
+include 'footer.php';

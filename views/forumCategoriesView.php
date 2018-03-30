@@ -7,7 +7,7 @@ include '../models/forumCategories.php';
 include '../controllers/forumCategoriesController.php';
 $classBody = NULL;
 $title = 'Forum';
-include '../include/header.php';
+include 'header.php';
 ?>
 <div class="container">
     <h2 class="text-center">Bienvenue sur le forum de All Plateform Together</h2><hr/>
@@ -31,7 +31,7 @@ include '../include/header.php';
                     <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
                     <?php
                     if (!empty($readUsers)) {
-                        if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3) {
+                        if ($readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
                             ?>
                             <form method="POST" action="">
                                 <button type="button" name="updateCategory" class="displayForm formBtn" title="Modifier une catégorie" id="<?= $category->id; ?>"><i class="far fa-edit"></i></button>
@@ -61,7 +61,7 @@ include '../include/header.php';
 
     <?php
     if (!empty($readUsers)) {
-        if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3) {
+        if ($readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
             ?>
             <div class="well col-lg-6">
                 <h2 class="text-center">Ajouter une catégorie</h2>
@@ -100,4 +100,4 @@ include '../include/header.php';
     }
 </style>
 <?php
-include '../include/footer.php';
+include 'footer.php';
