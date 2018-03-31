@@ -21,6 +21,9 @@ RewriteRule Modification-de-mon-profil views/profileUpdateView.php [L]
 RewriteRule Supprimer-mon-profil views/profileDeleteView.php [L] 
 RewriteRule Contact views/contactView.php [L] 
 RewriteRule Déconnexion views/logoutView.php [L] 
+RewriteRule Qui_sommes-nous? views/whoAreYouView.php [L] 
+RewriteRule Glossaire views/glossaryView.php [L] 
+RewriteRule Plan_du_site views/siteMapView.php [L] 
 
 
 RewriteRule Sous-catégorie-du-forum views/forumSubCategoriesView.php [L] 

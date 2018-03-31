@@ -13,8 +13,8 @@
             <div class="col-lg-5">
                 <h3>Vous êtes perdu ?</h3>
                 <ul>
-                    <li><a href="glossary">Glossaire</a></li>
-                    <li><a href="sitemap">Plan du site</a></li>
+                    <li><a href="Glossaire">Glossaire</a></li>
+                    <li><a href="Plan_du_site">Plan du site</a></li>
                 </ul>
             </div>
         </div>

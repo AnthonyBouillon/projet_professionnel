@@ -18,10 +18,10 @@ if (isset($_POST['submit'])) {
         $users->mail = $_POST['mail'];
         $readUserss = $users->readUsers();
         if (!isset($readUserss->mail)) {
-            $formError['notExistMail'] = 'L\'email saisie n\'existe pas';
+            $formError['notExistMail'] = 'L\'adresse e-mail saisie n\'existe pas';
         }
     } else {
-        $formError['errorMail'] = 'Veuillez saisir votre e-mail';
+        $formError['errorMail'] = 'Veuillez saisir votre adresse e-mail';
     }
     /*
      * On vérifie que le formulaire ne comporte aucune erreur

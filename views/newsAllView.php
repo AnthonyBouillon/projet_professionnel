@@ -11,27 +11,23 @@ include 'header.php';
 ?>
 <div class="container">
     <?php if (!empty($checkArticle)) { ?>
-        <!-- Titre de la page -->
-        <div class="row test margin">
+        <div class="row margin">
             <h2 class="text-center white">Toutes les actualités</h2>
-            <a href="../admin/newsWritingView.php">Ajouter un article</a>
+                <p class="text-center"><a href="../admin/newsWritingView.php" class="btn btn-success black">Ajouter un article</a></p>
         </div>
-        <!-- Affiche tous les articles -->
         <?php foreach ($checkArticle as $articles) { ?>
             <div class="row">
                 <div class="jumbotron col-lg-offset-3 col-lg-6 newAll">
-                    <p class="col-lg-12"><img src="../news/images/<?=  $articles->picture; ?>" class="img-responsive centerImg"/></p>
+                    <p class="col-lg-12"><img src="../news/images/<?= $articles->picture; ?>" class="img-responsive centerImg"/></p>
                     <div class="col-lg-12">
                         <h2 class="text-center"><?= $articles->plateform; ?> | <?= $articles->title; ?></h2>
                         <p><?= $articles->resume; ?></p>
                         <p><a href="newView.php?id=<?= $articles->id ?>" class="btn btn-info bold">Voir l'article complet</a></p>
                         <p class="datePost h4 bold">Posté le :<?= $articles->date; ?></p>
                         <form method="POST" action="" class="editForm">
-                            <input type="hidden" value="<?= $articles->id ?>" name="id" />
-                            <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 && !empty($_SESSION['id'])) { ?>
+                            <input type="hidden" value="<?= $articles->id ?>" name="id_new" />
                                 <p class="h4"><a href="../admin/newsUpdateView.php?id=<?= $articles->id ?>" class="btn btn-success" >Modifier l'article</a> | 
                                     <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('La suppression de l\'article est définitive, êtes-vous sûr de vouloir le supprimer ?')"> Supprimer l'article</button></p>
-                            <?php } ?>
                         </form>
                     </div>
                 </div>
@@ -42,7 +38,6 @@ include 'header.php';
         ?>
         <h2 class="text-center alert-danger">Cette page ne contient aucun article</h2>
     <?php } ?>
-    <!-- PAGINATION -->
     <div class="row text-center">
         <?php
         for ($i = 1; $i <= $numberOfPages; $i++) {

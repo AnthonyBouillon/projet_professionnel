@@ -8,19 +8,20 @@ include_once '../controllers/contactController.php';
 $classBody = 'contactBackground';
 // Assigne un titre à la balise title
 $title = 'Formulaire de contact';
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container-fluid containerContact">
     <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6 formContactBackground">
         <div class="row">
             <h2 class="formTitle col-sm-12 bold">Contactez nous</h2>
         </div>
-        <!-- Affichage des messages d'erreurs ou de succès-->
+        <!-- Affichage des messages de succès-->
         <?php if (!empty($formSuccess)) { ?>
             <div class="alert alert-success">
                 <p class="text-center bold h4"><?= !empty($formSuccess['sendMail']) ? $formSuccess['sendMail'] : ''; ?></p>
             </div>
         <?php } ?>
+        <!-- Affichage des messages d'erreur-->
         <?php if (!empty($formError)) { ?>
             <div class="alert alert-danger">
                 <p class="text-center bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
@@ -47,7 +48,7 @@ include 'header.php';
                         <input type="email" class="form-control focusColor" name="mail" id="mail" placeholder="Écrivez votre adresse e-mail" required />
                     </div>
                 </div>
-                <!-- Sujet --> 
+                <!-- Sélection des sujets --> 
                 <div class="form-group fieldBackground">
                     <label class="control-label col-lg-4" for="object">Sujet : </label>
                     <div class="col-lg-8">
@@ -61,7 +62,7 @@ include 'header.php';
                         </select>
                     </div>
                 </div>
-                <!-- Message --> 
+                <!-- Textarea message --> 
                 <div class="form-group fieldBackground">
                     <label class="control-label col-lg-4" for="message">Message : </label>
                     <div class="col-lg-8">
@@ -79,4 +80,4 @@ include 'header.php';
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';
