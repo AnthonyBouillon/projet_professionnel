@@ -10,8 +10,8 @@ include_once '../controllers/newsUpdateController.php';
 $classBody = 'newsWritingBackground';
 // Attribut un titre à la balise title
 $title = 'Modification de l\'article';
-include '../include/header.php';
-if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) { 
+include 'header.php';
+
 ?>
 <div class="container-fluid containerProfileUpdate">
     <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6 formContactBackground">
@@ -80,7 +80,5 @@ if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) {
     </div>
 </div>
 <?php
-}else {
-    header('Location: ../404');
-}
-include '../include/footer.php';
+
+include 'footer.php';

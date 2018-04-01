@@ -150,6 +150,9 @@ html, body {
 }
 .newAll{
     border: 5px solid #643C7D;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FFF0D9;
 }
 /* ----------------------------------- FORUM ----------------------------------- */
 .divForum{
@@ -297,6 +300,12 @@ html, body {
     background-color: #012545;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+@media screen and (max-width: 400px) {
+    .formBackground {
+        padding: 0px;
+        margin: 0px;
+    }
 }
 .formRegisterBackground {
     background-color: #012545;

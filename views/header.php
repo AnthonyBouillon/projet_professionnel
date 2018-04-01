@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="../Accueil">ACCUEIL</a></li>
-                        <li><a href="../views/newsAllView.php">ACTUALITÉS</a></li>
+                        <li><a href="../Toutes-les-actualités">ACTUALITÉS</a></li>
                         <li><a href="../Catégorie-du-forum">FORUM</a></li>
                         <li><a href="../webTV">WEB TV</a></li>
                         <li><a href="https://discord.gg/vmXCWd5">DISCORD</a></li>

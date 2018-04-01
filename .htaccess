@@ -24,13 +24,16 @@ RewriteRule Déconnexion views/logoutView.php [L]
 RewriteRule Qui_sommes-nous? views/whoAreYouView.php [L] 
 RewriteRule Glossaire views/glossaryView.php [L] 
 RewriteRule Plan_du_site views/siteMapView.php [L] 
-
+RewriteRule Rédaction_d'article views/newsWritingView.php [L] 
+RewriteRule Modification_d'article views/newsUpdateView.php [L] 
+RewriteRule Actualités views/newsView.php?id=$1 [L] 
 
 RewriteRule Sous-catégorie-du-forum views/forumSubCategoriesView.php [L] 
 RewriteRule Topics-du-forum views/forumTopicsView.php [L] 
 RewriteRule Réponses-du-forum views/forumPostsView.php [L] 
 RewriteRule Validation-du-compte views/validationView.php [L] 
-RewriteRule Toutes-les-actualtés views/newsAllView.php [L] 
+RewriteRule Toutes-les-actualités views/newsAllView.php [L] 
+
 RewriteRule Toutes-les-actualtés/id=([0-9]+) views/newsAllView.php?id=$1 [L] 
 RewriteRule Actualités views/newsView.php [L] 
 RewriteRule Actualités/id=([0-9]+) views/newsView.php?id=$1 [L] 

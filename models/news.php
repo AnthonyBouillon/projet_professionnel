@@ -58,13 +58,14 @@ class news extends database {
     }
 
     /**
-     *  Méthode qui me permet de compter le nombre d'id dans la table qui contient les articles
+     *  Méthode qui me permet de compter le nombre d'article dans la table news
+     * La méthode me retourne directement le nombre total de ligne contenu dans la table news
      */
     public function countNews() {
         $query = 'SELECT COUNT(`id`) AS `numbersArticles` FROM `' . PREFIXE . 'news`';
         $request = $this->db->prepare($query);
         $request->execute();
-        return $request->fetch(PDO::FETCH_OBJ);
+        return $request->fetch(PDO::FETCH_OBJ)->numbersArticles;
     }
 
     /**

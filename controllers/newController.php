@@ -23,10 +23,7 @@ $error = array();
 $success = array();
 $regexComment = '#[\w\W]#';
 
-// Si il n'y a pas d'article : page 404
-if (empty($readArticles)) {
-    header('Location: 404.php');
-}
+
 /* * * * CREATION D'UN COMMENTAIRE * * * *
  * On vérifie que le formulaire à bien était soumis
  * Si il n'est pas connecté : message d'erreur
