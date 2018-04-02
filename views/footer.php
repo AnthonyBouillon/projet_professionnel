@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <!--  Information -->
-            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-5">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-5">
                 <h3>Information</h3>
                 <ul>
                     <li><a href="Qui_sommes-nous?">Qui sommes-nous ?</a></li>
@@ -10,7 +10,7 @@
                 </ul>
             </div>
             <!-- Vous êtes perdu ? -->
-            <div class="col-lg-5">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-5">
                 <h3>Vous êtes perdu ?</h3>
                 <ul>
                     <li><a href="Glossaire">Glossaire</a></li>

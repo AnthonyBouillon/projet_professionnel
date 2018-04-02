@@ -24,7 +24,7 @@ class news extends database {
     public $resume = '';
     public $content = '';
     public $picture = '';
-    public $extension = '';
+
 
     /**
      * Ajout des attributs pour la pagination
@@ -145,7 +145,7 @@ class news extends database {
         $query = 'UPDATE `' . PREFIXE . 'news` SET `picture`=:picture WHERE id = :id_news';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_news', $this->id_new, PDO::PARAM_INT);
-        $request->bindValue(':picture', $this->id_user . '.' . $this->extension, PDO::PARAM_STR);
+        $request->bindValue(':picture', $this->picture, PDO::PARAM_STR);
         return $request->execute();
     }
 
