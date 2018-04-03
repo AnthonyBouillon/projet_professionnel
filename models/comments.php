@@ -26,7 +26,8 @@ class comments extends database {
     }
 
     /**
-     *  Méthode qui permet d'insérer un commentaire lié à l'utilisateur qui est lié à l'article
+     *  Méthode qui permet d'insérer un commentaire lié à l'utilisateur et à l'article
+     *  La requête a besoin pour fonctionner : L'id de l'utilisateur et l'id de l'article ainsi que la saisie du commentaire
      */
     public function createComments() {
         $query = 'INSERT INTO `' . PREFIXE . 'comments`(`comment`, `id_cuyn_users`, `id_cuyn_news`) VALUES (:comment, :id_cuyn_users, :id_cuyn_news)';

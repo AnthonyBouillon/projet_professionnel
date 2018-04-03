@@ -31,12 +31,12 @@ include_once 'header.php';
         <div class="col-lg-12 formBackground">
             <h2 class="text-center white"><label for="comment" >Ajouter un commentaire</label></h2>
             <!-- Affichage des messages d'erreurs -->
-            <?php if (!empty($error['empty']) || !empty($error['notInsertComment']) || !empty($error['logout']) || !empty($error['commentBadRegex'])) { ?>
+            <?php if (!empty($error)) { ?>
                 <div class="alert-danger">
-                    <p class="text-center bold  h4"><?= $error['empty'] ?></p>
-                    <p class="text-center bold h4"><?= $error['notInsertComment'] ?></p>
-                    <p class="text-center bold h4"><?= $error['logout'] ?></p>
-                    <p class="text-center bold h4"><?= $error['commentBadRegex'] ?></p>
+                    <p class="text-center bold  h4"><?= !empty($error['empty']) ? $error['empty'] : '' ?></p>
+                    <p class="text-center bold  h4"><?= !empty($error['notInsertComment']) ? $error['notInsertComment'] : '' ?></p>
+                    <p class="text-center bold  h4"><?= !empty($error['logout']) ? $error['logout'] : '' ?></p>
+                    <p class="text-center bold  h4"><?= !empty($error['commentBadRegex']) ? $error['commentBadRegex'] : '' ?></p>
                 </div>
             <?php } ?>
             <!-- Affichage des messages de succès -->
@@ -60,9 +60,17 @@ include_once 'header.php';
             <!-- Affichage des nombres total de commentaires -->
             <p class="purple">Nombre de commentaires : <span class="bold"><?= $countComments ?>  </p>
             <!-- Affichage des messages de succès de suppresion de commentaire -->
-            <?php if (!empty($success['deleteComment'])) { ?>
+            <?php if (!empty($success)) { ?>
                 <div class="text-center alert-success">
-                    <p class="text-center  h4"><?= $success['deleteComment'] ?></p>
+                    <p class="text-center bold h4"><?= !empty($success['updateComment']) ? $success['updateComment'] : '' ?></p>
+                    <p class="text-center bold h4"><?= !empty($success['deleteComment']) ? $success['deleteComment'] : '' ?></p>
+                </div>
+            <?php } ?>
+            <!-- Affichage des message d'erreur -->
+            <?php if (!empty($error)) { ?>
+                <div class="text-center alert-danger">
+                    <p class="text-center bold h4"><?= !empty($error['emptyComment']) ? $success['emptyComment'] : '' ?></p>
+                    <p class="text-center bold h4"><?= !empty($error['!regexUpdate']) ? $success['!regexUpdate'] : '' ?></p>
                 </div>
             <?php } ?>
             <!-- Nous parcourons un tableau afin d'afficher toutes les informations de l'utilisateur et de son commentaire -->
@@ -76,41 +84,24 @@ include_once 'header.php';
                     <p class="datePost h4">Commenté le : <span class="bold"><?= $comments->date; ?></span></p>
                     <!-- Si l'utilisateur est connecté et que l'id de la session correspond avec celui de la base de données, on affiche -->
                     <?php if (!empty($_SESSION['id']) && $_SESSION['id'] == $comments->id_cuyn_users) { ?>  
-                    <!-- Bouton qui permet d'afficher le formulaire de modification de commentaire -->
-                        <button class="col-lg-1 editBtn" idComment="<?= $comments->id ?>" title="Editer mon commentaire"><i class="far fa-edit"></i></button>    
-                        <!-- Formulaire de modification du commentaire -->
-                        <form method="POST" action="" class="editForm">
+                        <!-- Formulaire de modification et de suppresion du commentaire -->
+                        <form method="POST" action="" class="editForm"> 
                             <!-- On affiche l'id du commentaire pour le récupérer -->
                             <input type="hidden" value="<?= $comments->id ?>"  name="idComment"/>
+                            <!-- Bouton qui permet d'afficher le formulaire de modification de commentaire -->
+                            <button type="button" class="col-lg-1 editBtn btn btn-primary" idComment="<?= $comments->id ?>" title="Editer mon commentaire"><i class="far fa-edit"></i></button> 
                             <!-- Bouton qui permet de supprimer un commentaire -->
-                            <button type="submit" name="deleteBtn" class="col-lg-1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre commentaire ?')"  title="Supprimer mon commentaire"><i class="fas fa-trash-alt" ></i></button>
+                            <button type="submit" name="deleteBtn" class="col-lg-1 btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre commentaire ?')"  title="Supprimer mon commentaire"><i class="fas fa-trash-alt" ></i></button><br/><br/>
+                            <div id="divUpdate<?= $comments->id; ?>" class="divUpdate">   
+                                <textarea name="commentUpdate"  class="form-control focusColor" rows="4" placeholder="Ecrivez ici pour modifier votre commentaire..."></textarea>
+                                <button type="submit" name="edit" class="btn btn-block center-block formBtn">Valider</button>
+                            </div>
                         </form>
-                    <?php } ?><br/><br/>
-                    <form method="POST" action="" class="editForm">
-                        <!-- Formulaire de modification du commentaires -->
-                        <input type="hidden" value="<?= $comments->id ?>"  name="idComment"/>
-                        <div id="divUpdate<?= $comments->id; ?>" class="divUpdate">   
-                            <textarea name="commentUpdate"  class="form-control focusColor" rows="4" placeholder="Ecrivez ici pour modifier votre commentaire..."></textarea>
-                            <button type="submit" name="edit" class="btn btn-block center-block formBtn">Valider</button>
-                        </div>
-                        <!-- Affichage des message d'erreur -->
-                        <?php if (!empty($error['emptyComment']) || !empty($error['!regexUpdate']) || !empty($error['!regexUpdate'])) { ?>
-                            <div class="text-center alert-danger">
-                                <p class="text-center bold h4"><?= $error['emptyComment'] ?></p>
-                                <p class="text-center bold h4"><?= $error['!regexUpdate'] ?></p>
-                                <p class="text-center bold h4"><?= $error['!updateComment'] ?></p>
-                            </div>
-                        <?php } ?>
-                        <!-- Affichage des messages de succès -->
-                        <?php if (!empty($success['updateComment'])) { ?>
-                            <div class="text-center alert-success">
-                                <p class="text-center bold h4"><?= $success['updateComment'] ?></p>
-                            </div>
-                        <?php } ?>
-                    </form>
+                    <?php } ?>
                 </div>     
             <?php } ?>
         </div>
+        <!-- Si l'article n'existe pas, on affiche un message différent -->
     <?php } else { ?>
         <h2 class="text-center alert-danger margin">L'article que vous essayez de voir n'existe pas</h2>
     <?php } ?>
