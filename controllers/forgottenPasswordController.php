@@ -1,35 +1,39 @@
 <?php
+
 /*
  * On instancie l'objet users
- * On assigne un tableau vide dans une variable qui servira à créer nos messages d'erreurs
+ * puis on assigne un tableau vide dans une variable afin de personnalisé nos messages 
  */
 $users = new users();
 $formError = array();
 $formSuccess = array();
+
+// Si l'utilisateur est connecté, on le redigire vers la page d'accueil
+if(isset($_SESSION['id'])){
+    header('Location: Accueil');
+}
 /*
- * On vérifie que le formulaire à bien était soumis
- * On vérifie que le champ n'est pas vide
- * On assigne la valeur du $_POST dans l'attribut de l'objet users
- * On assigne notre tableau qui contient toute les informations de la table users dans une variable
- * On vérifie que l'adresse e-mail existe
+ * Si le formulaire est soumis,
+ * on vérifie que le champ n'est pas vide et existe,
+ * puis on assigne la saisie du champ dans notre attribut en utilisant htmlspecialchars pour convertir nos entités en HTML
+ * et on vérifie si l'adresse e-mail saisie existe ou non dans la base de données
  */
 if (isset($_POST['submit'])) {
     if (!empty($_POST['mail'])) {
-        $users->mail = $_POST['mail'];
+        $users->mail = htmlspecialchars($_POST['mail']);
         $readUsers = $users->readUsers();
-        if (!isset($readUserss->mail)) {
+        if (!isset($readUsers->mail)) {
             $formError['notExistMail'] = 'L\'adresse e-mail saisie n\'existe pas';
         }
     } else {
         $formError['errorMail'] = 'Veuillez saisir votre adresse e-mail';
     }
     /*
-     * On vérifie que le formulaire ne comporte aucune erreur
-     * On vérifie que l'adresse e-mail saisie correspond avec celui trouvé dans la base de donnée
-     * Puis on envoie un e-mail avec l'id de l'adresse e-mail et la meme clé que celui qui à était créé pour l'inscription
+     * Si le formulaire ne comporte aucune erreur,
+     * on désigne le destinataire de l'e-mail
+     * puis le contenu du message avec le lien qui redirigera l'utilisateur vers le nouveau formulaire
      */
     if (count($formError) == 0) {
-        if ($users->mail == $readUsers->mail) {
             $to = $users->mail;
             $subject = 'APT récupération du compte';
             $message = 'Bienvenue sur All Plateform Together,' . "\r\n\r\n";
@@ -39,13 +43,12 @@ if (isset($_POST['submit'])) {
             $message .= '--------------------------------------------------' . "\r\n\r\n\r\n";
             $message .= 'Cordialement le responsable du site';
             $headers = 'De : ' . $users->mail;
-            // On vérifie que l'e-mail a était envoyez
+            // Si l'e-mail est envoyé, message de confirmation, sinon message d'erreur
             if (mail($to, $subject, $message, $headers)) {
-                $formSuccess['sendMail'] = 'Un e-mail a était envoyez à votre adresse e-mail';
+                $formSuccess['sendMail'] = 'Un e-mail a était envoyez à votre adresse e-mail, vous pouvez dès à présent quitter cette page';
             } else {
                 $formError['failMail'] = 'Un problème est survenu lors de la tentative d\'envoi de l\'e-mail, veuillez réessayez ultérieurement';
             }
-        }
     }
 }
 

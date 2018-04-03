@@ -301,7 +301,6 @@ html, body {
 /* ----------------------------- MISE EN FORME DES FORMULAIRES ----------------- */
 .formBackground {
     background-color: #012545;
-    margin-top: 5%;
     margin-bottom: 5%;
 }
 @media screen and (max-width: 400px) {
@@ -374,6 +373,9 @@ html, body {
 }
 .containerForgetPassword{
     margin-top: 5%;
+}
+.containerRecovery{
+    margin-top: 7%;
 }
 /* -------------------------------- AVATAR ---------------------------------- */
 .avatar {

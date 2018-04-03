@@ -1,9 +1,9 @@
 <?php
 /*
  * On démarre la session
- * On inclut le model et le controller correspondant
+ * On inclut les models et le controller correspondant
  * On assigne null à notre classe qui ce trouve dans le body
- * On assigne un titre dans une variale qui ce trouve dans la balise title du header
+ * On assigne un titre dans une variable qui ce trouve dans la balise title du header
  * On inclut notre header
  */
 session_start();
@@ -15,24 +15,34 @@ $classBody = NULL;
 $title = 'Initialisation du mot de passe';
 include 'header.php';
 ?>
-<div class="container-fluid containerNew">
+<div class="container-fluid containerRecovery">
     <div class="col-lg-offset-3 col-lg-6 formBackground">
         <h2 class="formTitle bold col-sm-12">Formulaire de récupération du compte</h2>
-        <!-- Affichent les messages d'erreurs du formulaire -->
-        <p class="text-center white bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['notPassSimilar']) ? $formError['notPassSimilar'] : ''; ?></p>
-        <p class="text-center yellow bold h4"><?= !empty($formError['badRegex']) ? $formError['badRegex'] : ''; ?></p>
-        <p class="text-center green bold h4"><?= !empty($formSuccess['updatePass']) ? $formSuccess['updatePass'] : ''; ?></p>
-        <section class="col-md-12">
+        <!-- Affichage des messages d'erreurs -->
+        <?php if (!empty($formError)) { ?>
+            <div class="alert-danger">
+                <p class="text-center bold h4"><?= !empty($formError['empty']) ? $formError['empty'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['notPassSimilar']) ? $formError['notPassSimilar'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['badRegex']) ? $formError['badRegex'] : ''; ?></p>
+                <p class="text-center bold h4"><?= !empty($formError['failMail']) ? $formError['failMail'] : ''; ?></p>
+            </div>
+        <?php } ?>
+        <!-- Affichage des messages de succès -->
+        <?php if (!empty($formSuccess)) { ?>
+            <div class="alert-success">
+                <p class="text-center bold h4"><?= !empty($formSuccess['updatePass']) ? $formSuccess['updatePass'] : ''; ?></p>
+            </div>
+        <?php } ?>
+        <div class="col-md-12">
             <form method="POST" action="" class="form-horizontal">
-                <!-- Mot de passe -->
+                <!-- Nouveau mot de passe -->
                 <div class="form-group fieldBackground">
                     <label for="password" class="col-sm-4 control-label">Nouveau mot de passe : </label>
                     <div class="col-sm-8">
-                        <input type="password" name="password" class="form-control focusColor showPassword" id="password" placeholder="Saisissez votre mot de passe" required />
+                        <input type="password" name="password" class="form-control focusColor showPassword" id="password" placeholder="Saisissez votre nouveau  mot de passe" required />
                     </div>
                 </div>
-                <!-- Comfirmation mot de passe -->
+                <!-- Confirmation du mot de passe -->
                 <div class="form-group fieldBackground">
                     <label for="confirmPassword" class="col-sm-4 control-label">Confirmer mot de passe : </label>
                     <div class="col-sm-8">
@@ -40,20 +50,20 @@ include 'header.php';
                     </div>
                 </div>
                 <div class="form-group fieldBackground">
-                    <!-- Voir les mots de passe -->
+                    <!-- Afficher les mots de passe -->
                     <label for="checkbox" class="col-xs-10 col-sm-4 control-label">Afficher les mots de passe : </label>
                     <div class="col-xs-2 col-sm-1">
                         <input type="checkbox" class="form-control" id="checkbox" />
                     </div>
                 </div>
-                <!-- Valider -->
+                <!-- Valider le nouveau mot de passe du compte utilisateur -->
                 <div class="form-group fieldBackground">
                     <div class="col-md-12">
-                        <button type="submit" name="submit" class="btn btn-block formBtn">Envoyez moi un e-mail</button>
+                        <button type="submit" name="submit" class="btn btn-block formBtn">Valider</button>
                     </div>
                 </div>
             </form>
-        </section>
+        </div>
     </div>
 </div>
 <?php

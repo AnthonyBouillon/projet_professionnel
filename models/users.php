@@ -71,7 +71,9 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
-
+    /**
+     * À SUPPRIMER ?
+     */
     public function readProfile() {
         $query = 'SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date, `id_cuyn_admin` FROM `' . PREFIXE . 'users` WHERE `id` = :id';
         $request = $this->db->prepare($query);
@@ -80,12 +82,23 @@ class users extends database {
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function readStatus() {
-        $query = 'SELECT `' . PREFIXE . 'users`.`id` AS id_user, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` AS id_admin FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id` WHERE  `' . PREFIXE . 'admin`.`id` != 5 ORDER BY `' . PREFIXE . 'users`.`username` ASC';
-        $request = $this->db->query($query);
+    /**
+     * La requête nous permet de sélectionner l'id, le pseudo, les droits de l'utilisateur ainsi que le nom et l'id des droits dans la table admin
+     * J'ai join les deux table en utilisant INNER JOIN par choix afin qu'il récupère ceux qui correspondent, mais vu que chaque utilisateur a obligatoirement une clé étrangère pour les droits,
+     * LEFT ou RIGHT aurait eu le même effet.
+     * 
+     * Je précise dans la jointure que la clé etrangère de la table users correspond avec celui de l'id de la table admin
+     * La condition de la requête est tout ce qui est différent de l'id_admin 5 ce qui ne m'affichera pas et qui correspond à mes droits et que seul moi peut avoir ce status
+     * Je trie les informations par pseudo en ordre alphabétique afin d'y voir plus clair
+     */
+    public function readStatusByUsers() {
+        $query = 'SELECT `' . PREFIXE . 'users`.`id` AS id_user, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`id_cuyn_admin`, `' . PREFIXE . 'admin`.`rights`, `' . PREFIXE . 'admin`.`id` AS id_admin FROM `' . PREFIXE . 'users` INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'users`.`id_cuyn_admin` = `' . PREFIXE . 'admin`.`id` WHERE  `' . PREFIXE . 'admin`.`id` != 5 ORDER BY `' . PREFIXE . 'users`.`username` ASC';
+        $request = $this->db->prepare($query);
+        $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
-    /*
+
+    /**
      * La requete me permet de vérifier si une adresse e-mail existent dans la base de données
      */
     public function readMail() {
@@ -144,7 +157,7 @@ class users extends database {
         $request->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $request->execute();
     }
-    
+
     public function updateRights() {
         $query = 'UPDATE `' . PREFIXE . 'users` SET `id_cuyn_admin` = :id_cuyn_admin WHERE `id` = :id';
         $request = $this->db->prepare($query);
@@ -152,7 +165,6 @@ class users extends database {
         $request->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $request->execute();
     }
-    
 
     /**
      * Méthode qui permet de supprimer un compte utilisateur ainsi que toutes les données lié à celui ci
@@ -171,17 +183,17 @@ class users extends database {
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-             //  Requête qui permet de supprimer les topics du forum lié à l'utilisateur
+            //  Requête qui permet de supprimer les topics du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-             //  Requête qui permet de supprimer les sous-catégories du forum lié à l'utilisateur
+            //  Requête qui permet de supprimer les sous-catégories du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-             //  Requête qui permet de supprimer les catégories du forum lié à l'utilisateur
+            //  Requête qui permet de supprimer les catégories du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumCategories` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
@@ -191,22 +203,22 @@ class users extends database {
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-           //  Requête qui permet de supprimer les articles de la page actualités lié à l'utilisateur
+            //  Requête qui permet de supprimer les articles de la page actualités lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'news` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-             //  Requête qui permet de supprimer les messages du tchat lié à l'utilisateur
+            //  Requête qui permet de supprimer les messages du tchat lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'chat` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-             //  Requête qui permet de supprimer les  données personnel lié à l'utilisateur
+            //  Requête qui permet de supprimer les  données personnel lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'users` WHERE `id`= :id';
             $request = $this->db->prepare($query);
             $request->bindValue(':id', $this->id, PDO::PARAM_INT);
             $request->execute();
-             // Valide la transaction
+            // Valide la transaction
             $this->db->commit();
             $reponseDelete = true;
         } catch (Exception $ex) {

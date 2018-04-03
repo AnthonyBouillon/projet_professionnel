@@ -11,6 +11,13 @@ if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
 }
 $readUsers = $users->readUsers();
+/*
+ * Si l'utilisateur n'a pas les droits pour accéder à cette page,
+ * l'erreur 403 apparait
+ */
+if ($readUsers->id_cuyn_admin != 5 && $readUsers->id_cuyn_admin != 2) {
+    header('Location: ../views/403.php');
+}
 // On instancie notre objet news
 $news = new news();
 // On prépare nos regex pour nos champs 
@@ -76,7 +83,7 @@ if (isset($_POST['submitCreate'])) {
             } else {
                 $formError['badFormat'] = 'Votre image doit être au format : jpg, jpeg, png ou gif';
             }
-        }else{
+        } else {
             $formError['emptyPicture'] = 'Veuillez ajouter une image';
         }
     } else {

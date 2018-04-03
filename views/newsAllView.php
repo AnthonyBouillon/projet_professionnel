@@ -14,17 +14,27 @@ include_once 'header.php';
         <!-- Si notre tableau contient des articles, nous affichons cette vue -->
         <?php if (!empty($readArticle)) { ?>
             <h2 class="text-center white">Toutes les actualités</h2>
-            <!-- Lien qui redirige  vers la page d'ajout d'article -->
-            <div class="row">
-                <p class="text-center"><a href="../Rédaction_d'article" class="btn btn-success black">Ajouter un nouvel article</a></p>
-            </div>
+            <!-- Si l'utilisateur a les droits, on affiche un lien qui redirige vers la page d'ajout d'article  -->
+            <?php
+            if (!empty($_SESSION['id'])) {
+                if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {
+                    ?>
+                    <div class="row">
+                        <p class="text-center"><a href="../Rédaction_d'article" class="btn btn-success black">Ajouter un nouvel article</a></p>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
             <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
             <?php if (!empty($error)) { ?>
                 <div class="alert-danger col-lg-offset-3 col-lg-6">
                     <p class="bold text-center"><?= !empty($error['!deleteNew']) ? $error['!deleteNew'] : '' ?></p>
                 </div>
-            <?php  }
-                if (!empty($success)) { ?>
+                <?php
+            }
+            if (!empty($success)) {
+                ?>
                 <div class="alert-success col-lg-offset-3 col-lg-6">
                     <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
                 </div>
@@ -45,12 +55,21 @@ include_once 'header.php';
                         <p><a href="views/newView.php?id=<?= $articles->id ?>" class="btn btn-info bold">Voir l'article complet</a></p>
                         <!-- On affiche la date de la création de l'article -->
                         <p class="datePost h4 bold">Posté le :<?= $articles->date; ?></p>
-                        <form method="POST" action="" class="editForm">
-                            <!-- Ce champ nous permet de récupérer l'id de l'article -->
-                            <input type="hidden" value="<?= $articles->id ?>" name="id_new" />
-                            <!-- Lien redirigeant vers la page qui permet de modifier l'article  et un bouton de type submit qui permet de supprimer l'article-->
-                            <p class="h4"><a href="../Modification_d'article?id=<?= $articles->id ?>" class="btn btn-success" >Modifier l'article</a> | <button type="submit" name="submitDelete" class="btn btn-danger" onclick="return confirm('La suppression de l\'article est définitive, êtes-vous sûr de vouloir le supprimer ?')">Supprimer l'article</button></p>
-                        </form>
+                        <!-- Si l'utilisateur a les droits, on affiche les boutons permettant de modifier et de supprimer un article -->
+                        <?php
+                        if (!empty($_SESSION['id'])) {
+                            if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {
+                                ?>
+                                <form method="POST" action="" class="editForm">
+                                    <!-- Ce champ nous permet de récupérer l'id de l'article -->
+                                    <input type="hidden" value="<?= $articles->id ?>" name="id_new" />
+                                    <!-- Lien redirigeant vers la page qui permet de modifier l'article  et un bouton de type submit qui permet de supprimer l'article-->
+                                    <p class="h4"><a href="../Modification_d'article?id=<?= $articles->id ?>" class="btn btn-success" >Modifier l'article</a> | <button type="submit" name="submitDelete" class="btn btn-danger" onclick="return confirm('La suppression de l\'article est définitive, êtes-vous sûr de vouloir le supprimer ?')">Supprimer l'article</button></p>
+                                </form>
+                                <?php
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -65,7 +84,8 @@ include_once 'header.php';
              * Ce qui fait une pagination complète
              */
             for ($i = 1; $i <= $numberOfPages; $i++) {
-                if ($i == $currentPage) { ?>
+                if ($i == $currentPage) {
+                    ?>
                     <ul class="pagination">
                         <li><a href="../Toutes-les-actualités?id=<?= $i ?> " ><?= $i ?></a></li>
                     </ul>
@@ -82,18 +102,22 @@ include_once 'header.php';
     <?php } else { ?>
         <h2 class="text-center alert-danger">Cette page ne contient aucun article</h2>
         <p class="text-center"><a href="../admin/newsWritingView.php" class="btn btn-success black">Ajouter un article</a></p>
-            <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
-            <?php if (!empty($error)) { ?>
-                <div class="alert-danger col-lg-offset-3 col-lg-6">
-                    <p class="bold text-center"><?= !empty($error['!deleteNew']) ? $error['!deleteNew'] : '' ?></p>
-                </div>
-            <?php  }
-                if (!empty($success)) { ?>
-                <div class="alert-success col-lg-offset-3 col-lg-6">
-                    <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
-                </div>
-            <?php }
-     } ?>
+        <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
+        <?php if (!empty($error)) { ?>
+            <div class="alert-danger col-lg-offset-3 col-lg-6">
+                <p class="bold text-center"><?= !empty($error['!deleteNew']) ? $error['!deleteNew'] : '' ?></p>
+            </div>
+            <?php
+        }
+        if (!empty($success)) {
+            ?>
+            <div class="alert-success col-lg-offset-3 col-lg-6">
+                <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
+            </div>
+            <?php
+        }
+    }
+    ?>
 </div>
 <?php
 include_once 'footer.php';
