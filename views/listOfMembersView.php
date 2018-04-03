@@ -13,7 +13,7 @@ include_once 'header.php';
     <h2 class="text-center">Liste des membres</h2><hr/>
     <div class="col-xs-6 col-lg-12">
         <!-- Le tableau pour les utilisateurs sans droit comporte 3 colonnes : Pseudo, status , profil
-         Le tableau pour les utilisateurs étant administrateur ou Master comporte une colonne en plus qui leurs permet de modifier un status d'un utilisateur -->
+         Le tableau pour les utilisateurs étant administrateur ou Master comporte deux colonnes en plus qui leurs permet de modifier un status d'un utilisateur et de le supprimer -->
         <table class="table">
             <thead>
                 <tr>
@@ -25,6 +25,7 @@ include_once 'header.php';
                         if ($readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 5) {
                             ?>
                             <th scope="col">Modifier le status</th>
+                            <th scope="col">Supprimer l'utilisateur</th>
                             <?php
                         }
                     }
@@ -56,19 +57,26 @@ include_once 'header.php';
                                         </select>
                                     </form>
                                 </td>
+                                <td>
+                                    <form method="POST" action="">
+                                         <input type="hidden" name="id_user" value="<?= $listMembers->id_user; ?>" />
+                                        <button type="submit" name="delete" class="btn btn-danger"  onclick="return confirm('La suppression du compte est définitive, êtes-vous sûr de vouloir le supprimer ?')">Supprimer</button>
+                                    </form>
+                                </td>
                                 <?php
                             }
                         }
                         ?>
                         <!-- Nous affichons l'id de chaque utilisateur afin qu'au clique on redirige l'utilisateur vers la page de son profil avec ses informations  -->
-                        <td><a href="profileMembersView.php?id=<?= $listMembers->id_user ?>"><i class="fas fa-user" title="Voir son profil"></i></a></td>
+                        <td><a href="views/profileMembersView.php?id=<?= $listMembers->id_user ?>"><i class="fas fa-user" title="Voir son profil"></i></a></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
         <?php if (!empty($success)) { ?>
             <div class="alert-success col-sm-offset-3 col-sm-6">
-                <p class="text-center h4"><?= $success?></p>
+                <p class="text-center h4"><?= !empty($success['updateStatus']) ? $success['updateStatus'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($success['deleteUsers']) ? $success['deleteUsers'] : '' ?></p>
             </div>
         <?php } ?>
         <?php if (!empty($error)) { ?>

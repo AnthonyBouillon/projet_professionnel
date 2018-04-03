@@ -27,6 +27,7 @@ RewriteRule Plan_du_site views/siteMapView.php [L]
 RewriteRule Rédaction_d'article views/newsWritingView.php [L] 
 RewriteRule Modification_d'article views/newsUpdateView.php [L] 
 RewriteRule Actualités views/newsView.php?id=$1 [L] 
+RewriteRule Liste_des_membres views/listOfMembersView.php [L] 
 
 RewriteRule Sous-catégorie-du-forum views/forumSubCategoriesView.php [L] 
 RewriteRule Topics-du-forum views/forumTopicsView.php [L] 

@@ -6,6 +6,7 @@
  */
 $users = new users();
 $admin = new admin();
+$success = array();
 //Si l'utilisateur est connecté, on assigne son id dans notre attribut qui servira pour nos requêtes
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
@@ -27,13 +28,24 @@ $readAllStatus = $admin->readAllStatus();
 if (isset($_POST['submitUpdate'])) {
     if (!empty($_POST['id_user']) && !empty($_POST['updateRights'])) {
         $users->id_admin = $_POST['updateRights'];
-
         $users->id = $_POST['id_user'];
         if ($users->updateRights()) {
-            $success = 'Le status de l\'utilisateur a était modifié avec succès';
+            $success['updateStatus'] = 'Le status de l\'utilisateur a était modifié avec succès';
         }
-    }else{
+    } else {
         $error = 'Veuillez sélectionner un status pour le modifier';
     }
     $readStatus = $users->readStatusByUsers();
+}
+/*
+ * Si le formulaire est soumis
+ * on assigne l'id de l'utilisateur dans notre attribut qui nous sert pour notre requête
+ * puis on appelle notre méthode qui nous permet de supprimer un utilisateur
+ */
+if (isset($_POST['delete'])) {
+    $users->id = $_POST['id_user'];
+    if ($users->deleteUsers()) {
+        $success['deleteUsers'] = 'L\'utilisateur a était supprimé avec succès';
+        $readStatus = $users->readStatusByUsers();
+    }
 }
