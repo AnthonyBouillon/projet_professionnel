@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe comments qui permet de créer, afficher, modifier et supprimer des commentaires
+ * Classe comments qui permet de créer, afficher, modifier, supprimer et compter les commentaires
  * Elle hérite de la classe database qui contient la connexion à la base de données
  */
 class comments extends database {
@@ -10,8 +10,8 @@ class comments extends database {
      * Ajout des attributs
      * L'id de l'utilisateur
      * L'id de l'article
-     * le contenue du commentaire
-     * l'id du commentaire
+     * L'id du commentaire
+     * Le contenu du commentaire
      */
     public $id_user = 0;
     public $id_new = 0;
@@ -42,8 +42,8 @@ class comments extends database {
      *  Méthode qui permet de récupèrer les commentaires liés aux articles et au l'utilisateurs
      *  Sélection : l'id du commentaire, le contenu du commentaire, l'id de l'utilisateur, l'id de l'article, l'image de profil, la date au format français et le pseudo des l'utilisateurs
      *  La table des commentaires et des utilisateurs sont join
-     *  INNER JOIN : Afin de récupérer les commentaires lié à l'utilisateur correspondant
-     *  Ces informations sont récupérer suivant l'id de l'article
+     *  INNER JOIN : Afin de récupéré les commentaires lié à l'utilisateur correspondant
+     *  Ces informations sont récupéré suivant l'id de l'article
      */
     public function readComments() {
         $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` '
@@ -57,10 +57,10 @@ class comments extends database {
     }
     
     /**
-     * Méthode qui me permet de compter le nombre de commentaires lié à l'article
+     * Méthode qui me permet de compter le nombre total des commentaires lié à l'article
      */
     public function countComments() {
-        $query = 'SELECT COUNT(*) AS nbComments FROM `' . PREFIXE . 'comments` WHERE id_cuyn_news =:id_cuyn_news';
+        $query = 'SELECT COUNT(`id`) AS nbComments FROM `' . PREFIXE . 'comments` WHERE id_cuyn_news =:id_cuyn_news';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();
@@ -69,6 +69,7 @@ class comments extends database {
 
     /**
      *  Méthode qui permet de modifier un commentaire appartenant à l'utilisateur qui est lié à l'article
+     * pour ça j'ai besoin de : l'id du commentaire, l'id de l'utilisateur ainsi que du commentaire
      */
     public function updateComments() {
         $query = 'UPDATE `' . PREFIXE . 'comments` SET `comment`=:comment WHERE `id`=:id AND id_cuyn_users=:id_cuyn_users';
@@ -80,7 +81,8 @@ class comments extends database {
     }
 
     /**
-     *  Méthode qui permet de supprimer un commentaire choisi grâce à son id et qui est lié à l'utilisateur
+     *  Méthode qui permet de supprimer un commentaire qui a était sélectionné par son id et qui est lié à l'utilisateur
+     * pour ça j'ai besoin de : l'id du commentaire ainsi que l'id de l'utilisateur
      */
     public function deleteComments() {
         $query = 'DELETE FROM `' . PREFIXE . 'comments` WHERE `id`=:id AND id_cuyn_users=:id_cuyn_users';

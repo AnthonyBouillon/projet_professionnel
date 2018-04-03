@@ -10,8 +10,8 @@ class database {
 
     /**
      *  Connexion à la base de données
-     *  function en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
-     *  Si la connexion de marche pas on attrape l'erreur et on l'affiche
+     *  fonction en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
+     *  Si la connexion ne marche pas on attrape l'erreur et on l'affiche
      */
     protected function __construct() {
         try {

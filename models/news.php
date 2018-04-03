@@ -11,11 +11,10 @@ class news extends database {
      * l'id de l'utilisateur
      * l'id de l'article
      * le titre de l'article
-     * la plateform de l'article
-     * le resumer de l'article
-     * le contenue de l'article
+     * la plateforme de l'article
+     * le resumé de l'article
+     * le contenu de l'article
      * l'image de l'article
-     * l'extension de l'article
      */
     public $id_user = 0;
     public $id_new = 0;
@@ -25,10 +24,9 @@ class news extends database {
     public $content = '';
     public $picture = '';
 
-
     /**
      * Ajout des attributs pour la pagination
-     * Le nombre d'article par page
+     * La limite d'article par page
      */
     public $firstEntry = '';
     public $limitArticles = '';
@@ -70,19 +68,20 @@ class news extends database {
 
     /**
      *  Méthode qui permet d'afficher tous les articles
-     *  Puis de recupérer seulement ce que l'utilisateur à rechercher
-     *  Et de limité l'affichage à trois par page
+     *  Table join  : news avec users
+     *  INNER JOIN : car tous les commentaires sont obligatoirement relié à un utilisateur
+     *  La limite d'article est définit par un LIMIT
      *  Date au format français
      */
     public function readNews() {
-        $query = 'SELECT `' . PREFIXE . 'news`.`id`, `' . PREFIXE . 'news`.`title`, `' . PREFIXE . 'news`.`plateform`, `' . PREFIXE . 'news`.`picture`, `' . PREFIXE . 'news`.`resume`, DATE_FORMAT(`' . PREFIXE . 'news`.`createDate`, \' %d/%m/%Y \') AS date, `' . PREFIXE . 'users`.`username`  FROM `' . PREFIXE . 'news` LEFT JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'news`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id`  ORDER BY `id` DESC LIMIT ' . $this->firstEntry . ', ' . $this->limitArticles . '';
+        $query = 'SELECT `' . PREFIXE . 'news`.`id`, `' . PREFIXE . 'news`.`title`, `' . PREFIXE . 'news`.`plateform`, `' . PREFIXE . 'news`.`picture`, `' . PREFIXE . 'news`.`resume`, DATE_FORMAT(`' . PREFIXE . 'news`.`createDate`, \' %d/%m/%Y \') AS date, `' . PREFIXE . 'users`.`username`  FROM `' . PREFIXE . 'news` INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'news`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id`  ORDER BY `id` DESC LIMIT ' . $this->firstEntry . ', ' . $this->limitArticles . '';
         $request = $this->db->prepare($query);
         $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
     /**
-     *  Méthode qui permet de récupérer l'id de l'article selectionnée
+     *  Méthode qui permet d'afficher l'article selectionnée par son id
      *  Date au format français
      */
     public function readNewsById() {
@@ -94,7 +93,7 @@ class news extends database {
     }
 
     /**
-     * Méthode qui permet de modifier le titre d'un article
+     * Méthode qui permet de modifier le titre d'un article lié à l'article
      */
     public function updateTitle() {
         $query = 'UPDATE `' . PREFIXE . 'news` SET `title`=:title  WHERE id = :id_news';
@@ -159,7 +158,6 @@ class news extends database {
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
             $request->execute();
-
             $query = 'DELETE FROM `' . PREFIXE . 'news` WHERE id=:id';
             $request = $this->db->prepare($query);
             $request->bindValue(':id', $this->id_new, PDO::PARAM_INT);

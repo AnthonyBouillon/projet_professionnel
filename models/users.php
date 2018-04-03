@@ -71,16 +71,6 @@ class users extends database {
         $request->execute();
         return $request->fetch(PDO::FETCH_OBJ);
     }
-    /**
-     * À SUPPRIMER ?
-     */
-    public function readProfile() {
-        $query = 'SELECT `id`, `username`,`password`, `mail`, `avatar`, `keyMail`, `actif`, DATE_FORMAT(`createDate`, \' %d/%m/%Y à %Hh%i \' ) AS date, `id_cuyn_admin` FROM `' . PREFIXE . 'users` WHERE `id` = :id';
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
-        $request->execute();
-        return $request->fetchAll(PDO::FETCH_OBJ);
-    }
 
     /**
      * La requête nous permet de sélectionner l'id, le pseudo, les droits de l'utilisateur ainsi que le nom et l'id des droits dans la table admin

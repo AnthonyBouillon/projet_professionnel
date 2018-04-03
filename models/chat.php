@@ -21,8 +21,8 @@ class chat extends database {
     }
 
     /**
-     *  Méthode qui permet d'inserer le message lié à l'utilisateur si il est connecté
-     *  Sinon la méthode insère le message seul et l'id du visiteur est NULL
+     *  Méthode qui permet d'insérer le message lié à l'utilisateur si il est connecté
+     *  Sinon la méthode insère le message seul et l'id du visiteur est NULL, ce qui me permet d'afficher le message même si l'utilisateur n'est pas connecté
      */
     public function createMessage() {
         $query = 'INSERT INTO `' . PREFIXE . 'chat`(`message`, `id_cuyn_users`) VALUES(:message, :id_cuyn_users)';
@@ -42,7 +42,7 @@ class chat extends database {
      *  Table join : Chat avec users
      *  LEFT JOIN : Me permet de récupérer les messages des visiteurs sans id correspondant
      *  id_user de la table chat correspond avec l'id de la table users
-     *  Limite l'affichage à 50 messages trié par id des messages
+     *  Limite l'affichage à 50 messages trié par id des messages dans l'ordre descendant
      *  Tableau qui me retourne un objet
      */
     public function readMessage() {

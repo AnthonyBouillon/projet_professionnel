@@ -1,7 +1,6 @@
 <?php
 
 class admin extends database {
-
     /**
      * Ajout de la méthode __construct qui provient de la classe database du model database qui contient la connexion à la base de données
      */
