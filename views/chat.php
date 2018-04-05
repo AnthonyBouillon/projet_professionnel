@@ -9,12 +9,22 @@ include_once '../controllers/homeController.php';
  * Si le pseudo de l'utilisateur lié au message existent nous l'affichons,
  * sinon nous écrivons 'Visiteur' à la place
  */
- foreach ($readMessages as $messages) { ?>
+if (!empty($readMessages)) {
+    foreach ($readMessages as $messages) {
+        ?>
+        <div class="well blocMessage">
+            <p class="bold"><?= !empty($messages->username) ? $messages->username . ' à écrit ' : 'Visiteur' . ' à écrit '; ?> : </p>
+            <!-- Nous utilisons cette fonction afin d'ajouter un espace tous les 20 caractères pour le coté responsive -->
+            <p><?= wordwrap($messages->message, 20, ' ', 1); ?></p>
+            <!-- Nous affichons la date de création du message -->
+            <p>Date : <span class="bold"><?= $messages->date ?></span></p>
+        </div>
+        <?php
+    }
+} else {
+    ?>
     <div class="well blocMessage">
-        <p class="bold"><?= !empty($messages->username) ? $messages->username . ' à écrit ' : 'Visiteur' . ' à écrit '; ?> : </p>
-        <!-- Nous utilisons cette fonction afin d'ajouter un espace tous les 20 caractères pour le coté responsive -->
-        <p><?= wordwrap($messages->message, 20, ' ', 1); ?></p>
-        <!-- Nous affichons la date de création du message -->
-        <p>Date : <span class="bold"><?= $messages->date ?></span></p>
+        <p class="bold text-center">LE TCHAT EST INDISPONIBLE</p>
     </div>
-<?php } 
+    <?php
+}

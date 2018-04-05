@@ -13,7 +13,8 @@ class admin extends database {
      */
     public function readAllStatus() {
         $query = 'SELECT `id`, `rights` FROM cuyn_admin';
-        $request = $this->db->query($query);
+        $request = $this->db->prepare($query);
+        $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 

@@ -4,7 +4,7 @@ include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../models/news.php';
-include_once '../controllers/newsAllController.php';
+include_once '../controllers/navBarController.php';
 $title = 'Web TV';
 $classBody = NULL;
 include 'header.php';

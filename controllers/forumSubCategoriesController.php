@@ -12,20 +12,19 @@ if (isset($_SESSION['id'])) {
 
 $readUsers = $users->readUsers();
 $getSubCategories = $subCategories->readSubCategories();
+$numberSubCategories = $subCategories->countSubCategories();
 $regexName = '#^[\w\W]{1,60}$#';
 $regexDescription = '#^[\w\W]{10,255}$#';
 $formError = array();
 
+
 // Insertion
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && !empty($users->id)) {
     if (!empty($_POST['name']) && !empty($_POST['description'])) {
         $subCategories->id_category = $_GET['id'];
         $subCategories->id_user = $_SESSION['id'];
         $subCategories->name = $_POST['name'];
         $subCategories->description = $_POST['description'];
-
-
-
         $subCategories->createSubCategories();
         $getSubCategories = $subCategories->readSubCategories();
     }

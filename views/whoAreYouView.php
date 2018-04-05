@@ -3,24 +3,23 @@ session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
-$classBody = NULL;
+include_once '../controllers/navBarController.php';
+$classBody = 'whoAreYouBackground';
 $title = 'Qui sommes-nous ?';
-/*
- * Permet l'affichage des informations de l'utilisateur dans le menu
- */
-$users = new users();
-if(isset($_SESSION['id'])){
-$users->id = $_SESSION['id'];
-}
-$readUsers = $users->readUsers();
 include_once 'header.php';
 ?>
 <div class="container">
-    <div class="row">
-        <h2 class="text-center">En cours de construction</h2>
+    <div class="row jumbotron">
+        <h2 class="text-center">Nous sommes ce que nous sommes, mais qui sommes-nous ?</h2>
     </div>
-    <div class="row center-block">
-        <img src="https://2.bp.blogspot.com/-S-RnhRYTQrk/Vq3jyHesheI/AAAAAAAAAac/CoOz0Gqx2S0/s1600/loading1.gif" class="img-responsive center-block avatar" />
+    <div class="row well well-info">
+        <img src="../assets/images/whoAreYou.gif" alt="Image" class="img-responsive img-circle centerImg" />
+        <div class="h4">
+            <div class=" col-lg-offset-2 col-lg-8">
+                <h3 class="text-center margin bold">Des joueurs  de jeux vidéo !</h3>
+                <p>Non ergo erunt homines deliciis diffluentes audiendi, si quando de amicitia, quam nec usu nec ratione habent cognitam, disputabunt. Nam quis est, pro deorum fidem atque hominum! qui velit, ut neque diligat quemquam nec ipse ab ullo diligatur, circumfluere omnibus copiis atque in omnium rerum abundantia vivere? Haec enim est tyrannorum vita nimirum, in qua nulla fides, nulla caritas, nulla stabilis benevolentiae potest esse fiducia, omnia semper suspecta atque sollicita, nullus locus amicitiae.</p>
+            </div>
+        </div>
     </div>
 </div>
 <?php

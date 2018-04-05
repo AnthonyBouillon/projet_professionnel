@@ -48,7 +48,8 @@ class forumCategories extends database {
      */
     public function readCategories() {
         $query = 'SELECT `id`,`name`, `description` FROM `' . PREFIXE . 'forumCategories`';
-        $request = $this->db->query($query);
+        $request = $this->db->prepare($query);
+        $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 

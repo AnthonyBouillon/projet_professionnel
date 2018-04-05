@@ -20,11 +20,19 @@ include 'header.php';
             </tr>
         </thead>
         <tbody>
-        <p class="alert-danger text-center"><?= !empty($formError['badRegexUpdateName']) ? $formError['badRegexUpdateName'] : '' ?></p>
-        <p class="alert-danger text-center"><?= !empty($formError['badRegexUpdateDescription']) ? $formError['badRegexUpdateDescription'] : '' ?></p>
-        <p class="alert-danger text-center"><?= !empty($formError['emptyFormUpdate']) ? $formError['emptyFormUpdate'] : '' ?></p>
-        <p class="alert-success text-center"><?= !empty($formSuccess['updateCategory']) ? $formSuccess['updateCategory'] : '' ?></p>
-        <p class="alert-success text-center"><?= !empty($formSuccess['deleteCategory']) ? $formSuccess['deleteCategory'] : '' ?></p>
+            <?php if (!empty($formError)) { ?>
+            <div class="alert-danger">
+                <p class="text-center"><?= !empty($formError['badRegexUpdateName']) ? $formError['badRegexUpdateName'] : '' ?></p>
+                <p class="text-center"><?= !empty($formError['badRegexUpdateDescription']) ? $formError['badRegexUpdateDescription'] : '' ?></p>
+                <p class="text-center"><?= !empty($formError['emptyFormUpdate']) ? $formError['emptyFormUpdate'] : '' ?></p>
+            </div>
+        <?php } ?>
+        <?php if (!empty($formError)) { ?>
+            <div class="alert-success">
+                <p class="text-center"><?= !empty($formSuccess['updateCategory']) ? $formSuccess['updateCategory'] : '' ?></p>
+                <p class="text-center"><?= !empty($formSuccess['deleteCategory']) ? $formSuccess['deleteCategory'] : '' ?></p>
+            </div>
+        <?php } ?>
         <?php foreach ($getCategories as $category) { ?>
             <tr>
                 <td>

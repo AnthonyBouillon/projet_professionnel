@@ -47,7 +47,8 @@ class chat extends database {
      */
     public function readMessage() {
         $query = 'SELECT `' . PREFIXE . 'chat`.`message`, DATE_FORMAT(`' . PREFIXE . 'chat`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`,  `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'chat` LEFT JOIN `' . PREFIXE . 'users`  ON  `' . PREFIXE . 'chat`.`id_cuyn_users` = `' . PREFIXE . 'users`. `id`  ORDER BY `' . PREFIXE . 'chat`.`id` DESC LIMIT 50';
-        $request = $this->db->query($query);
+        $request = $this->db->prepare($query);
+        $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 

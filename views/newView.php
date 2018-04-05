@@ -100,11 +100,11 @@ include_once 'header.php';
                     <?php } ?>
                 </div>     
             <?php } ?>
-        </div>
-        <!-- Si l'article n'existe pas, on affiche un message différent -->
-    <?php } else { ?>
-        <h2 class="text-center alert-danger margin">L'article que vous essayez de voir n'existe pas</h2>
-    <?php } ?>
+            <!-- Si l'article n'existe pas, on affiche un message différent -->
+        <?php } else { ?>
+            <h2 class="text-center alert-danger margin">L'article que vous essayez de voir n'existe pas</h2>
+        <?php } ?>
+    </div>
 </div>
 <?php
 include_once 'footer.php';

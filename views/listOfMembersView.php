@@ -10,12 +10,12 @@ $title = 'Liste des membres du site';
 include_once 'header.php';
 ?>
 <div class="container-fluid containerContact">
-    <h2 class="text-center">Liste des membres</h2><hr/>
-    <div class="col-xs-6 col-lg-12">
+    <h2 class="text-center margin titleListOfMembers"><i class="fas fa-user"></i> Liste des membres</h2>
+    <div class="col-xs-12 col-lg-12">
         <!-- Le tableau pour les utilisateurs sans droit comporte 3 colonnes : Pseudo, status , profil
          Le tableau pour les utilisateurs étant administrateur ou Master comporte deux colonnes en plus qui leurs permet de modifier un status d'un utilisateur et de le supprimer -->
-        <table class="table">
-            <thead>
+        <table class="table table-bordered h4">
+            <thead class="theadTable">
                 <tr>
                     <th scope="col">Pseudo</th>
                     <th scope="col">Status</th>
@@ -33,7 +33,7 @@ include_once 'header.php';
                     <th scope="col">Profil</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="tbodyTable">
                 <!-- On parcours notre tableau afin d'afficher le pseudo, le status et l'id de tous les utilisateurs -->
                 <?php foreach ($readStatus as $listMembers) { ?>
                     <tr>
@@ -46,7 +46,7 @@ include_once 'header.php';
                                 ?>
                                 <td>
                                     <form action="" method="POST" >
-                                        <select name="updateRights" class="btn formBtn">
+                                        <select name="updateRights" class="btn btn-primary" >
                                             <option selected disabled>Choisissez le status</option>
                                             <option value="1">Administrateur</option>
                                             <option value="2">Rédacteur</option>
