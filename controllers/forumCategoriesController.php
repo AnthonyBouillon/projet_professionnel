@@ -4,6 +4,7 @@
  */
 $users = new users();
 $forumCategories = new forumCategories();
+$subCategories = new forumSubCategories();
 /*
  * 
  */
@@ -82,7 +83,5 @@ if (isset($_POST['submitDelete'])) {
     $forumCategories->id_category;
     $forumCategories->deleteCategories();
     $getCategories = $forumCategories->readCategories();
-    $formSuccess['deleteCategory'] = 'La catégorie à bien était supprimé';
+    $formSuccess['deleteCategory'] = 'La catégorie a était supprimé avec succès';
 }
-
-

@@ -9,8 +9,8 @@ $title = 'Qui sommes-nous ?';
 include_once 'header.php';
 ?>
 <div class="container">
-    <div class="row jumbotron">
-        <h2 class="text-center">Nous sommes ce que nous sommes, mais qui sommes-nous ?</h2>
+    <div class="row">
+        <h2 class="text-center titleStyle">Nous sommes ce que nous sommes, mais qui sommes-nous ?</h2>
     </div>
     <div class="row well well-info">
         <img src="../assets/images/whoAreYou.gif" alt="Image" class="img-responsive img-circle centerImg" />

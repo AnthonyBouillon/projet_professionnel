@@ -267,6 +267,20 @@ html, body {
     background-position: center;
     background-size: cover;
 }
+.listOfMembersBackground {
+    background-image: url('http://avante.biz/wp-content/uploads/HD-Video-Game-Wallpapers/HD-Video-Game-Wallpapers-041.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+.forumCategoryBackground {
+    background-image: url('../images/contactBackground.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
 /* ------------------------------------ CLASSE BASIQUE -----------------------------*/
 .alert-danger{
     padding: 10px;
@@ -414,21 +428,27 @@ html, body {
 }
 /* ------------------------------- GLOSSAIRE ------------------------------- */
 .theadTable{
-    background-color: #253944;
-    color: white;
+    background-color: #A983BE;
+    color: black;
 }
 .tbodyTable{
-       background-color: white;
+    background-color: white;
 }
-/*        Liste des membres           */
-.titleListOfMembers{
+
+.titleStyle{
+    font-size: 30px;
+    padding: 20px  ;
     margin-bottom: 4%;
+    color: white;
+    background: orange;
+    box-shadow: 5px 15px 5px 5px #000;
 }
-
-
-
-
-
+.tableForum{
+    margin-bottom: 3.5%;
+}
+h1{
+    padding: 10px;
+}
 
 
 

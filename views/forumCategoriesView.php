@@ -4,14 +4,15 @@ include_once '../configuration.php';
 include '../models/database.php';
 include_once '../models/users.php';
 include '../models/forumCategories.php';
+include '../models/forumSubCategories.php';
 include '../controllers/forumCategoriesController.php';
-$classBody = NULL;
+$classBody = 'forumCategoryBackground';
 $title = 'Forum';
 include 'header.php';
 ?>
 <div class="container">
-    <h2 class="text-center">Bienvenue sur le forum de All Plateform Together</h2><hr/>
-    <table class="table table-bordered">
+    <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
+    <table class="table tableForum table-bordered">
         <thead>
             <tr>
                 <th>Catégories</th>
@@ -19,24 +20,28 @@ include 'header.php';
                 <th>Dernières activités</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody  class="tbodyTable">
             <?php if (!empty($formError)) { ?>
             <div class="alert-danger">
-                <p class="text-center"><?= !empty($formError['badRegexUpdateName']) ? $formError['badRegexUpdateName'] : '' ?></p>
-                <p class="text-center"><?= !empty($formError['badRegexUpdateDescription']) ? $formError['badRegexUpdateDescription'] : '' ?></p>
-                <p class="text-center"><?= !empty($formError['emptyFormUpdate']) ? $formError['emptyFormUpdate'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formError['badRegexDescription']) ? $formError['badRegexDescription'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formError['emptyForm']) ? $formError['emptyForm'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formError['badRegexUpdateName']) ? $formError['badRegexUpdateName'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formError['badRegexUpdateDescription']) ? $formError['badRegexUpdateDescription'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formError['emptyFormUpdate']) ? $formError['emptyFormUpdate'] : '' ?></p>
             </div>
         <?php } ?>
-        <?php if (!empty($formError)) { ?>
+        <?php if (!empty($formSuccess)) { ?>
             <div class="alert-success">
-                <p class="text-center"><?= !empty($formSuccess['updateCategory']) ? $formSuccess['updateCategory'] : '' ?></p>
-                <p class="text-center"><?= !empty($formSuccess['deleteCategory']) ? $formSuccess['deleteCategory'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formSuccess['createCategory']) ? $formSuccess['createCategory'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formSuccess['updateCategory']) ? $formSuccess['updateCategory'] : '' ?></p>
+                <p class="text-center h4"><?= !empty($formSuccess['deleteCategory']) ? $formSuccess['deleteCategory'] : '' ?></p>
             </div>
         <?php } ?>
         <?php foreach ($getCategories as $category) { ?>
             <tr>
                 <td>
-                    <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= $category->description ?><br/>
+                    <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= wordwrap($category->description,10, ' ', 1) ?><br/>
                     <?php
                     if (!empty($readUsers)) {
                         if ($readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
@@ -73,10 +78,7 @@ include 'header.php';
             ?>
             <div class="well col-lg-6">
                 <h2 class="text-center">Ajouter une catégorie</h2>
-                <p class="alert-danger text-center"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>
-                <p class="alert-danger text-center"><?= !empty($formError['badRegexDescription']) ? $formError['badRegexDescription'] : '' ?></p>
-                <p class="alert-danger text-center"><?= !empty($formError['emptyForm']) ? $formError['emptyForm'] : '' ?></p>
-                <p class="alert-success text-center"><?= !empty($formSuccess['createCategory']) ? $formSuccess['createCategory'] : '' ?></p>
+
                 <form method="POST" action="">
                     <div class="col-lg-12">
                         <label for="name">Titre</label>

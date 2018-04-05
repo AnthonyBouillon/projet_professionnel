@@ -13,7 +13,7 @@ include_once 'header.php';
     <div class="row margin">
         <!-- Si notre tableau contient des articles, nous affichons cette vue -->
         <?php if (!empty($readArticle)) { ?>
-            <h2 class="text-center white">Toutes les actualités</h2>
+            <h2 class="text-center titleStyle white">Toutes les actualités</h2>
             <!-- Si l'utilisateur a les droits, on affiche un lien qui redirige vers la page d'ajout d'article  -->
             <?php
             if (!empty($_SESSION['id'])) {

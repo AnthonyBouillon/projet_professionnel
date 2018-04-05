@@ -30,10 +30,10 @@ if (isset($_POST['submitUpdate'])) {
         $users->id_admin = $_POST['updateRights'];
         $users->id = $_POST['id_user'];
         if ($users->updateRights()) {
-            $success['updateStatus'] = 'Le status de l\'utilisateur a était modifié avec succès';
+            $success['updateStatus'] = 'Le statut de l\'utilisateur a était modifié avec succès';
         }
     } else {
-        $error = 'Veuillez sélectionner un status pour le modifier';
+        $error = 'Veuillez sélectionner un statut pour le modifier';
     }
     $readStatus = $users->readStatusByUsers();
 }

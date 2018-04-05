@@ -12,7 +12,6 @@ if (isset($_SESSION['id'])) {
 
 $readUsers = $users->readUsers();
 $getSubCategories = $subCategories->readSubCategories();
-$numberSubCategories = $subCategories->countSubCategories();
 $regexName = '#^[\w\W]{1,60}$#';
 $regexDescription = '#^[\w\W]{10,255}$#';
 $formError = array();
@@ -25,7 +24,9 @@ if (isset($_POST['submit']) && !empty($users->id)) {
         $subCategories->id_user = $_SESSION['id'];
         $subCategories->name = $_POST['name'];
         $subCategories->description = $_POST['description'];
-        $subCategories->createSubCategories();
+        if($subCategories->createSubCategories()){
+            $formSuccess['createSubCategory'] = 'Vous avez créé la sous-catégorie avec succès';
+        }
         $getSubCategories = $subCategories->readSubCategories();
     }
 }
@@ -51,13 +52,15 @@ if (isset($_POST['submitUpdate'])) {
     if (count($formError) == 0) {
         $subCategories->updateSubCategories();
         $getSubCategories = $subCategories->readSubCategories();
-        $formSuccess['updateCategory'] = 'La catégorie du forum à était modifié';
+        $formSuccess['updateSubCategory'] = 'La sous-catégorie du forum à était modifié avec succès';
     }
 }
 
 if (isset($_POST['deleteSubCategory'])) {
     $subCategories->id_subCategory = $_POST['idSubCategory'];
-    $subCategories->deleteSubCategories();
+    if($subCategories->deleteSubCategories()){
+        $formSuccess['deleteSubCategory'] = 'La sous-catégorie du forum à était supprimé avec succès';
+    }
     $getSubCategories = $subCategories->readSubCategories();
 }
 $getSubCategories = $subCategories->readSubCategories();
