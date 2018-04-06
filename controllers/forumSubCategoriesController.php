@@ -1,19 +1,27 @@
 <?php
 
 /*
- * 
+ * On instancie nos objet users() pour récupérer les informations de l'utilisateur
+ * et on instancie l'objet forumSubCategories() afin de récupérer les informations des sous-catégories
  */
 $users = new users();
 $subCategories = new forumSubCategories();
-
+/*
+ * Si l'utilisateur est connecté,
+ * on assigne l'id et le pseudo de l'utilisateur dans nos attributs
+ */
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
     $users->username = $_SESSION['username'];
 }
+/*
+ * On apelle nos méthodes afin d'afficher les informations dont on a besoin
+ */
 $readUsers = $users->readUsers();
 $readSubCategories = $subCategories->readSubCategories();
 /*
- * 
+ * Si l'id récupéré dans l'url existe,
+ * on assigne l'id dans notre attribut qui servira pour nos requêtes
  */
 if (!empty($_GET['id'])) {
     $subCategories->id_category = $_GET['id'];
@@ -75,7 +83,9 @@ if (isset($_POST['submitUpdate'])) {
         }
     }
 }
-
+/*
+ * 
+ */
 if (isset($_POST['deleteSubCategory'])) {
     $subCategories->id_subCategory = $_POST['idSubCategory'];
     if ($subCategories->deleteSubCategories()) {

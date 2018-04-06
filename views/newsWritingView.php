@@ -58,22 +58,21 @@ include_once 'header.php';
                 <div class="form-group fieldBackground">
                     <label for="resume" class="col-sm-4 control-label">Résumer</label>
                     <div class="col-sm-8">
-                        <textarea name="resume" class="form-control focusColor articleTextarea" id="resume" placeholder="Saisissez le résumer (court)"  rows="10"  required></textarea>
+                        <textarea name="resume" class="form-control focusColor articleTextarea" id="resume" placeholder="Saisissez le résumer (court)"  rows="10"  required><?= !empty($_POST['resume']) ? $_POST['resume'] : ''; ?></textarea>
                     </div>
                 </div>
                 <!-- Le contenu de l'article -->
                 <div class="form-group fieldBackground">
                     <label for="content" class="col-sm-4 control-label">Contenu</label>
                     <div class="col-sm-8">
-                        <textarea name="content" class="form-control focusColor content articleTextarea" id="content" placeholder="Saisissez le contenue" rows="10"  required></textarea>
+                        <textarea name="content" class="form-control focusColor content articleTextarea" id="content" placeholder="Saisissez le contenue" rows="10"  required><?= !empty($_POST['content']) ? $_POST['content'] : ''; ?></textarea>
                     </div>
                 </div>
                 <!-- L'ajout d'image -->
                 <div class="form-group fieldBackground">
                     <div class="col-lg-offset-5 col-lg-7">
                         <label class="btn formBtn" for="picture">Ajouter une image</label>
-                        <input  type="file" name="picture" id="picture"  required />
-                        <span class='label label-info' id="upload-file-info"></span><br/>
+                        <input  type="file" name="picture" id="picture"  accept="image/*" required />
                     </div>
                 </div>
                 <!-- Valider la création d'article -->

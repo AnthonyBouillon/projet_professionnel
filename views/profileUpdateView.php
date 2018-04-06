@@ -19,7 +19,7 @@ include_once 'header.php';
             <div class="form-group">
                 <div class="col-lg-offset-3 col-lg-6">
                     <label class="btn formBtn btnWidth" for="avatar">Choisissez une image</label>
-                    <input  type="file" name="avatar" id="avatar">
+                    <input  type="file" name="avatar" id="avatar" accept="image/*" />
                     <button type="submit" name="submitAvatar" class="btn btn-primary btnWidth">Valider mon image</button>
                 </div>
             </div>

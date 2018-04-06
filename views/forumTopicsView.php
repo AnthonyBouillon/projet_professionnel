@@ -5,25 +5,23 @@ include '../models/database.php';
 include '../models/users.php';
 include '../models/forumTopics.php';
 include '../controllers/forumTopicsController.php';
-$classBody = NULL;
+$classBody = 'forumBackground';
 $title = 'Forum des sujets';
 include 'header.php';
 ?>
-<div class="container-fluid containerForum">
-    <p><a href="forumSubCategoriesView.php">Revenir à la liste des sous-catégories</a></p>
+<div class="container">
+    <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
     <table class="table table-bordered"> 
 
-        <thead> 
-
+        <thead class="theadTable"> 
             <tr> 
-                <th>Sujets</th> 
-                <th>Message</th> 
-                <th>Dernières activités</th> 
+                <th class="text-center">Sujets</th> 
+                <th class="text-center">Messages</th> 
+                <th class="text-center">Dernières activités</th> 
             </tr> 
-
         </thead> 
-        <tbody> 
-             <?php foreach ($readTopics as $topics) { ?>
+        <tbody class="tbodyTable"> 
+            <?php foreach ($readTopics as $topics) { ?>
                 <tr> 
                     <td><a href="forumPostsView.php?id=<?= $topics->id ?>"><?= $topics->name ?></a></td>  
                     <td></td> 
@@ -31,7 +29,6 @@ include 'header.php';
                 </tr> 
             <?php } ?> 
         </tbody> 
-
     </table>
 </div>
 <style>

@@ -37,7 +37,7 @@ include_once 'header.php';
                 <th>Dernières activités</th> 
             </tr> 
         </thead> 
-        <tbody  class="tbodyTable">
+        <tbody class="tbodyTable">
             <?php foreach ($readSubCategories as $subCategory) { ?>
                 <tr> 
                     <td><a href="forumTopicsView.php?id=<?= $subCategory->id ?>" title="direction vers les posts des utilisateurs"><?= $subCategory->name ?></a><br/><?= $subCategory->description ?><br/>

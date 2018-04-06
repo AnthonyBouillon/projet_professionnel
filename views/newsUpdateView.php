@@ -47,35 +47,35 @@ include_once 'header.php';
                     <!-- Titre de l'article -->
                     <label class="control-label col-sm-4" for="title">Titre : </label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control focusColor" name="title" id="title" placeholder="Écrivez votre pseudo"  />
+                        <input type="text" class="form-control focusColor" name="title" id="title" placeholder="Écrivez votre pseudo" value="<?= !empty($_POST['title']) ? $_POST['title'] : ''; ?>" />
                     </div>
                 </div>
                 <!-- Titre de l'article -->
                 <div class="form-group fieldBackground">
                     <label class="control-label col-sm-4" for="plateform">Plateforme : </label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control focusColor" name="plateform" id="plateform" placeholder="Écrivez votre adresse e-mail" />
+                        <input type="text" class="form-control focusColor" name="plateform" id="plateform" placeholder="Écrivez votre adresse e-mail" value="<?= !empty($_POST['plateform']) ? $_POST['plateform'] : ''; ?>" />
                     </div>
                 </div>
                 <!-- Résumer de l'article -->
                 <div class="form-group fieldBackground">
                     <label class="control-label col-lg-4" for="resume">Résumer : </label>
                     <div class="col-lg-8">
-                        <textarea  class="form-control focusColor" name="resume" id="resume" placeholder="Écrivez votre message" rows="8"></textarea> 
+                        <textarea  class="form-control focusColor" name="resume" id="resume" placeholder="Écrivez votre message" rows="8"><?= !empty($_POST['resume']) ? $_POST['resume'] : ''; ?></textarea> 
                     </div>
                 </div>
                 <!-- Contenu de l'article -->
                 <div class="form-group fieldBackground">
                     <label class="control-label col-lg-4" for="content">Contenu : </label>
                     <div class="col-lg-8">
-                        <textarea  class="form-control focusColor" name="content" id="content" placeholder="Écrivez votre message" rows="8"></textarea> 
+                        <textarea  class="form-control focusColor" name="content" id="content" placeholder="Écrivez votre message" rows="8"><?= !empty($_POST['content']) ? $_POST['content'] : ''; ?></textarea> 
                     </div>
                 </div>
                 <!-- Parcourir une image pour l'article -->
                 <div class="form-group fieldBackground">
                     <div class="col-lg-offset-5 col-lg-7">
                         <label class="btn formBtn" for="picture">Ajouter une image</label>
-                        <input  type="file" name="picture" id="picture" />
+                        <input  type="file" name="picture" id="picture" accept="image/*" />
                     </div>
                 </div>
                 <!-- Valider la création de l'article -->

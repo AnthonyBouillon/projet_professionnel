@@ -1,5 +1,8 @@
 <?php
 
+if(!empty($_SESSION['id'])){
+    header('Location: Accueil');
+}
 /*
  * On instancie l'objet users
  * On assigne une regex dans une variable qui servira pour nos champs
