@@ -10,7 +10,7 @@ $title = 'Forum sous-catégories';
 include_once 'header.php';
 ?>
 <div class="container">
-         <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
+    <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
     <p><a href="../Catégorie-du-forum">Revenir à la liste des catégories</a></p>
     <?php if (!empty($formError)) { ?>
         <div class="alert-danger">
@@ -40,12 +40,21 @@ include_once 'header.php';
         <tbody class="tbodyTable">
             <?php foreach ($readSubCategories as $subCategory) { ?>
                 <tr> 
-                    <td><a href="forumTopicsView.php?id=<?= $subCategory->id ?>" title="direction vers les posts des utilisateurs"><?= $subCategory->name ?></a><br/><?= $subCategory->description ?><br/>
-                        <form method="POST" action="">
-                            <button type="button" name="updateSubCategory" class="displayForm formBtn" id="<?= $subCategory->id; ?>" title="Modifier une sous catégorie"><i class="far fa-edit"></i></button>
-                            <button type="submit" name="deleteSubCategory" class="formBtn" id="deleteSubCategory" title="Supprimer une sous catégorie" onclick="return confirm('La suppression de la sous-catégorie ainsi que tout ce qui est lié à celui-ci est définitive, êtes-vous sûr de vouloir le supprimer ?')"><i class="far fa-trash-alt"></i></button>
-                            <input type="hidden" name="idSubCategory" value="<?= $subCategory->id ?>" />
-                        </form>
+                    <td>
+                        <a href="forumTopicsView.php?id=<?= $subCategory->id ?>" title="direction vers les posts des utilisateurs"><?= $subCategory->name ?></a><br/><?= $subCategory->description ?><br/>
+                        <?php
+                        if (!empty($readUsers)) {
+                            if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
+                                ?>
+                                <form method="POST" action="">
+                                    <button type="button" name="updateSubCategory" class="displayForm formBtn" id="<?= $subCategory->id; ?>" title="Modifier une sous catégorie"><i class="far fa-edit"></i></button>
+                                    <button type="submit" name="deleteSubCategory" class="formBtn" id="deleteSubCategory" title="Supprimer une sous catégorie" onclick="return confirm('La suppression de la sous-catégorie ainsi que tout ce qui est lié à celui-ci est définitive, êtes-vous sûr de vouloir le supprimer ?')"><i class="far fa-trash-alt"></i></button>
+                                    <input type="hidden" name="idSubCategory" value="<?= $subCategory->id ?>" />
+                                </form>
+                                <?php
+                            }
+                        }
+                        ?>
                         <div class="divForum well col-lg-6" id="divForum<?= $subCategory->id; ?>">
                             <form method="post" action="">
                                 <input type="hidden" name="idSubCategory" value="<?= $subCategory->id ?>" />
@@ -54,6 +63,7 @@ include_once 'header.php';
                                 <input type="submit" name="submitUpdate" value="Valider la sous-catégorie"/>
                             </form>
                         </div>
+
                         </div>
                     </td>  
                     <td></td> 
@@ -62,19 +72,26 @@ include_once 'header.php';
             <?php } ?> 
         </tbody> 
     </table>
-
-    <div class="well col-lg-6">
-        <h2 class="text-center">Ajouter une sous-catégorie</h2>
-        <div class="col-lg-12">
-            <form method="post" action="">
-                <label for="name">Titre </label>
-                <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre de la sous-catégorie" />
-                <label for="description">Description</label>
-                <textarea name="description" class="form-control focusColor" id="description" placeholder="Description de la sous-catégorie"></textarea>
-                <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Valider la sous-catégorie"/>
-            </form>
-        </div>
-    </div>
+    <?php
+    if (!empty($readUsers)) {
+        if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
+            ?>
+            <div class="well col-lg-6">
+                <h2 class="text-center">Ajouter une sous-catégorie</h2>
+                <div class="col-lg-12">
+                    <form method="post" action="">
+                        <label for="name">Titre </label>
+                        <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre de la sous-catégorie" />
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control focusColor" id="description" placeholder="Description de la sous-catégorie"></textarea>
+                        <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Valider la sous-catégorie"/>
+                    </form>
+                </div>
+            </div>
+            <?php
+        }
+    }
+    ?>
 </div>
 
 

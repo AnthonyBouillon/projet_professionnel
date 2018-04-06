@@ -36,7 +36,12 @@ class forumPosts extends database {
      *  Méthode qui permet de récupèrer les posts liés aux topics et au l'utilisateurs
      */
     public function readPosts() {
-        $query = 'SELECT `' . PREFIXE . 'forumPosts`.`id`,`' . PREFIXE . 'forumPosts`.`message`, `' . PREFIXE . 'users`.`username`  FROM `' . PREFIXE . 'forumPosts` INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'forumPosts`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` WHERE id_cuyn_forumTopics=:id_cuyn_forumTopics';
+        $query = 
+                'SELECT `' . PREFIXE . 'forumPosts`.`id`,`' . PREFIXE . 'forumPosts`.`message`, DATE_FORMAT(`' . PREFIXE . 'forumPosts`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS datePost, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'users`.`createDate`,  \' %d/%m/%Y à %Hh%i \') AS dateUsers, `' . PREFIXE . 'admin`.`rights`'
+                . ' FROM `' . PREFIXE . 'forumPosts` '
+                . 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'forumPosts`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` '
+                . 'INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'admin`.`id` = `' . PREFIXE . 'users`.`id_cuyn_admin`'
+                . '  WHERE id_cuyn_forumTopics=:id_cuyn_forumTopics';
         $request = $this->db->prepare($query);
         $request->bindValue('id_cuyn_forumTopics', $this->id_topic, PDO::PARAM_INT);
         $request->execute();

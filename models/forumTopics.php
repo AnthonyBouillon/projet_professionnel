@@ -29,11 +29,7 @@ class forumTopics extends database {
      * Méthode qui me permet d'inserer une un topic qui sera lié à la sous-catégorie et à l'utilisateur
      */
     public function createTopics() {
-        $request = $this->db->prepare('INSERT INTO `cuyn_forumTopics`(`subject`, `id_cuyn_forumSubCategories`,id_cuyn_users ) VALUES (:subject, :id_cuyn_forumSubCategories, :id_cuyn_users)');
-        $request->bindValue(':subject', $this->name, PDO::PARAM_STR);
-        $request->bindValue(':id_cuyn_forumSubCategories', $this->id_subCategory, PDO::PARAM_INT);
-        $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
-        return $request->execute();
+
     }
 
     /**

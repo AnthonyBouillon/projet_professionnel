@@ -44,7 +44,7 @@ include 'header.php';
                     <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= wordwrap($category->description,15, ' ', 1) ?><br/>
                     <?php
                     if (!empty($readUsers)) {
-                        if ($readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
+                        if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
                             ?>
                             <form method="POST" action="">
                                 <button type="button" name="updateCategory" class="displayForm formBtn" title="Modifier une catégorie" id="<?= $category->id; ?>"><i class="far fa-edit"></i></button>

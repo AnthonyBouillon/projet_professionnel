@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
@@ -25,9 +24,15 @@ include_once 'header.php';
         <tbody class="tbodyTable"> 
             <?php foreach ($readPosts as $posts) { ?>
                 <tr> 
-                    <td><?= $posts->username ?></td>  
-                    <td><?= $posts->message ?></td> 
-                    <td>Posté le : 00/00/0000</td> 
+                    <td>
+                        <p><?= $posts->username ?></p>
+                        <p>Statut : <?= $posts->rights ?></p>
+                        <p>Date d'inscription : <?= $posts->dateUsers ?></p>
+                    </td>  
+                    <td>
+                        <p><?= $posts->message ?></p>
+                    </td> 
+                    <td>Posté le :<?= $posts->datePost ?></td> 
                 </tr> 
             <?php } ?> 
         </tbody> 
