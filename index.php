@@ -125,17 +125,6 @@ include_once 'controllers/homeController.php';
                             <li><a href="Plan_du_site">Plan du site</a></li>
                         </ul>
                     </div>
-                    <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1) { ?>
-                        <div class="col-lg-2">
-                            <h3>Administration</h3>
-                            <ul>
-                                <li><a href="admin/view.php">Partie administration</a></li>
-                                <?php if (isset($readUsers->id_cuyn_admin) && $readUsers->id_cuyn_admin == 1 || 2) { ?>
-                                    <li><a href="../admin/newsWritingView.php">Ajouter un article</a></li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    <?php } ?>
                 </div>
             </div>
         </footer>

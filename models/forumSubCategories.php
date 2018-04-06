@@ -60,11 +60,34 @@ class forumSubCategories extends database {
      *  Méthode qui permet de supprimer une sous-catégorie lié à son id
      */
     public function deleteSubCategories() {
-        $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE id=:id';
-        $request = $this->db->prepare($query);
-        $request->bindValue(':id', $this->id_subCategory, PDO::PARAM_INT);
-        $result = $request->execute();
-        return $result;
+        try {
+            $this->db->beginTransaction();
+            //  Requête qui permet de supprimer la sous-catégorie sélectionné
+            $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE id=:id';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id', $this->id_subCategory, PDO::PARAM_INT);
+            $request->execute();
+            //  Requête qui permet de supprimer les topics du forum lié à la sous-catégorie
+            $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE `id_cuyn_forumSubCategories` = :id_cuyn_forumSubCategories';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_forumSubCategories', $this->id_subCategory, PDO::PARAM_INT);
+            $request->execute();
+            //  Requête qui permet de supprimer les posts du forum lié au topic
+            $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_forumPosts` = :id_cuyn_forumPosts';
+            $request = $this->db->prepare($query);
+            $request->bindValue(':id_cuyn_forumPosts', $this->id_subCategory, PDO::PARAM_INT);
+            $request->execute();
+            // Valide la transaction
+            $this->db->commit();
+            $reponseDelete = true;
+        } catch (Exception $ex) {
+            $reponseDelete = false;
+            // Annule la transaction et reviens en arrière
+            $this->db->rollBack;
+            echo "Failed: " . $ex->getMessage();
+        }
+        // Retourne vrais ou faux
+        return $reponseDelete;
     }
 
     /**

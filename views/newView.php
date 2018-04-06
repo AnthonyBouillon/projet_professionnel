@@ -16,7 +16,7 @@ include_once 'header.php';
         <?php foreach ($readArticles as $article) { ?>
             <div class="well jumbotron margin border col-lg-12">
                 <!-- Affichage de l'image -->
-                <p><img src="../news/images/<?= $article->picture; ?>" class="img-responsive img-thumbnail centerImg"/></p>
+                <p><img src="../news/images/<?= $article->picture; ?>" class="img-responsive img-thumbnail center-block"/></p>
                 <div class="col-lg-offset-1 col-lg-10">
                     <!-- Affichage du nom de la plateforme ainsi que le titre -->
                     <h2 class="text-center"><?= $article->plateform; ?> | <?= $article->title; ?></h2>

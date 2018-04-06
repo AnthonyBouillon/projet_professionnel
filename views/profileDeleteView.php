@@ -12,14 +12,14 @@ include_once 'header.php';
     <!-- Si le compte n'est pas supprimé, on affiche cette vue -->
     <?php if (!isset($success)) { ?>
         <div class="page-header">
-            <h2 class="text-center" >Vous avez décidé de nous quitter <?= !empty($_SESSION['username']) ? $_SESSION['username'] : ''; ?> ?</h2>
-            <h3 class="text-center">Si vous désirez supprimer votre compte, vous êtes au bon endroit</h3>
+            <h2 class="text-center titleStyle" >Vous avez décidé de nous quitter <span class="black"><?= !empty($_SESSION['username']) ? $_SESSION['username'] : ''; ?></span> ?</h2>
+            <h3 class="text-center">Si vous désirez supprimer votre compte, vous êtes au bon endroit !</h3>
         </div>
         <div class="row"> 
             <div class="well well-lg col-lg-offset-2 col-lg-8">
-                <p class="text-info h4">Pour supprimer votre compte il suffit de cliquer sur le bouton ci-dessous et de confirmer votre choix.<br/>
-                    Sachez que toutes vos données seront entièrement supprimé (Pseudo, adresse e-mail, mot de passe), seuls vos commentaires resterons.. Mais votre pseudo sera remplacer par <em>Anonyme</em> pour tous les commentaires que vous avez pu poster sur le site.<br/>
-                    Si vous avez le temps vous pouvez nous donner la raison de votre départ via ce formulaire de contact : <a href="">Lien fictif</a>, afin que nous puissions nous améliorer et permettre à nos utilisateurs d'avoir une raison de rester.</p>
+                <p class="text-danger h4">Pour supprimer votre compte il suffit de cliquer sur le bouton ci-dessous et de confirmer votre choix.<br/>
+                    Sachez que toutes vos données seront entièrement supprimé (Pseudo, adresse e-mail, mot de passe, commentaires, articles créés, vos messages du tchat) <br/>
+                    Si vous avez le temps vous pouvez nous donner la raison de votre départ via ce <a href="Contact">Formulaire de contact</a>, afin que nous puissions nous améliorer et permettre à nos utilisateurs d'avoir une raison de rester.</p>
             </div>
         </div>
         <div class="row">

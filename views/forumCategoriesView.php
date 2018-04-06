@@ -6,7 +6,7 @@ include_once '../models/users.php';
 include '../models/forumCategories.php';
 include '../models/forumSubCategories.php';
 include '../controllers/forumCategoriesController.php';
-$classBody = 'forumCategoryBackground';
+$classBody = 'forumBackground';
 $title = 'Forum';
 include 'header.php';
 ?>
@@ -38,10 +38,10 @@ include 'header.php';
                 <p class="text-center h4"><?= !empty($formSuccess['deleteCategory']) ? $formSuccess['deleteCategory'] : '' ?></p>
             </div>
         <?php } ?>
-        <?php foreach ($getCategories as $category) { ?>
+        <?php foreach ($readCategories as $category) { ?>
             <tr>
                 <td>
-                    <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= wordwrap($category->description,10, ' ', 1) ?><br/>
+                    <a href="views/forumSubCategoriesView.php?id=<?= $category->id ?>" title="direction sous-catégorie de la catégorie"><span class="uppercaseCategories"><?= $category->name ?></span></a><br/><?= wordwrap($category->description,15, ' ', 1) ?><br/>
                     <?php
                     if (!empty($readUsers)) {
                         if ($readUsers->id_cuyn_admin == 1 || $readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {

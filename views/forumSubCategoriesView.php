@@ -1,15 +1,17 @@
 <?php
 session_start();
 include_once '../configuration.php';
-include '../models/database.php';
-include '../models/users.php';
-include '../models/forumSubCategories.php';
-include '../controllers/forumSubCategoriesController.php';
-$classBody = NULL;
+include_once '../models/database.php';
+include_once '../models/users.php';
+include_once '../models/forumSubCategories.php';
+include_once '../controllers/forumSubCategoriesController.php';
+$classBody = 'forumBackground';
 $title = 'Forum sous-catégories';
-include 'header.php';
+include_once 'header.php';
 ?>
-<div class="container containerForum">
+<div class="container">
+         <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
+    <p><a href="../Catégorie-du-forum">Revenir à la liste des catégories</a></p>
     <?php if (!empty($formError)) { ?>
         <div class="alert-danger">
             <p class="text-center h4"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>
@@ -27,7 +29,6 @@ include 'header.php';
             <p class="text-center h4"><?= !empty($formSuccess['deleteSubCategory']) ? $formSuccess['deleteSubCategory'] : '' ?></p>
         </div>
     <?php } ?>
-    <p><a href="../Catégorie-du-forum">Revenir à la liste des catégories</a></p>
     <table class="table table-bordered"> 
         <thead> 
             <tr> 
@@ -36,8 +37,8 @@ include 'header.php';
                 <th>Dernières activités</th> 
             </tr> 
         </thead> 
-        <tbody> 
-            <?php foreach ($getSubCategories as $subCategory) { ?>
+        <tbody  class="tbodyTable">
+            <?php foreach ($readSubCategories as $subCategory) { ?>
                 <tr> 
                     <td><a href="forumTopicsView.php?id=<?= $subCategory->id ?>" title="direction vers les posts des utilisateurs"><?= $subCategory->name ?></a><br/><?= $subCategory->description ?><br/>
                         <form method="POST" action="">
@@ -70,7 +71,7 @@ include 'header.php';
                 <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre de la sous-catégorie" />
                 <label for="description">Description</label>
                 <textarea name="description" class="form-control focusColor" id="description" placeholder="Description de la sous-catégorie"></textarea>
-                <input type="submit" name="submit" class="btn formBtn btn-block" value="Valider la sous-catégorie"/>
+                <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Valider la sous-catégorie"/>
             </form>
         </div>
     </div>
@@ -92,5 +93,5 @@ include 'header.php';
     }
 </style>
 <?php
-include 'footer.php';
+include_once 'footer.php';
 
