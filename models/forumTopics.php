@@ -29,7 +29,12 @@ class forumTopics extends database {
      * Méthode qui me permet d'inserer une un topic qui sera lié à la sous-catégorie et à l'utilisateur
      */
     public function createTopics() {
-
+        $query = 'INSERT INTO `' . PREFIXE . 'forumTopics`(`name`, `id_cuyn_forumSubCategories`,id_cuyn_users ) VALUES (:name, :id_cuyn_forumCategories, :id_cuyn_users)';
+        $request = $this->db->prepare($query);
+        $request->bindValue('name', $this->name, PDO::PARAM_STR);
+        $request->bindValue('id_cuyn_forumCategories', $this->id_subCategory, PDO::PARAM_INT);
+        $request->bindValue('id_cuyn_users', $this->id_user, PDO::PARAM_INT);
+        return $request->execute();
     }
 
     /**
@@ -40,6 +45,17 @@ class forumTopics extends database {
         $request->bindValue(':id_cuyn_forumSubCategories', $this->id_subCategory, PDO::PARAM_INT);
         $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     *  Méthode qui permet de récupèrer les posts liés aux topics et au l'utilisateurs
+     */
+    public function readName() {
+        $query = 'SELECT  `' . PREFIXE . 'forumTopics`.`name` FROM `' . PREFIXE . 'forumTopics` WHERE id=:id_cuyn_forumTopics';
+        $request = $this->db->prepare($query);
+        $request->bindValue('id_cuyn_forumTopics', $this->id_topic, PDO::PARAM_INT);
+        $request->execute();
+        return $request->fetch(PDO::FETCH_OBJ);
     }
 
     /**

@@ -454,5 +454,16 @@ h1{
 }
 
 
-
+    .containerForum{
+        margin-top: 10%;
+    }
+    tr th{
+        background-color: #A983BE;
+    }
+    td{
+        padding: 20px!important;
+    }
+    #divSubCategory{
+        display: none;
+    }
 

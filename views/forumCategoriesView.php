@@ -78,7 +78,6 @@ include 'header.php';
             ?>
             <div class="well col-lg-6">
                 <h2 class="text-center">Ajouter une catégorie</h2>
-
                 <form method="POST" action="">
                     <div class="col-lg-12">
                         <label for="name">Titre</label>
