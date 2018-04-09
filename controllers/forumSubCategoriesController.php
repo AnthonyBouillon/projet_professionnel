@@ -74,7 +74,7 @@ if (isset($_POST['submitUpdate'])) {
             $formError['badRegexUpdateDescription'] = 'Description : minimum 10 caractères, maximum 255 caractères';
         }
     } else {
-        $formError['emptyFormUpdate'] = 'Veuillez remplir les  deux champs afin d\'ajouter une catégorie';
+        $formError['emptyFormUpdate'] = 'Veuillez remplir les deux champs afin de modifier une sous-catégorie';
     }
     if (count($formError) == 0) {
         if ($subCategories->updateSubCategories()) {

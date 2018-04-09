@@ -41,6 +41,7 @@ class comments extends database {
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         return $request->execute();
     }
+
     /**
      *  La méthode me permet de sélectionner : l'id du commentaire, le contenu du commentaire, l'id de l'utilisateur, l'id de l'article, le nom de l'image et le pseudo de l'utilisateur, ainsi que la date du commentaire au format français
      *  Pour ce faire j'ai dû joindre la table "comments" ave la table "users",
@@ -50,13 +51,13 @@ class comments extends database {
      * @return type array
      */
     public function readComments() {
-        $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'comments` '. 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'comments`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` WHERE `' . PREFIXE . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id ASC';
+        $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'comments` ' . 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'comments`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` WHERE `' . PREFIXE . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id ASC';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
-    
+
     /**
      *  La méthode me permet de compter le nombre d'id dans la table comments, suivant l'id de l'article
      *  La requête me retourne une ligne de résultat 
@@ -65,8 +66,9 @@ class comments extends database {
         $query = 'SELECT COUNT(`id`) AS nbComments FROM `' . PREFIXE . 'comments` WHERE id_cuyn_news =:id_cuyn_news';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
-        $request->execute();
-        return $request->fetch(PDO::FETCH_OBJ)->nbComments;
+        if ($request->execute()) {
+            return $request->fetch(PDO::FETCH_OBJ)->nbComments;
+        }
     }
 
     /**

@@ -2,16 +2,16 @@
 
 /**
  * Classe forumPosts qui permet de créer, afficher, modifier et supprimer des posts d'un topics
- * Elle hérite de la classe database qui contient la connexion à la base de données
+ * La classe formPosts hérite de tout le contenu de la classe database
  */
 class forumPosts extends database {
 
     /**
-     * Ajout des attributs
-     * L'id de l'utilisateur
-     * L'id du topic
-     * le contenu du post
-     * l'id du post
+     *  Attributs :
+     *  L'id du posts
+     *  L'id du topic
+     *  L'id de l'utilisateur
+     *  Le contenu du post
      */
     public $id_post = 0;
     public $id_topic = 0;
@@ -26,7 +26,12 @@ class forumPosts extends database {
     }
 
     /**
-     *  Méthode qui permet d'insérer un post lié à l'utilisateur qui est lié à au topic
+     *  La méthode me permet d'insérer le message, l'id du topic et l'id de l'utilisateur
+     *  Le message est lié au topic et à l'utilisateur
+     *  On utilise la méthode prepare afin d'éviter les injections SQL
+     *  On utilise la méthode bindValue qui nous permet d'associer nos marqueurs nominatif à des variables qui contiennent des données de type différents
+     *  On utilise les constantes de classe (ex : PDO::PARAM_STR) qui représente le type de données qui sera inséré
+     * @return type booléen
      */
     public function createPosts() {
         $query = 'INSERT INTO `' . PREFIXE . 'forumPosts`(`message`, `id_cuyn_forumTopics`,id_cuyn_users ) VALUES (:message, :id_cuyn_forumTopics, :id_cuyn_users)';
@@ -38,10 +43,18 @@ class forumPosts extends database {
     }
 
     /**
-     *  Méthode qui permet de récupèrer les posts liés aux topics et au l'utilisateurs
+     *  La méthode me permet de sélectionner toutes les informations dont j'ai besoin :
+     *  Table forumPosts : id, message, date au format français
+     *  Table users : pseudo, image et la date d'inscription
+     *  Table admin : les droits
+     *  On par de la table forumPost est on join la table users, la clé étrangère est égale à l'id de l'utilisateur
+     *  Ensuite on join la table admin en précisant que l'id de la table admin est égale à la clé étrangère de la table users
+     *  Toutes ces informations sont lié au topic
+     * @return type array
      */
     public function readPosts() {
-        $query = 'SELECT `' . PREFIXE . 'forumPosts`.`id`,`' . PREFIXE . 'forumPosts`.`message`, DATE_FORMAT(`' . PREFIXE . 'forumPosts`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS datePost, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'users`.`createDate`,  \' %d/%m/%Y à %Hh%i \') AS dateUsers, `' . PREFIXE . 'admin`.`rights`'
+        $query = 
+                'SELECT `' . PREFIXE . 'forumPosts`.`id`,`' . PREFIXE . 'forumPosts`.`message`, DATE_FORMAT(`' . PREFIXE . 'forumPosts`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS datePost, `' . PREFIXE . 'users`.`username`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'users`.`createDate`,  \' %d/%m/%Y à %Hh%i \') AS dateUsers, `' . PREFIXE . 'admin`.`rights`'
                 . ' FROM `' . PREFIXE . 'forumPosts` '
                 . 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'forumPosts`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` '
                 . 'INNER JOIN `' . PREFIXE . 'admin` ON `' . PREFIXE . 'admin`.`id` = `' . PREFIXE . 'users`.`id_cuyn_admin`'
@@ -52,27 +65,10 @@ class forumPosts extends database {
         return $request->fetchAll(PDO::FETCH_OBJ);
     }
 
-    /**
-     *  Méthode qui permet de récupèrer les posts liés aux topics et au l'utilisateurs
-     */
-    public function readName() {
-        $query = 'SELECT  `' . PREFIXE . 'forumTopics`.`name` FROM `' . PREFIXE . 'forumTopics` WHERE id=:id_cuyn_forumTopics';
-        $request = $this->db->prepare($query);
-        $request->bindValue('id_cuyn_forumTopics', $this->id_topic, PDO::PARAM_INT);
-        $request->execute();
-        return $request->fetch(PDO::FETCH_OBJ);
-    }
-
-    /**
-     *  Méthode qui permet de modifier un post appartenant à l'utilisateur qui est lié à au topic
-     */
     public function updatePosts() {
         
     }
 
-    /**
-     *  Méthode qui permet de supprimer un post choisi grâce à son id et qui est lié à l'utilisateur
-     */
     public function deletePosts() {
         
     }

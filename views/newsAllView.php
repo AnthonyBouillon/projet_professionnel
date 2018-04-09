@@ -48,7 +48,7 @@ include_once 'header.php';
                     <p class="col-lg-12 text-center"><img src="../news/images/<?= $articles->picture; ?>" class="img-responsive img-thumbnail"/></p>
                     <div class="col-lg-12">
                         <!-- On affiche le nom de la plateforme et le titre de l'article -->
-                        <h2 class="text-center"><?= $articles->plateform; ?> | <?= $articles->title; ?></h2>
+                        <h2 class="text-center"><?= $articles->plateform; ?> | <?= wordwrap($articles->title, 16, ' ', 1); ?></h2>
                         <!-- On affiche le résumé de l'article -->
                         <p><?= $articles->resume; ?></p>
                         <!-- On affiche l'id de l'article afin de redigiré vers la même page et le même article mais plus complet -->
@@ -97,27 +97,34 @@ include_once 'header.php';
                 }
             }
             ?>
-        </div>
-        <!-- Si la page ne contient aucun article, affiche cette vue -->
-    <?php } else { ?>
-        <h2 class="text-center alert-danger">Cette page ne contient aucun article</h2>
-        <p class="text-center"><a href="../admin/newsWritingView.php" class="btn btn-success black">Ajouter un article</a></p>
-        <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
-        <?php if (!empty($error)) { ?>
-            <div class="alert-danger col-lg-offset-3 col-lg-6">
-                <p class="bold text-center"><?= !empty($error['!deleteNew']) ? $error['!deleteNew'] : '' ?></p>
-            </div>
+
+            <!-- Si la page ne contient aucun article, affiche cette vue -->
+        <?php } else { ?>
+            <h2 class="text-center alert-danger">Cette page ne contient aucun article</h2>
             <?php
+            if (!empty($_SESSION['id'])) {
+                if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {
+                    ?>
+                    <p class="text-center"><a href="../admin/newsWritingView.php" class="btn btn-success black">Ajouter un article</a></p>
+                <?php } ?> 
+                <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
+                <?php if (!empty($error)) { ?>
+                    <div class="alert-danger col-lg-offset-3 col-lg-6">
+                        <p class="bold text-center"><?= !empty($error['!deleteNew']) ? $error['!deleteNew'] : '' ?></p>
+                    </div>
+                    <?php
+                }
+            }
+            if (!empty($success)) {
+                ?>
+                <div class="alert-success col-lg-offset-3 col-lg-6">
+                    <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
+                </div>
+                <?php
+            }
         }
-        if (!empty($success)) {
-            ?>
-            <div class="alert-success col-lg-offset-3 col-lg-6">
-                <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
-            </div>
-            <?php
-        }
-    }
-    ?>
+        ?>
+    </div>
 </div>
 <?php
 include_once 'footer.php';

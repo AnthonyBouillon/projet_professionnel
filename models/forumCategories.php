@@ -30,7 +30,11 @@ class forumCategories extends database {
     }
 
     /**
-     * 
+     *  La méthode me permet d'insérer dans la table "forumCategorie : le nom, la description et l'id de l'utilisateur
+     *  La catégorie est lié à l'utilisateur
+     *  On utilise la méthode prepare afin d'éviter les injections SQL
+     *  On utilise la méthode bindValue qui nous permet d'associer nos marqueurs nominatif à des variables qui contiennent des données de type différents
+     *  On utilise les constantes de classe (ex : PDO::PARAM_STR) qui représente le type de données qui sera inséré
      * @return type booléen
      */
     public function createCategories() {
@@ -43,7 +47,7 @@ class forumCategories extends database {
     }
 
     /**
-     * 
+     *  La méthode me permet de sélectionner toutes les informations de la table forumCategories
      * @return type array
      */
     public function readCategories() {
@@ -54,7 +58,8 @@ class forumCategories extends database {
     }
 
     /**
-     * 
+     *  La méthode me permet de modifier le nom et la description d'une catégorie
+     *  Je précise donc l'id de la catégorie
      * @return type booléen
      */
     public function updateCategories() {
@@ -67,34 +72,35 @@ class forumCategories extends database {
     }
 
     /**
-     * 
+     *  La méthode me permet de supprimer une catégorie ainsi que tout ce qui est lié à celui-ci, comme la sous-catégorie, le topic et la réponse au topic
+     *  On commence par essayer de démarrer une transaction, si une requête me retourne false, dans ce cas, toutes les requêtes sont annulés
+     *  Si toutes les requêtes retourne vrais, on valide la transaction et les requêtes sont exécutés
      * @return type booléen
      */
     public function deleteCategories() {
         try {
             // On commence la transaction
             $this->db->beginTransaction();
-
+            // Supprime les réponses du sujet lié au topic
             $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE id_cuyn_forumTopics=:id_cuyn_forumTopics';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_forumTopics', $this->id_topic, PDO::PARAM_INT);
             $request->execute();
-
+            // Supprime les topics lié à la sous-catégorie
             $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE id_cuyn_forumSubCategories=:id_cuyn_forumSubCategories';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_forumSubCategories', $this->id_subCategory, PDO::PARAM_INT);
             $request->execute();
-
+            // Supprime les sous-catégories lié à la catégorie
             $query = 'DELETE FROM `' . PREFIXE . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_forumCategories', $this->id_category, PDO::PARAM_INT);
             $request->execute();
-
+            // Supprime les catégories 
             $query = 'DELETE FROM `' . PREFIXE . 'forumCategories` WHERE id=:id';
             $request = $this->db->prepare($query);
             $request->bindValue(':id', $this->id_category, PDO::PARAM_INT);
             $request->execute();
-
             // Valide la transaction
             $this->db->commit();
             $reponseDelete = true;
@@ -102,7 +108,7 @@ class forumCategories extends database {
             die('Erreur : ' . $e->getMessage());
             $reponseDelete = false;
         }
-        // Retourne vrai vrai si les requêtes on fonctionné et faux si les requête on échoué
+        // Retourne vrai si les requêtes on fonctionnés et faux si les requêtes on échoués
         return $reponseDelete;
     }
 

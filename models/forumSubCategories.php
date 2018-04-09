@@ -2,10 +2,17 @@
 
 /**
  * Classe forumSubCategories qui permet de créer, afficher, modifier, supprimer une catégories
- * La classe forumSubCategories hérite de la classe database qui contient la connexion à la base de données
+ * La classe forumSubCategories hérite de tout le contenu de la classe database
  */
 class forumSubCategories extends database {
 
+    /**
+     *  Attributs : 
+     *  ID de l'utilisateur
+     *  ID de la catégorie
+     *  ID de la sous-catégorie
+     *  NOM et DESCRIPTION de la sous-catégorie
+     */
     public $id_user = 0;
     public $id_category = 0;
     public $id_subCategory = 0;
@@ -20,8 +27,12 @@ class forumSubCategories extends database {
     }
 
     /**
-     * Méthode qui me permet de créer une sous-catégorie lié à la catégorie
-     * l'id de la sous-catégorie est lié à l'utilisateur
+     *  La méthode me permet d'insérer dans la table des sous-catégorie : le nom, la description, l'id de la catégorie et l'id de l'utilisateur
+     *  les sous-catégorie sont lié au catégorie et à l'utilisateur
+     *  On utilise la méthode prepare afin d'éviter les injections SQL
+     *  On utilise la méthode bindValue qui nous permet d'associer nos marqueurs nominatif à des variables qui contiennent des données de type différents
+     *  On utilise les constantes de classe (ex : PDO::PARAM_STR) qui représente le type de données qui sera inséré
+     * @return type booléen
      */
     public function createSubCategories() {
         $query = 'INSERT INTO `' . PREFIXE . 'forumSubCategories`(`name`, `description`, `id_cuyn_forumCategories`,id_cuyn_users ) VALUES (:name, :description, :id_cuyn_forumCategories, :id_cuyn_users)';
@@ -34,7 +45,9 @@ class forumSubCategories extends database {
     }
 
     /**
-     * Méthode qui me permet de sélectionner les sous-catégories lié au catégorie
+     *  La méthode me permet de sélectionner l'id, le nom et la description qui sont lié à la catégorie
+     *  c'est pour cette raison qu'il me faut l'id de la catégorie, pour qu'il me retourne les résultats, suivant dans quel catégorie on ce trouve.
+     * @return type array
      */
     public function readSubCategories() {
         $query = 'SELECT `id`,`name`, `description` FROM `' . PREFIXE . 'forumSubCategories` WHERE id_cuyn_forumCategories=:id_cuyn_forumCategories';
@@ -45,7 +58,9 @@ class forumSubCategories extends database {
     }
 
     /**
-     *  Méthode qui permet de modifier une sous-catégorie lié à son id
+     *  La méthode me permet de modifier : le nom et la description des sous-catégories 
+     *  j'ai besoin de l'id de la sous-catégorie afin de savoir laquelle sera modifié
+     * @return type booléen
      */
     public function updateSubCategories() {
         $query = 'UPDATE `' . PREFIXE . 'forumSubCategories` SET `name` =:name, description=:description WHERE `id`=:id';
@@ -57,7 +72,10 @@ class forumSubCategories extends database {
     }
 
     /**
-     *  Méthode qui permet de supprimer une sous-catégorie lié à son id
+     *  La méthode me permet de supprimer une sous-catégorie ainsi que tout ce qui est lié à celui-ci, comme le topic et la réponse au topic
+     *  On commence par essayer de démarrer une transaction, si une requête me retourne false, dans ce cas, toutes les requêtes sont annulés
+     *  Si toutes les requêtes retourne vrais, on valide la transaction et les requêtes sont exécutés
+     * @return type booléen
      */
     public function deleteSubCategories() {
         try {

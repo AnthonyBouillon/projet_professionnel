@@ -3,11 +3,11 @@ session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
-include_once '../models/users.php';
+include_once '../models/forumTopics.php';
 include_once '../models/forumPosts.php';
 include_once '../controllers/forumPostsController.php';
 include_once '../controllers/navBarController.php';
-$classBody = NULL;
+$classBody = 'forumBackground';
 $title = 'Forum réponses';
 include_once 'header.php';
 ?>
