@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Classe chat qui me permet d'inserer et d'afficher les messages et les pseudos de l'utilisateur
- * La classe chat hérite de la classe database
+ * Classe chat qui me permet d'insérer et d'afficher les messages et les pseudos de l'utilisateur 
+ * La classe chat hérite de tout le contenu de la classe database
  */
 class chat extends database {
-    /*
-     *  Ajout des attributs pour stocker des données
-     *  Attribut qui contiendra l'id et le message de l'utilisateur
-     */
 
+    /**
+     *  Les attributs sont l'id et le contenu du message de l'utilisateur 
+     * @var type int et char
+     */
     public $id_user = 0;
     public $message = '';
 
@@ -21,8 +21,11 @@ class chat extends database {
     }
 
     /**
-     *  Méthode qui permet d'insérer le message lié à l'utilisateur si il est connecté
-     *  Sinon la méthode insère le message seul et l'id du visiteur est NULL, ce qui me permet d'afficher le message même si l'utilisateur n'est pas connecté
+     *  La méthode me permet d'insérer dans la table chat, le message et l'id de l'utilisateur
+     *  Si l'utilisateur n'est pas connecté, l'id de l'utilisateur deviendra NULL
+     *  On utilise les constantes de classe (ex : PDO::PARAM_STR) qui représente le type de données qui sera inséré
+     *  On utilise la méthode bindValue qui nous permet d'associer nos marqueurs nominatif à des variables qui contiennent des données de type différents
+     * @return type booléen
      */
     public function createMessage() {
         $query = 'INSERT INTO `' . PREFIXE . 'chat`(`message`, `id_cuyn_users`) VALUES(:message, :id_cuyn_users)';
@@ -37,13 +40,13 @@ class chat extends database {
     }
 
     /**
-     *  Méthode qui permet de récupèrer les messages lié au utilisateurs dans la base de données
-     *  Sélection : messages, date format français, pseudo de l'utilisateur
-     *  Table join : Chat avec users
-     *  LEFT JOIN : Me permet de récupérer les messages des visiteurs sans id correspondant
-     *  id_user de la table chat correspond avec l'id de la table users
-     *  Limite l'affichage à 50 messages trié par id des messages dans l'ordre descendant
-     *  Tableau qui me retourne un objet
+     *  La méthode me permet de sélectionner, le message, la date et le pseudo de l'utilisateur,
+     *  pour ce faire, j'ai dû joindre la table chat avec la table users, en précisant que notre clé étrangère de la table chat est égale à l'id de la table users
+     *  La méthode utilisé est le LEFT JOIN car il n'y a pas toujours de correspondance entre les deux tables (l'id de l'utilisateur peut être NULL)
+     *  J'ai utilisé la fonction DATE_FORMAT afin de formater la date, afin quelle soit au format français
+     *  Notre méthode nous retourne un tableau qui contient toutes les lignes de la table
+     *  PDO::FETCH_OBJ nous retourne le résultat du tableau en objet
+     * @return type array
      */
     public function readMessage() {
         $query = 'SELECT `' . PREFIXE . 'chat`.`message`, DATE_FORMAT(`' . PREFIXE . 'chat`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`,  `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'chat` LEFT JOIN `' . PREFIXE . 'users`  ON  `' . PREFIXE . 'chat`.`id_cuyn_users` = `' . PREFIXE . 'users`. `id`  ORDER BY `' . PREFIXE . 'chat`.`id` DESC LIMIT 50';

@@ -10,7 +10,7 @@ class database {
 
     /**
      *  Connexion à la base de données
-     *  fonction en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
+     *  méthode en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
      *  Si la connexion ne marche pas on attrape l'erreur et on l'affiche
      */
     protected function __construct() {
@@ -23,7 +23,7 @@ class database {
 
     /**
      *  Déconnexion de la base de données
-     *  function en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
+     *  méthode en protected qui ne pourra être appelé que dans la classe et les classes qui en hérite
      */
     protected function __destruct() {
         $this->db = NULL;

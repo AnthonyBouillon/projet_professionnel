@@ -77,7 +77,7 @@ include_once 'header.php';
             <?php foreach ($readComments as $comments) { ?> 
                 <div class="well col-lg-12 border">
                     <!-- Affichage du pseudo et de l'image de l'utilisateur -->
-                    <h2 class=""><img src="../members/avatars/<?= $comments->username . '/' . $comments->avatar; ?>" class="img-rounded avatarNav" /><?= !empty($comments->username) ? $comments->username : 'Anonyme'; ?> a écrit : </h2><hr/>
+                    <h2 class=""><img src="../members/avatars/<?= $comments->username . '/' . $comments->avatar; ?>" class="img-rounded avatarNav" /></h2><hr/>
                     <!-- Affichage du contenu du commentaire -->
                     <p class="h4"><?= wordwrap($comments->comment, 18, ' ', 1); ?></p>
                     <!-- Affichage de la date de création du commentaire -->

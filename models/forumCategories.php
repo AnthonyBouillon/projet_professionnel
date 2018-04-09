@@ -7,13 +7,13 @@
 class forumCategories extends database {
 
     /**
-     * Ajouts des attributs qui servira à stocker les valeurs pour la création, l'affichage, la modification et la suppression d'une catégories
-     * L'id de l'utilisateur
-     * L'id de la catégorie
-     * L'id de la sous catégorie
-     * L'id du topic
-     * Le nom de la catégorie
-     * La description de la catégorie
+     *  Attributs : 
+     *  L'id de l'utilisateur
+     *  L'id de la catégorie
+     *  L'id de la sous catégorie
+     *  L'id du topic
+     *  Le nom de la catégorie
+     *  La description de la catégorie
      */
     public $id_user = 0;
     public $id_category = 0;
@@ -30,9 +30,8 @@ class forumCategories extends database {
     }
 
     /**
-     *  Méthode qui me permet d'inserer une catégorie avec comme valeur le nom, la description et l'id de l'utilisateur
-     *  C'est une requete préparé pour plus de sécurité
-     *  Nous ajoutons comme parammètre sa nature ( chaine de caractère et un integer )
+     * 
+     * @return type booléen
      */
     public function createCategories() {
         $query = 'INSERT INTO `' . PREFIXE . 'forumCategories`(`name`, `description`, id_cuyn_users) VALUES (:name, :description, :id_cuyn_users)';
@@ -44,7 +43,8 @@ class forumCategories extends database {
     }
 
     /**
-     *  Méthode qui me permet de sélectionner toutes les catégories
+     * 
+     * @return type array
      */
     public function readCategories() {
         $query = 'SELECT `id`,`name`, `description` FROM `' . PREFIXE . 'forumCategories`';
@@ -54,8 +54,8 @@ class forumCategories extends database {
     }
 
     /**
-     *  Méthode qui me permet de modifier une catégories
-     * Je modifie la valeur du nom et de la description de la catégorie lié à son ID
+     * 
+     * @return type booléen
      */
     public function updateCategories() {
         $query = 'UPDATE `' . PREFIXE . 'forumCategories` SET `name` =:name, description=:description WHERE `id`=:id';
@@ -67,8 +67,8 @@ class forumCategories extends database {
     }
 
     /**
-     *  Méthode qui permet de supprimer une catégorie et tous ce qui est lié à la catégorie
-     *  En cas d'erreur, on affiche un message d'erreur ainsi que les erreurs en question
+     * 
+     * @return type booléen
      */
     public function deleteCategories() {
         try {

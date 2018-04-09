@@ -7,11 +7,11 @@
 class comments extends database {
 
     /**
-     * Ajout des attributs
-     * L'id de l'utilisateur
-     * L'id de l'article
-     * L'id du commentaire
-     * Le contenu du commentaire
+     *  Attributs : 
+     *  L'id de l'utilisateur
+     *  L'id de l'article
+     *  L'id du commentaire
+     *  Le contenu du commentaire
      */
     public $id_user = 0;
     public $id_new = 0;
@@ -26,8 +26,12 @@ class comments extends database {
     }
 
     /**
-     *  Méthode qui permet d'insérer un commentaire lié à l'utilisateur et à l'article
-     *  La requête a besoin pour fonctionner : L'id de l'utilisateur et l'id de l'article ainsi que la saisie du commentaire
+     *  La méthode me permet d'insérer dans la table "comments" : le contenu du commentaire, l'id de l'utilisateur et l'id de l'article
+     *  Le commentaire est lié à l'article et à l'utilisateur
+     *  On utilise la méthode prepare afin d'éviter les injections SQL
+     *  On utilise la méthode bindValue qui nous permet d'associer nos marqueurs nominatif à des variables qui contiennent des données de type différents
+     *  On utilise les constantes de classe (ex : PDO::PARAM_STR) qui représente le type de données qui sera inséré
+     * @return type booléen
      */
     public function createComments() {
         $query = 'INSERT INTO `' . PREFIXE . 'comments`(`comment`, `id_cuyn_users`, `id_cuyn_news`) VALUES (:comment, :id_cuyn_users, :id_cuyn_news)';
@@ -37,19 +41,16 @@ class comments extends database {
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         return $request->execute();
     }
-
     /**
-     *  Méthode qui permet de récupèrer les commentaires liés aux articles et au l'utilisateurs
-     *  Sélection : l'id du commentaire, le contenu du commentaire, l'id de l'utilisateur, l'id de l'article, l'image de profil, la date au format français et le pseudo des l'utilisateurs
-     *  La table des commentaires et des utilisateurs sont join
-     *  INNER JOIN : Afin de récupéré les commentaires lié à l'utilisateur correspondant
-     *  Ces informations sont récupéré suivant l'id de l'article
+     *  La méthode me permet de sélectionner : l'id du commentaire, le contenu du commentaire, l'id de l'utilisateur, l'id de l'article, le nom de l'image et le pseudo de l'utilisateur, ainsi que la date du commentaire au format français
+     *  Pour ce faire j'ai dû joindre la table "comments" ave la table "users",
+     *  en précisant que la clé étrangère de la table "comments" est égale à l'id de la table "users"
+     *  Nous précisons que la ligne où il doit lire ses informations, ce trouve à l'id de l'article indiqué
+     *  Nous trions avec ORDER BY, du plus ancien au plus récent
+     * @return type array
      */
     public function readComments() {
-        $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` '
-                . 'FROM `' . PREFIXE . 'comments` '
-                . 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'comments`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` '
-                . 'WHERE `' . PREFIXE . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id DESC';
+        $query = 'SELECT `' . PREFIXE . 'comments`.`id`, ' . '`' . PREFIXE . 'comments`.`comment`, `' . PREFIXE . 'comments`.`id_cuyn_users`, `' . PREFIXE . 'comments`.`id_cuyn_news`, `' . PREFIXE . 'users`.`avatar`, DATE_FORMAT(`' . PREFIXE . 'comments`.`createDate`, \' %d/%m/%Y à %Hh%i \') AS `date`, `' . PREFIXE . 'users`.`username` FROM `' . PREFIXE . 'comments` '. 'INNER JOIN `' . PREFIXE . 'users` ON `' . PREFIXE . 'comments`.`id_cuyn_users` = `' . PREFIXE . 'users`.`id` WHERE `' . PREFIXE . 'comments`.`id_cuyn_news`=:id_cuyn_news ORDER BY id ASC';
         $request = $this->db->prepare($query);
         $request->bindValue(':id_cuyn_news', $this->id_new, PDO::PARAM_INT);
         $request->execute();
@@ -57,7 +58,8 @@ class comments extends database {
     }
     
     /**
-     * Méthode qui me permet de compter le nombre total des commentaires lié à l'article
+     *  La méthode me permet de compter le nombre d'id dans la table comments, suivant l'id de l'article
+     *  La requête me retourne une ligne de résultat 
      */
     public function countComments() {
         $query = 'SELECT COUNT(`id`) AS nbComments FROM `' . PREFIXE . 'comments` WHERE id_cuyn_news =:id_cuyn_news';
@@ -68,8 +70,9 @@ class comments extends database {
     }
 
     /**
-     *  Méthode qui permet de modifier un commentaire appartenant à l'utilisateur qui est lié à l'article
-     * pour ça j'ai besoin de : l'id du commentaire, l'id de l'utilisateur ainsi que du commentaire
+     *  La méthode me permet de modifier un commentaire qui est lié à l'utilisateur,
+     *  c'est pour cette raison que j'ai besoin de l'id du commentaire et l'id de l'utilisateur
+     * @return type booléen
      */
     public function updateComments() {
         $query = 'UPDATE `' . PREFIXE . 'comments` SET `comment`=:comment WHERE `id`=:id AND id_cuyn_users=:id_cuyn_users';
@@ -81,8 +84,9 @@ class comments extends database {
     }
 
     /**
-     *  Méthode qui permet de supprimer un commentaire qui a était sélectionné par son id et qui est lié à l'utilisateur
-     * pour ça j'ai besoin de : l'id du commentaire ainsi que l'id de l'utilisateur
+     *  La méthode me permet de supprimer un commentaire lié à l'utilisateur, ainsi que toute sa ligne dans la table "comments"
+     *  c'est pour cette raison que j'ai besoin de l'id du commentaire et l'id de l'utilisateur
+     * @return type booléen
      */
     public function deleteComments() {
         $query = 'DELETE FROM `' . PREFIXE . 'comments` WHERE `id`=:id AND id_cuyn_users=:id_cuyn_users';
