@@ -18,6 +18,7 @@ class users extends database {
      */
     public $id = 0;
     public $id_admin = 0;
+    public $id_topic = 0;
     public $username = '';
     public $mail = '';
     public $password = '';
@@ -178,8 +179,9 @@ class users extends database {
             //  Requête qui permet de supprimer les posts du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_forumTopics` = :id_cuyn_forumTopics';
             $request = $this->db->prepare($query);
-            $request->bindValue(':id_cuyn_forumTopics', $this->id, PDO::PARAM_INT);
+            $request->bindValue(':id_cuyn_forumTopics', $this->id_topic, PDO::PARAM_INT);
             $request->execute();
+            var_dump($this->id_topic);
             //  Requête qui permet de supprimer les topics du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
