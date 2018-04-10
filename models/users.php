@@ -176,9 +176,9 @@ class users extends database {
         try {
             $this->db->beginTransaction();
             //  Requête qui permet de supprimer les posts du forum lié à l'utilisateur
-            $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_forumTopics` = :id_cuyn_users';
+            $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_forumTopics` = :id_cuyn_forumTopics';
             $request = $this->db->prepare($query);
-            $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
+            $request->bindValue(':id_cuyn_forumTopics', $this->id, PDO::PARAM_INT);
             $request->execute();
             //  Requête qui permet de supprimer les topics du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users';

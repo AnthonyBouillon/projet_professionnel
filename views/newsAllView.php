@@ -96,7 +96,7 @@ include_once 'header.php';
             <h2 class="text-center alert-danger">Cette page ne contient aucun article</h2>
             <?php if (!empty($_SESSION['id'])) {
                 if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) { ?>
-                    <p class="text-center"><a href="../admin/newsWritingView.php" class="btn btn-success black">Ajouter un article</a></p>
+                    <p class="text-center"><a href="../Rédaction_d'article" class="btn btn-success black">Ajouter un nouvel article</a></p>
                 <?php } ?> 
                 <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
                 <?php if (!empty($error)) { ?>

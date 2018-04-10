@@ -23,7 +23,7 @@ include_once 'header.php';
                     <th class="text-center">Pseudo</th>
                     <th class="text-center">Statut</th>
                     <!-- On vérifie si l'utilisateur à les droits suprême afin de lui afficher la modification de statut et la suppression de l'utilisateur -->
-                    <?php if (!empty($readUsers) && $readUsers->id_cuyn_admin == 5 || $readUsers->id_cuyn_admin == 1) { ?>
+                    <?php if (!empty($_SESSION['id']) && $readUsers->id_cuyn_admin == 5 && $readUsers->id_cuyn_admin == 1) { ?>
                         <th class="text-center">Modifier le statut</th>
                         <th class="text-center">Supprimer l'utilisateur</th>
                     <?php } ?>
@@ -38,7 +38,7 @@ include_once 'header.php';
                         <td><?= $listMembers->username ?></td>
                         <td><?= $listMembers->rights ?></td>
                         <!-- On vérifie si l'utilisateur à les droits suprême afin de lui afficher la modification de statut et la suppression de l'utilisateur -->
-                        <?php if (!empty($readUsers) && $readUsers->id_cuyn_admin == 5 || $readUsers->id_cuyn_admin == 1) { ?>
+                        <?php if (!empty($_SESSION['id']) && $readUsers->id_cuyn_admin == 5 && $readUsers->id_cuyn_admin == 1) { ?>
                             <td class="text-center">
                                 <form action="" method="POST" >
                                     <select name="updateRights" class="btn btn-primary" >
