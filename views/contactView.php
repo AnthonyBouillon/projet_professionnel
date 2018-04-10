@@ -1,12 +1,13 @@
 <?php
+// crée une session ou restaure celle trouvée sur le serveur
 session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../controllers/contactController.php';
-// N'assigne rien la classe body
+// On assigne une classe à la balise body
 $classBody = 'contactBackground';
-// Assigne un titre à la balise title
+// On assigne un titre à la balise title
 $title = 'Formulaire de contact';
 include_once 'header.php';
 ?>
@@ -32,7 +33,7 @@ include_once 'header.php';
                 <p class="text-center bold h4"><?= !empty($formError['sendMailError']) ? $formError['sendMailError'] : ''; ?></p>
             </div>
         <?php } ?>
-        <section class="col-lg-12">
+        <div class="col-lg-12">
             <form method="POST" action="" class="form-horizontal">
                 <!-- Pseudo -->
                 <div class="form-group fieldBackground">
@@ -76,7 +77,7 @@ include_once 'header.php';
                     </div>
                 </div>
             </form>
-        </section>
+        </div>
     </div>
 </div>
 <?php

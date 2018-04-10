@@ -8,7 +8,8 @@ h1{
     opacity: 0.9;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-top: 20px;
+
+    padding: 10px;
     padding-bottom: 20px;
     border-bottom: 2px solid black;
 }
@@ -429,7 +430,7 @@ html, body {
         margin-top: 5%;
     }
 }
-/* ------------------------------- GLOSSAIRE ------------------------------- */
+/* ------------------------------- Tableau ------------------------------- */
 .theadTable{
     background-color: #A983BE;
     color: black;
@@ -437,7 +438,7 @@ html, body {
 .tbodyTable{
     background-color: white;
 }
-
+/* Titre principale */
 .titleStyle{
     font-size: 30px;
     padding: 20px  ;
@@ -446,24 +447,20 @@ html, body {
     background: orange;
     box-shadow: 5px 15px 5px 5px #000;
 }
+/*  FORUM  */
 .tableForum{
     margin-bottom: 3.5%;
 }
-h1{
-    padding: 10px;
+.containerForum{
+    margin-top: 10%;
 }
-
-
-    .containerForum{
-        margin-top: 10%;
-    }
-    tr th{
-        background-color: #A983BE;
-    }
-    td{
-        padding: 20px!important;
-    }
-    #divSubCategory{
-        display: none;
-    }
+tr th{
+    background-color: #A983BE;
+}
+td{
+    padding: 20px!important;
+}
+#divSubCategory{
+    display: none;
+}
 

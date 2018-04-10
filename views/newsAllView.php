@@ -15,10 +15,8 @@ include_once 'header.php';
         <?php if (!empty($readArticle)) { ?>
             <h2 class="text-center titleStyle white">Toutes les actualités</h2>
             <!-- Si l'utilisateur a les droits, on affiche un lien qui redirige vers la page d'ajout d'article  -->
-            <?php
-            if (!empty($_SESSION['id'])) {
-                if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {
-                    ?>
+            <?php if (!empty($_SESSION['id'])) {
+                if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) { ?>
                     <div class="row">
                         <p class="text-center"><a href="../Rédaction_d'article" class="btn btn-success black">Ajouter un nouvel article</a></p>
                     </div>
@@ -33,8 +31,7 @@ include_once 'header.php';
                 </div>
                 <?php
             }
-            if (!empty($success)) {
-                ?>
+            if (!empty($success)) {  ?>
                 <div class="alert-success col-lg-offset-3 col-lg-6">
                     <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
                 </div>
@@ -56,10 +53,8 @@ include_once 'header.php';
                         <!-- On affiche la date de la création de l'article -->
                         <p class="datePost h4 bold">Posté le :<?= $articles->date; ?></p>
                         <!-- Si l'utilisateur a les droits, on affiche les boutons permettant de modifier et de supprimer un article -->
-                        <?php
-                        if (!empty($_SESSION['id'])) {
-                            if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {
-                                ?>
+                        <?php if (!empty($_SESSION['id'])) {
+                            if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {  ?>
                                 <form method="POST" action="" class="editForm">
                                     <!-- Ce champ nous permet de récupérer l'id de l'article -->
                                     <input type="hidden" value="<?= $articles->id ?>" name="id_new" />
@@ -84,8 +79,7 @@ include_once 'header.php';
              * Ce qui fait une pagination complète
              */
             for ($i = 1; $i <= $numberOfPages; $i++) {
-                if ($i == $currentPage) {
-                    ?>
+                if ($i == $currentPage) { ?>
                     <ul class="pagination">
                         <li><a href="../Toutes-les-actualités?id=<?= $i ?> " ><?= $i ?></a></li>
                     </ul>
@@ -97,14 +91,11 @@ include_once 'header.php';
                 }
             }
             ?>
-
             <!-- Si la page ne contient aucun article, affiche cette vue -->
         <?php } else { ?>
             <h2 class="text-center alert-danger">Cette page ne contient aucun article</h2>
-            <?php
-            if (!empty($_SESSION['id'])) {
-                if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) {
-                    ?>
+            <?php if (!empty($_SESSION['id'])) {
+                if ($readUsers->id_cuyn_admin == 2 || $readUsers->id_cuyn_admin == 5) { ?>
                     <p class="text-center"><a href="../admin/newsWritingView.php" class="btn btn-success black">Ajouter un article</a></p>
                 <?php } ?> 
                 <!-- Si la page contient un message personnalisé, la div + le message qu'il contient s'afficherons -->
@@ -115,8 +106,7 @@ include_once 'header.php';
                     <?php
                 }
             }
-            if (!empty($success)) {
-                ?>
+            if (!empty($success)) { ?>
                 <div class="alert-success col-lg-offset-3 col-lg-6">
                     <p class="bold text-center"><?= !empty($success['deleteNew']) ? $success['deleteNew'] : '' ?></p>
                 </div>

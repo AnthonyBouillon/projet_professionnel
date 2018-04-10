@@ -64,8 +64,9 @@ if (isset($_POST['submitCreate'])) {
     }
 }
 /* * * * Modifier une catégorie * * * *
- * 
- *  
+ * Si le formulaire est soumis,
+ * on assigne l'id de la catégorie, le nom et la description, on sécurise les données par la fonction htmlspecialchars
+ * Si les chaps ne sont pas vide, on vérifie si la regex pour le champ est respecté
  */
 if (isset($_POST['submitUpdate'])) {
     $forumCategories->id_category = $_POST['idCategory'];
@@ -81,6 +82,11 @@ if (isset($_POST['submitUpdate'])) {
     } else {
         $formError['emptyFormUpdate'] = 'Veuillez remplir les deux champs afin de modifier une catégorie';
     }
+    /*
+     * Si le formulaire ne comporte aucune erreur
+     * on appelle notre méthode qui nous permet de modifier une catégorie,
+     * puis on l'affiche
+     */
     if (count($formError) == 0) {
         if ($forumCategories->updateCategories()) {
             $readCategories = $forumCategories->readCategories();

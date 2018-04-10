@@ -6,7 +6,6 @@ include_once '../models/users.php';
 include_once '../controllers/navBarController.php';
 $classBody = NULL;
 $title = 'Plan du site';
-
 include_once 'header.php';
 ?>
 <div class="container">

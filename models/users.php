@@ -69,8 +69,7 @@ class users extends database {
 
     /**
      *  La requête nous permet de sélectionner l'id, le pseudo, les droits de l'utilisateur ainsi que le nom et l'id des droits dans la table admin
-     *  J'ai join les deux tables en utilisant INNER JOIN par choix afin qu'il récupère ceux qui correspondent, mais vu que chaque utilisateur a obligatoirement une clé étrangère pour les droits,
-     *  LEFT ou RIGHT aurait eu le même effet.
+     *  J'ai join les deux tables en utilisant INNER JOIN par choix afin qu'il récupère ceux qui correspondent
      * 
      *  Je précise dans la jointure que la clé etrangère de la table users correspond avec celui de l'id de la table admin
      *  La condition de la requête est tout ce qui est différent de l'id_admin 5 ce qui ne m'affichera pas et qui correspond à mes droits et que seul moi peut avoir ce statut
@@ -86,7 +85,7 @@ class users extends database {
 
     /**
      *  La requete me permet de vérifier si une adresse e-mail existent dans la base de données
-     *  La requête va chercher l'adresse e-mail données comme valeur dans la base de données
+     *  La requête va chercher l'adresse e-mail saisie par l'utilisateur dans la base de données
      */
     public function readMail() {
         $query = 'SELECT `mail` FROM `' . PREFIXE . 'users` WHERE `mail`=:mail ';
@@ -177,7 +176,7 @@ class users extends database {
         try {
             $this->db->beginTransaction();
             //  Requête qui permet de supprimer les posts du forum lié à l'utilisateur
-            $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_users` = :id_cuyn_users';
+            $query = 'DELETE FROM `' . PREFIXE . 'forumPosts` WHERE `id_cuyn_forumTopics` = :id_cuyn_users';
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
@@ -211,7 +210,7 @@ class users extends database {
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_users', $this->id, PDO::PARAM_INT);
             $request->execute();
-            //  Requête qui permet de supprimer les  données personnel lié à l'utilisateur
+            //  Requête qui permet de supprimer les données personnel lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'users` WHERE `id`= :id';
             $request = $this->db->prepare($query);
             $request->bindValue(':id', $this->id, PDO::PARAM_INT);

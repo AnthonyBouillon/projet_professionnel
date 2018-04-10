@@ -3,17 +3,12 @@ session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
-if (isset($_SESSION['id'])) {
-    $users = new users();
-    $users->id = $_SESSION['id'];
-    $users->username = $_SESSION['username'];
-    $readUsers = $users->readUsers();
-}
+include_once '../controllers/navBarController.php';
 $title = 'Error 404';
 $classBody = NULL;
-include 'header.php';
+include_once 'header.php';
 ?>
-<div class="container-fluid container404">
+<div class="container-fluid">
     <div class="jumbotron errorBloc">  
         <div class="col-xs-offset-0 col-xs-6 col-sm-offset-2 col-sm-4 col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-3">
             <h2 class="errorTitle">Error 404</h2>
@@ -27,4 +22,4 @@ include 'header.php';
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';

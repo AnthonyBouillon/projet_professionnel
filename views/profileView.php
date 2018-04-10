@@ -1,12 +1,12 @@
 <?php
 session_start();
 include_once '../configuration.php';
-include '../models/database.php';
-include '../models/users.php';
-include '../controllers/profileController.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+include_once '../controllers/profileController.php';
 $classBody = 'backgroundProfile';
 $title = 'Mon profil';
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container profileView">
     <div class="row">
@@ -30,4 +30,4 @@ include 'header.php';
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';

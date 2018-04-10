@@ -8,12 +8,12 @@
  */
 session_start();
 include_once '../configuration.php';
-include '../models/database.php';
-include '../models/users.php';
-include '../controllers/recoveryPasswordController.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+include_once '../controllers/recoveryPasswordController.php';
 $classBody = NULL;
 $title = 'Initialisation du mot de passe';
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container-fluid containerRecovery">
     <div class="col-lg-offset-3 col-lg-6 formBackground">
@@ -67,4 +67,4 @@ include 'header.php';
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';

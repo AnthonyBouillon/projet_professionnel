@@ -6,7 +6,7 @@ $users = new users();
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
 } else {
-    header('Location:404.php');
+    header('Location:Accueil');
 }
 $readUsers = $users->readUsers();
 /*

@@ -7,7 +7,7 @@ include_once '../models/news.php';
 include_once '../controllers/navBarController.php';
 $title = 'Web TV';
 $classBody = NULL;
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container">
     <div class="row">
@@ -18,4 +18,4 @@ include 'header.php';
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';

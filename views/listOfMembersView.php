@@ -1,11 +1,14 @@
 <?php
+// crée une session ou restaure celle trouvée sur le serveur
 session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../models/admin.php';
 include_once '../controllers/listOfMembersController.php';
+// On assigne une classe à la balise body
 $classBody = 'listOfMembersBackground';
+// On assigne un titre à la balise title
 $title = 'Liste des membres';
 include_once 'header.php';
 ?>
@@ -20,7 +23,7 @@ include_once 'header.php';
                     <th class="text-center">Pseudo</th>
                     <th class="text-center">Statut</th>
                     <!-- On vérifie si l'utilisateur à les droits suprême afin de lui afficher la modification de statut et la suppression de l'utilisateur -->
-                    <?php if (!empty($readUsers) && $readUsers->id_cuyn_admin == 5) { ?>
+                    <?php if (!empty($readUsers) && $readUsers->id_cuyn_admin == 5 || $readUsers->id_cuyn_admin == 1) { ?>
                         <th class="text-center">Modifier le statut</th>
                         <th class="text-center">Supprimer l'utilisateur</th>
                     <?php } ?>
@@ -35,7 +38,7 @@ include_once 'header.php';
                         <td><?= $listMembers->username ?></td>
                         <td><?= $listMembers->rights ?></td>
                         <!-- On vérifie si l'utilisateur à les droits suprême afin de lui afficher la modification de statut et la suppression de l'utilisateur -->
-                        <?php if (!empty($readUsers) && $readUsers->id_cuyn_admin == 5) { ?>
+                        <?php if (!empty($readUsers) && $readUsers->id_cuyn_admin == 5 || $readUsers->id_cuyn_admin == 1) { ?>
                             <td class="text-center">
                                 <form action="" method="POST" >
                                     <select name="updateRights" class="btn btn-primary" >
@@ -70,15 +73,13 @@ include_once 'header.php';
                 <p class="text-center h4"><?= !empty($success['updateStatus']) ? $success['updateStatus'] : '' ?></p>
                 <p class="text-center h4"><?= !empty($success['deleteUsers']) ? $success['deleteUsers'] : '' ?></p>
             </div>
-            <?php
-        }
-        if (!empty($error)) {
-            ?>
+            <?php }
+        if (!empty($error)) { ?>
             <div class="alert-danger col-sm-offset-3 col-sm-6">
                 <p class="text-center h4"><?= $error ?></p>
             </div>
             <?php
-        }
+           }
     } else { ?>
         <h2 class="text-center margin titleStyle"><i class="fas fa-user"></i> Aucun membres n'est inscrit sur le site</h2>
    <?php } ?>

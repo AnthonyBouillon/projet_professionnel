@@ -26,7 +26,6 @@ $readSubCategories = $subCategories->readSubCategories();
 if (!empty($_GET['id'])) {
     $subCategories->id_category = $_GET['id'];
 }
-
 /*
  * On prépare nos regex pour le nom et la description de la sous-catégorie
  * puis on assigne un tableau vide afin de personnalisé nos messages
@@ -36,7 +35,8 @@ $regexDescription = '#^[\w\W]{10,255}$#';
 $formError = array();
 $formSuccess = array();
 /* Créer une sous-catégorie
- * 
+ * On assigne l'id de la catégorie, l'id de l'utilisateur, le nom et la description
+ * puis on vérifie si nos champs sont remplis afin de vérifié si nos regex sont bien respecté
  */
 if (isset($_POST['submitCreate']) && !empty($users->id)) {
     $subCategories->id_category = $_GET['id'];
@@ -50,6 +50,10 @@ if (isset($_POST['submitCreate']) && !empty($users->id)) {
         if (!preg_match($regexDescription, $subCategories->description)) {
             $formError['badRegexDescription'] = 'Description : minimum 10 caractères, maximum 255 caractères';
         }
+        /*
+         * Si le formulaire ne comporte pas d'erreur
+         * on apelle notre méthode afin de créer une sous-catégorie
+         */
         if (count($formError) == 0) {
             if ($subCategories->createSubCategories()) {
                 $formSuccess['createSubCategory'] = 'Vous avez créé la sous-catégorie avec succès';
@@ -57,10 +61,9 @@ if (isset($_POST['submitCreate']) && !empty($users->id)) {
         }
     }
 }
-
 /* * * * Modifier une catégorie * * * *
- * 
- *  
+ * On assigne l'id de la sous-catégorie, le nom et la description
+ * puis on vérifie si nos champs sont remplis afin de vérifié si nos regex sont bien respecté
  */
 if (isset($_POST['submitUpdate'])) {
     $subCategories->id_subCategory = $_POST['idSubCategory'];
@@ -76,6 +79,11 @@ if (isset($_POST['submitUpdate'])) {
     } else {
         $formError['emptyFormUpdate'] = 'Veuillez remplir les deux champs afin de modifier une sous-catégorie';
     }
+    /*
+     * Si le formulaire ne contient aucune erreur
+     * on appelle notre méthode afin de modifier une sous-catégorie
+     * puis on affiche
+     */
     if (count($formError) == 0) {
         if ($subCategories->updateSubCategories()) {
             $readSubCategories = $subCategories->readSubCategories();
@@ -84,7 +92,9 @@ if (isset($_POST['submitUpdate'])) {
     }
 }
 /*
- * 
+ * Si le formulaire est soumis
+ * on assigne l'id de la sous-catégorie 
+ * puis on appelle notre méthode afin de supprimer la sous-catégorie et tout ce qui est lié
  */
 if (isset($_POST['deleteSubCategory'])) {
     $subCategories->id_subCategory = $_POST['idSubCategory'];

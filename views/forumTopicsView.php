@@ -1,18 +1,21 @@
 <?php
+// crée une session ou restaure celle trouvée sur le serveur
 session_start();
 include_once '../configuration.php';
-include '../models/database.php';
-include '../models/users.php';
-include '../models/forumTopics.php';
-include '../controllers/forumTopicsController.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+include_once '../models/forumTopics.php';
+include_once '../controllers/forumTopicsController.php';
+// On assigne une classe à la balise body
 $classBody = 'forumBackground';
+// On assigne un titre à la balise title
 $title = 'Forum des sujets';
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container">
     <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
     <table class="table table-bordered"> 
-
+        <!-- En-tête du tableau -->
         <thead class="theadTable"> 
             <tr> 
                 <th class="text-center">Sujets</th> 
@@ -21,6 +24,7 @@ include 'header.php';
             </tr> 
         </thead> 
         <tbody class="tbodyTable"> 
+            <!-- Corps du tableau -->
             <?php foreach ($readTopics as $topics) { ?>
                 <tr> 
                     <td><a href="forumPostsView.php?id=<?= $topics->id ?>"><?= $topics->name ?></a></td>  
@@ -33,19 +37,12 @@ include 'header.php';
     <div class="well col-lg-6">
         <h2 class="text-center">Ajouter un sujet</h2>
         <form method="POST" action="">
-            <div class="col-lg-12">
-                <label for="name">Titre</label>
-                <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre du sujet" />
-            </div>
-            <div class="col-lg-12">
-                <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Créer le sujet"/>
-            </div>
+            <label for="name">Titre</label>
+            <input type="text" name="name" class="form-control focusColor" id="name" placeholder="Titre du sujet" />
+            <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Créer le sujet"/>
         </form>
     </div>
 </div>
-<style>
-
-</style>
 <?php
-include 'footer.php';
+include_once 'footer.php';
 

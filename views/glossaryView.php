@@ -1,10 +1,13 @@
 <?php
+// crée une session ou restaure celle trouvée sur le serveur
 session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../controllers/navBarController.php';
+// On assigne une classe à la balise body
 $classBody = 'glossaryBackground';
+// On assigne un titre à la balise title
 $title = 'Glossaire';
 include_once 'header.php';
 ?>
@@ -28,7 +31,6 @@ include_once 'header.php';
             </tbody>
         </table>
     </div>
-</div>
 </div>
 <?php
 include_once 'footer.php';

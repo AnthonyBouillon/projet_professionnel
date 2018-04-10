@@ -22,8 +22,8 @@ include_once 'header.php';
                     <p class="text-center bold h4"><?= !empty($formError['errorMail']) ? $formError['errorMail'] : ''; ?></p>
                     <p class="text-center bold h4"><?= !empty($formError['failMail']) ? $formError['failMail'] : ''; ?></p>
                 </div>
-            <?php } ?>
-            <?php if (!empty($formSuccess)) { ?>
+            <?php } 
+             if (!empty($formSuccess)) { ?>
             <!-- Affichage des messages de succès -->
                 <div class="alert-success">
                     <p class="text-center  bold h4"><?= $formSuccess['sendMail'] ?></p>
@@ -37,7 +37,7 @@ include_once 'header.php';
                         <input type="email" name="mail" class="form-control focusColor" id="mail" placeholder="Saisissez votre adresse e-mail" value="<?= $users->mail ?>" required />
                     </div>
                 </div>
-                <!-- Valider l'envoie d'e-mail au destinataire -->
+                <!-- Valider l'envoi d'e-mail au destinataire -->
                 <div class="form-group fieldBackground">
                     <div class="col-md-12">
                         <button type="submit" name="submit" class="btn btn-block formBtn">Valider</button>

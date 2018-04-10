@@ -59,7 +59,8 @@ class news extends database {
     }
 
     /**
-     *  La méthode me permet de compté le nombre d'id dans la table "news"
+     *  La méthode me permet de compter le nombre d'id dans la table "news"
+     *  Afin de connaitre le nombre d'article contenu dans la table
      */
     public function countNews() {
         $query = 'SELECT COUNT(`id`) AS `numbersArticles` FROM `' . PREFIXE . 'news`';
@@ -70,9 +71,9 @@ class news extends database {
     }
 
     /**
-     *  La méthode me permet de sélectionner tout les champs dans la table "news" et le pseudo de la table "users"
+     *  La méthode me permet de sélectionner tous les champs dans la table "news" et le pseudo de la table "users"
      *  La date est formaté grâce à la fonction DATE_FORMAT au format français
-     *  La table users et news sont join grâce à la méthode INNER JOIN car les données des deux tables correspond obligatoirement
+     *  La table users et news sont join grâce à la méthode INNER JOIN car les données des deux tables correspondent obligatoirement
      *  Ils sont  jointe avec la clé étrangère de la table news qui correspond à l'id de la table users
      *  Les articles sont trié du plus récent au plus ancien.
      *  Et la limite d'affichage va de 0 à 3, ces valeurs peut être changé via le controlleur
@@ -100,6 +101,7 @@ class news extends database {
 
     /**
      *  La méthode me permet de modifier le titre d'un article précis
+     *  c'est pour cette raison que j'ai besoin de l'id de l'article afin de modifier le titre de tel article
      * @return type booléen
      */
     public function updateTitle() {
@@ -112,6 +114,7 @@ class news extends database {
 
     /**
      *  La méthode me permet de modifier le nom de la plateforme d'un article précis
+     *  c'est pour cette raison que j'ai besoin de l'id de l'article afin de modifier le nom de la plateforme de tel article
      * @return type booléen
      */
     public function updatePlateform() {
@@ -124,6 +127,7 @@ class news extends database {
 
     /**
      *  La méthode me permet de modifier le résumé d'un article précis
+     *  c'est pour cette raison que j'ai besoin de l'id de l'article afin de modifier le résumé de tel article
      * @return type booléen
      */
     public function updateResume() {
@@ -136,6 +140,7 @@ class news extends database {
 
     /**
      *  La méthode me permet de modifier le contenu d'un article précis
+     *  c'est pour cette raison que j'ai besoin de l'id de l'article afin de modifier le contenu de tel article
      * @return type booléen
      */
     public function updateContent() {
@@ -148,6 +153,7 @@ class news extends database {
 
     /**
      *  La méthode me permet de modifier l'image d'un article précis
+     *  c'est pour cette raison que j'ai besoin de l'id de l'article afin de modifier l'image de tel article
      * @return type booléen
      */
     public function updatePicture() {

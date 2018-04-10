@@ -10,7 +10,7 @@ include_once '../controllers/registerController.php';
 $classBody = 'registerBackground';
 // Attribut un titre à la balise title
 $title = 'Inscription';
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container-fluid">
     <div class="col-lg-offset-3 col-lg-6 formRegisterBackground"> 
@@ -103,5 +103,5 @@ include 'header.php';
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';
 

@@ -2,14 +2,14 @@
 // Démarre la session
 session_start();
 include_once '../configuration.php';
-include '../models/database.php';
-include '../models/users.php';
-include '../controllers/loginController.php';
+include_once '../models/database.php';
+include_once '../models/users.php';
+include_once '../controllers/loginController.php';
 // Attribut une classe à la balise body
 $classBody = 'loginBackground';
 // Attribut un titre à la balise title
 $title = 'Connexion';
-include 'header.php';
+include_once 'header.php';
 ?>
 <div class="container containerLogin">
     <div class="col-lg-12 formBackground">
@@ -30,7 +30,7 @@ include 'header.php';
                 <p class="text-center bold h4"><?= !empty($formSuccess['loginSuccess']) ? $formSuccess['loginSuccess'] : ''; ?></p>
             </div>
         <?php } ?>
-        <section class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-12">
             <form method="POST" action="" class="form-horizontal">
                 <!-- Pseudo -->
                 <div class="form-group fieldBackground">
@@ -61,8 +61,8 @@ include 'header.php';
                     </div>
                 </div>
             </form>
-        </section>
+        </div>
     </div>
 </div>
 <?php
-include 'footer.php';
+include_once 'footer.php';

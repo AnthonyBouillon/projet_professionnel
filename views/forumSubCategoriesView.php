@@ -1,17 +1,21 @@
 <?php
+// crée une session ou restaure celle trouvée sur le serveur
 session_start();
 include_once '../configuration.php';
 include_once '../models/database.php';
 include_once '../models/users.php';
 include_once '../models/forumSubCategories.php';
 include_once '../controllers/forumSubCategoriesController.php';
+// On assigne une classe à la balise body
 $classBody = 'forumBackground';
+// On assigne un titre à la balise title
 $title = 'Forum sous-catégories';
 include_once 'header.php';
 ?>
 <div class="container">
     <h2 class="text-center titleStyle">Bienvenue sur le forum de All Plateform Together</h2>
     <p><a href="../Catégorie-du-forum">Revenir à la liste des catégories</a></p>
+    <!-- Message d'erreur -->
     <?php if (!empty($formError)) { ?>
         <div class="alert-danger">
             <p class="text-center h4"><?= !empty($formError['badRegexName']) ? $formError['badRegexName'] : '' ?></p>
@@ -22,6 +26,7 @@ include_once 'header.php';
             <p class="text-center h4"><?= !empty($formError['emptyFormUpdate']) ? $formError['emptyFormUpdate'] : '' ?></p>
         </div>
     <?php } ?>
+    <!-- Message de succès -->
     <?php if (!empty($formSuccess)) { ?>
         <div class="alert-success">
             <p class="text-center h4"><?= !empty($formSuccess['createSubCategory']) ? $formSuccess['createSubCategory'] : '' ?></p>
@@ -30,6 +35,7 @@ include_once 'header.php';
         </div>
     <?php } ?>
     <table class="table table-bordered"> 
+        <!-- En-tête du tableau -->
         <thead> 
             <tr> 
                 <th>Sous-catégories</th> 
@@ -37,24 +43,28 @@ include_once 'header.php';
                 <th>Dernières activités</th> 
             </tr> 
         </thead> 
+        <!-- Corps du tableau -->
         <tbody class="tbodyTable">
             <?php foreach ($readSubCategories as $subCategory) { ?>
                 <tr> 
                     <td>
                         <a href="forumTopicsView.php?id=<?= $subCategory->id ?>" title="direction vers les posts des utilisateurs"><?= $subCategory->name ?></a><br/><?= $subCategory->description ?><br/>
-                        <?php
-                        if (!empty($readUsers)) {
-                            if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
-                                ?>
+                        <!-- Si l'utilisateur est connecté et qu'il est Modérateur ou Master, on affiche ces boutons -->
+                        <?php if (!empty($_SESSION['id'])) {
+                            if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {  ?>
                                 <form method="POST" action="">
+                                    <!-- Modification d'une sous-catégorie -->
                                     <button type="button" name="updateSubCategory" class="displayForm formBtn" id="<?= $subCategory->id; ?>" title="Modifier une sous catégorie"><i class="far fa-edit"></i></button>
+                                    <!-- Suppression d'une sous-catégorie -->
                                     <button type="submit" name="deleteSubCategory" class="formBtn" id="deleteSubCategory" title="Supprimer une sous catégorie" onclick="return confirm('La suppression de la sous-catégorie ainsi que tout ce qui est lié à celui-ci est définitive, êtes-vous sûr de vouloir le supprimer ?')"><i class="far fa-trash-alt"></i></button>
+                                    <!-- Champ récupération de l'id d'une sous-catégorie -->
                                     <input type="hidden" name="idSubCategory" value="<?= $subCategory->id ?>" />
                                 </form>
                                 <?php
                             }
                         }
                         ?>
+                          <!-- Formulaire modification d'une sous-catégorie -->
                         <div class="divForum well col-lg-6" id="divForum<?= $subCategory->id; ?>">
                             <form method="post" action="">
                                 <input type="hidden" name="idSubCategory" value="<?= $subCategory->id ?>" />
@@ -63,19 +73,17 @@ include_once 'header.php';
                                 <input type="submit" name="submitUpdate" value="Valider la sous-catégorie"/>
                             </form>
                         </div>
-
                         </div>
                     </td>  
                     <td></td> 
                     <td></td>
                 </tr> 
-            <?php } ?> 
+<?php } ?> 
         </tbody> 
     </table>
-    <?php
-    if (!empty($readUsers)) {
-        if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {
-            ?>
+    <!-- Si l'utilisateur est connecté et qu'il est Modérateur ou Master, on affiche ce formulaire d'ajout de sous-catégorie -->
+    <?php  if (!empty($_SESSION['id'])) {
+        if ($readUsers->id_cuyn_admin == 3 || $readUsers->id_cuyn_admin == 5) {  ?>
             <div class="well col-lg-6">
                 <h2 class="text-center">Ajouter une sous-catégorie</h2>
                 <div class="col-lg-12">
@@ -93,22 +101,6 @@ include_once 'header.php';
     }
     ?>
 </div>
-
-
-<style>
-    .containerForum{
-        margin-top: 10%;
-    }
-    tr th{
-        background-color: #A983BE;
-    }
-    td{
-        padding: 20px!important;
-    }
-    #divSubCategory{
-        display: none;
-    }
-</style>
 <?php
 include_once 'footer.php';
 

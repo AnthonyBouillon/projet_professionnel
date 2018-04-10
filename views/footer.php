@@ -20,10 +20,11 @@
         </div>
     </div>
 </footer>
-<!-- Les librairies Jquery, Bootstrap, Font awesome et le script js -->
+<!-- Les librairies Jquery, Bootstrap  et le script js -->
 <script src="../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
 <script src="../assets/js/script.js"></script>
+
 </body>
 </html>
