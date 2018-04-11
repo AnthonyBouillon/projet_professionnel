@@ -181,7 +181,6 @@ class users extends database {
             $request = $this->db->prepare($query);
             $request->bindValue(':id_cuyn_forumTopics', $this->id_topic, PDO::PARAM_INT);
             $request->execute();
-            var_dump($this->id_topic);
             //  Requête qui permet de supprimer les topics du forum lié à l'utilisateur
             $query = 'DELETE FROM `' . PREFIXE . 'forumTopics` WHERE `id_cuyn_users` = :id_cuyn_users';
             $request = $this->db->prepare($query);
@@ -219,14 +218,13 @@ class users extends database {
             $request->execute();
             // Valide la transaction
             $this->db->commit();
-            $reponseDelete = true;
+            $responseDelete = true;
         } catch (Exception $ex) {
-            $reponseDelete = false;
             // Annule la transaction et reviens en arrière
             $this->db->rollBack;
-            echo "Failed: " . $ex->getMessage();
+            $responseDelete = $ex->getMessage();
         }
-        // Retourne vrais ou faux
+        // Retourne vrais ou le message d'erreur
         return $reponseDelete;
     }
 

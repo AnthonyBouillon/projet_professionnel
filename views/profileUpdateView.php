@@ -27,7 +27,7 @@ include_once 'header.php';
         <!-- Message de succès pour la modification de l'image de profil -->
         <?php if (!empty($formSuccess)) { ?>
             <div class="alert alert-success">
-                <p class="text-center bold h4"><?= $formSuccess['avatarUpdate']; ?></p>
+                <p class="text-center bold h4"><?= !empty($formSuccess['avatarUpdate']) ? $formSuccess['avatarUpdate'] : ''; ?></p>
             </div>
             <!-- Message d'erreur pour la modification de l'image de profil -->
         <?php } if (!empty($formError)) { ?>

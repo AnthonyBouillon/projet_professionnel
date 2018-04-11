@@ -50,14 +50,9 @@ if (isset($_POST['submit'])) {
          * La session de l'utilisateur est détruite
          * puis l'utilisateur est redirigé vers la page d'inscription
          */
-        //session_destroy();
-        //header('refresh:5;url=Inscription');   
+        session_destroy();
+        header('refresh:5;url=Inscription');   
     }
 } else {
     $error = 'Malheureusement un problème est survenue et votre compte n\'a pas pu être supprimé, veuillez réessayez ulterieurement ou contactez nous.';
 }
-
-
-
-
-

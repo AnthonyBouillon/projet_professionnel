@@ -1,3 +1,8 @@
+# Permet de proteger le fichier .htaccess
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
 <ifModule mod_rewrite.c>
 # Bloc l'accès au répertoire du site
 Options -Indexes
@@ -34,3 +39,4 @@ RewriteRule Validation-du-compte views/validationView.php [L]
 RewriteRule Toutes-les-actualités views/newsAllView.php [L] 
 RewriteRule Actualités views/newsView.php [L] 
 </ifModule>
+

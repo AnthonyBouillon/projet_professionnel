@@ -21,7 +21,6 @@ include_once 'header.php';
             <tr> 
                 <th class="text-center">Auteur</th> 
                 <th class="text-center">Titre du sujet : <?= $readNameByPost->name ?></th> 
-                <th class="text-center">Date</th> 
             </tr> 
         </thead> 
         <!-- Corps du forum -->
@@ -34,9 +33,8 @@ include_once 'header.php';
                         <p>Date d'inscription : <?= $posts->dateUsers ?></p>
                     </td> 
                     <td>
-                        <p><?= $posts->message ?></p>
+                        <p><?= $posts->message ?><br/>Posté le :<?= $posts->datePost ?></p>
                     </td> 
-                    <td>Posté le :<?= $posts->datePost ?></td> 
                 </tr> 
             <?php } ?> 
         </tbody> 
