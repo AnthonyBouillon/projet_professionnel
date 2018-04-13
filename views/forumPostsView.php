@@ -28,30 +28,35 @@ include_once 'header.php';
             <?php foreach ($readPosts as $posts) { ?>
                 <tr> 
                     <td>
-                        <p><?= $posts->username ?></p>
-                        <p>Statut : <?= $posts->rights ?></p>
-                        <p>Date d'inscription : <?= $posts->dateUsers ?></p>
+                        <p class="bold">
+                            <img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="avatarForum img-responsive img-rounded center-block" alt="Image de profil"/><br/>
+                            <?= $posts->username ?>
+                        </p>
+                        <p><span class="bold">Statut : </span><?= $posts->rights ?></p>
+                        <p><span class="bold">Date d'inscription : </span><?= $posts->dateUsers ?></p>
                     </td> 
                     <td>
-                        <p><?= $posts->message ?><br/>Posté le :<?= $posts->datePost ?></p>
+                        <p><?= $posts->message ?></p><hr/>
+                        <p class="bold">Posté le :<?= $posts->datePost ?></p>
+                        <p><button type="button">Modifier</button> | <button type="submit">Supprimer</button></p>
                     </td> 
                 </tr> 
             <?php } ?> 
         </tbody> 
     </table>
     <!-- Formulaire pour répondre au sujet -->
-    <?php if(!empty($_SESSION['id'])){  ?>
-    <div class="well col-lg-6">
-        <form method="POST" action="">
-            <div class="col-lg-12">
-                <label for="message">Répondre au sujet</label>
-                <input type="text" name="message" class="form-control focusColor" id="message" placeholder="Réponse du sujet" />
-            </div>
-            <div class="col-lg-12">
-                <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Valider"/>
-            </div>
-        </form>
-    </div>
+    <?php if (!empty($_SESSION['id'])) { ?>
+        <div class="well col-lg-6">
+            <form method="POST" action="">
+                <div class="col-lg-12">
+                    <label for="message">Répondre au sujet</label>
+                    <input type="text" name="message" class="form-control focusColor" id="message" placeholder="Réponse du sujet" />
+                </div>
+                <div class="col-lg-12">
+                    <input type="submit" name="submitCreate" class="btn formBtn btn-block" value="Valider"/>
+                </div>
+            </form>
+        </div>
     <?php } ?>
 </div>
 <?php

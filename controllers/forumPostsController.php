@@ -29,7 +29,6 @@ if (isset($_POST['submitCreate'])) {
     $forumPosts->message = htmlspecialchars($_POST['message']);
     $_SESSION['id_topic'] = $_GET['id'];
     $users->id_topic = $_SESSION['id_topic'];
-    var_dump($users->id_topic);
     $forumPosts->createPosts();
     $readPosts = $forumPosts->readPosts();
 }

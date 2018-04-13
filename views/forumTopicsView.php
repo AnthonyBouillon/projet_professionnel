@@ -27,7 +27,10 @@ include_once 'header.php';
             <!-- Corps du tableau -->
             <?php foreach ($readTopics as $topics) { ?>
                 <tr> 
-                    <td><a href="forumPostsView.php?id=<?= $topics->id ?>"><?= $topics->name ?></a></td>  
+                    <td>
+                        <p><a href="forumPostsView.php?id=<?= $topics->id ?>"><?= $topics->name ?></a></p><hr/>
+                        <p><button type="button">Modifier</button> | <button type="submit">Supprimer</button></p>
+                    </td>  
                     <td></td> 
                     <td></td>
                 </tr> 
