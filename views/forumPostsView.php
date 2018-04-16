@@ -29,7 +29,7 @@ include_once 'header.php';
                 <tr> 
                     <td>
                         <p class="bold">
-                            <img src="../members/avatars/<?= $readUsers->username . '/' . $readUsers->avatar; ?>" class="avatarForum img-responsive img-rounded center-block" alt="Image de profil"/><br/>
+                            <img src="../members/avatars/<?= $posts->username . '/' . $posts->avatar; ?>" class="avatarForum img-responsive img-rounded center-block" alt="Image de profil"/><br/>
                             <?= $posts->username ?>
                         </p>
                         <p><span class="bold">Statut : </span><?= $posts->rights ?></p>

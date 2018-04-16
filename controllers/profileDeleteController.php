@@ -5,7 +5,9 @@ $users = new users();
 // Affichage des informations (pseudo + image du menu)
 if (isset($_SESSION['id'])) {
     $users->id = $_SESSION['id'];
-    $users->id_topic = $_SESSION['id_topic'];
+    if (!empty($_SESSION['id_topic'])) {
+        $users->id_topic = $_SESSION['id_topic'];
+    }
 } else {
     header('Location:Accueil');
 }
@@ -51,7 +53,7 @@ if (isset($_POST['submit'])) {
          * puis l'utilisateur est redirigé vers la page d'inscription
          */
         session_destroy();
-        header('refresh:5;url=Inscription');   
+        header('refresh:5;url=Inscription');
     }
 } else {
     $error = 'Malheureusement un problème est survenue et votre compte n\'a pas pu être supprimé, veuillez réessayez ulterieurement ou contactez nous.';
